@@ -74,11 +74,13 @@ a:hover {
   place-items: center;
   border: 1px solid var(--n300);
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
-.logo svg {
-  width: 72px;
-  height: 72px;
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .eyebrow {
@@ -180,27 +182,67 @@ hr {
   color: var(--n600);
 }
 
-.coming-soon {
-  margin-top: 24px;
+.steps {
+  margin-top: 28px;
   display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  align-items: center;
-  background: var(--n150);
-  border: 1px dashed var(--n400);
-  border-radius: 16px;
-  padding: 24px;
+  gap: 24px;
 }
 
-.placeholder {
-  min-height: 160px;
+.step-card {
+  background: var(--n150);
+  border-radius: 18px;
+  border: 1px solid var(--n250);
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+}
+
+.step-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.step-header h3 {
+  margin: 0 0 6px;
+  color: var(--white);
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
   border-radius: 12px;
-  background: linear-gradient(145deg, rgba(51, 102, 255, 0.12), rgba(255, 122, 41, 0.1));
-  border: 1px solid rgba(51, 102, 255, 0.2);
+  background: linear-gradient(140deg, rgba(51, 102, 255, 0.32), rgba(255, 122, 41, 0.28));
   display: grid;
   place-items: center;
-  color: var(--n600);
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.step-media {
+  background: var(--n200);
+  border-radius: 16px;
+  border: 1px solid var(--n300);
+  padding: 16px;
+}
+
+.step-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+}
+
+.warning {
+  margin-top: 24px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: rgba(245, 127, 23, 0.12);
+  border: 1px solid rgba(245, 127, 23, 0.4);
+  color: var(--n800);
 }
 
 .footer {
@@ -223,12 +265,20 @@ hr {
     height: 72px;
   }
 
-  .logo svg {
-    width: 60px;
-    height: 60px;
-  }
-
   .tab-panel {
     padding: 24px;
+  }
+
+  .step-card {
+    padding: 20px;
+  }
+
+  .step-header {
+    grid-template-columns: 1fr;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
   }
 }

@@ -12,20 +12,7 @@
       <header class="hero">
         <div class="brand">
           <div class="logo">
-            <svg viewBox="0 0 120 120" aria-hidden="true">
-              <defs>
-                <linearGradient id="logo-gradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#FF7A29" />
-                  <stop offset="1" stop-color="#FF4C4C" />
-                </linearGradient>
-              </defs>
-              <rect width="120" height="120" rx="24" fill="#0D0F12" />
-              <path
-                d="M60 24c-19.9 0-36 16.1-36 36s16.1 36 36 36c9.8 0 18.8-3.9 25.5-10.3v-16H60v-12h37v33.6C88.7 94.6 75.1 100 60 100c-22.1 0-40-17.9-40-40s17.9-40 40-40c11.8 0 22.4 4.9 30 12.7l-8.5 8.5C76.2 34.4 68.5 31 60 31z"
-                fill="url(#logo-gradient)"
-              />
-              <rect x="78" y="58" width="20" height="34" rx="10" fill="url(#logo-gradient)" />
-            </svg>
+            <img src="logo.png" alt="Grippo logo" />
           </div>
           <div>
             <p class="eyebrow">Grippo</p>
@@ -38,7 +25,7 @@
         <div class="tab-links" role="tablist" aria-label="Policy sections">
           <button class="tab-button" id="tab-privacy" data-tab="privacy" aria-controls="privacy">Privacy Policy</button>
           <button class="tab-button" id="tab-terms" data-tab="terms" aria-controls="terms">Terms &amp; Conditions</button>
-          <button class="tab-button" id="tab-remove" data-tab="remove" aria-controls="remove">Removing account</button>
+          <button class="tab-button" id="tab-remove" data-tab="remove" aria-controls="remove">Account Management</button>
         </div>
       </header>
 
@@ -108,7 +95,7 @@
           <p>
             The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time
             thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them
-            at <a href="mailto:voitenko.dev@gmail.com">voitenko.dev@gmail.com</a> and they will respond in a reasonable time.
+            at <a href="mailto:grippo.app@gmail.com">grippo.app@gmail.com</a> and they will respond in a reasonable time.
           </p>
 
           <h3>Children</h3>
@@ -120,7 +107,7 @@
             identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13
             has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent
             or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider
-            (<a href="mailto:voitenko.dev@gmail.com">voitenko.dev@gmail.com</a>) so that they will be able to take the necessary actions.
+            (<a href="mailto:grippo.app@gmail.com">grippo.app@gmail.com</a>) so that they will be able to take the necessary actions.
           </p>
 
           <h3>Security</h3>
@@ -145,7 +132,7 @@
           <h3>Contact Us</h3>
           <p>
             If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the
-            Service Provider via email at <a href="mailto:voitenko.dev@gmail.com">voitenko.dev@gmail.com</a>.
+            Service Provider via email at <a href="mailto:grippo.app@gmail.com">grippo.app@gmail.com</a>.
           </p>
 
           <hr />
@@ -226,7 +213,7 @@
           <h3>Contact Us</h3>
           <p>
             If you have any questions or suggestions about the Terms and Conditions, please do not hesitate to contact the Service Provider at
-            <a href="mailto:voitenko.dev@gmail.com">voitenko.dev@gmail.com</a>.
+            <a href="mailto:grippo.app@gmail.com">grippo.app@gmail.com</a>.
           </p>
 
           <hr />
@@ -234,18 +221,51 @@
         </section>
 
         <section class="tab-panel" id="remove" data-tab-panel role="tabpanel" aria-labelledby="tab-remove">
-          <h2>Removing account</h2>
+          <h2>Account Management</h2>
           <p>
-            We are preparing a step-by-step guide with screenshots that explain how to remove your Grippo account. This content will be added soon.
+            Follow the steps below to permanently delete your Grippo account. After confirmation, all data associated with the account
+            is removed and cannot be restored.
           </p>
-          <div class="coming-soon">
-            <div>
-              <h3>Coming soon</h3>
-              <p>Provide the screenshots and instructions, and we will update this section with the full removal flow.</p>
-            </div>
-            <div class="placeholder">
-              <span>Screenshot placeholder</span>
-            </div>
+          <div class="steps">
+            <article class="step-card">
+              <div class="step-header">
+                <span class="step-number">1</span>
+                <div>
+                  <h3>Open your profile from the home screen</h3>
+                  <p>From the start screen, tap the user icon in the top-right corner.</p>
+                </div>
+              </div>
+              <div class="step-media">
+                <img src="screen_home.png" alt="Home screen with the profile icon" />
+              </div>
+            </article>
+            <article class="step-card">
+              <div class="step-header">
+                <span class="step-number">2</span>
+                <div>
+                  <h3>Go to Settings</h3>
+                  <p>In your profile, find the Settings section and tap it to open account options.</p>
+                </div>
+              </div>
+              <div class="step-media">
+                <img src="screen_profile.png" alt="Profile screen with the Settings section" />
+              </div>
+            </article>
+            <article class="step-card">
+              <div class="step-header">
+                <span class="step-number">3</span>
+                <div>
+                  <h3>Delete the account</h3>
+                  <p>In settings, tap “Delete account” and confirm. This permanently removes all data.</p>
+                </div>
+              </div>
+              <div class="step-media">
+                <img src="screen_settings.png" alt="Settings screen with the delete account button" />
+              </div>
+            </article>
+          </div>
+          <div class="warning">
+            <strong>Important:</strong> deletion is irreversible. Activity history, settings, and related information are removed forever.
           </div>
         </section>
       </main>
