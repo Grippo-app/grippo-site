@@ -195,6 +195,8 @@ hr {
   padding: 24px;
   display: grid;
   gap: 20px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
 }
 
 .step-header {
@@ -225,15 +227,26 @@ hr {
   border-radius: 16px;
   border: 1px solid var(--n300);
   padding: 16px;
+  display: flex;
+  justify-content: center;
 }
 
 .step-media img {
   width: 100%;
+  max-width: 260px;
   height: auto;
   display: block;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+}
+
+.step-card:nth-child(even) .step-header {
+  order: 2;
+}
+
+.step-card:nth-child(even) .step-media {
+  order: 1;
 }
 
 .warning {
@@ -271,6 +284,7 @@ hr {
 
   .step-card {
     padding: 20px;
+    grid-template-columns: 1fr;
   }
 
   .step-header {
@@ -280,5 +294,10 @@ hr {
   .step-number {
     width: 36px;
     height: 36px;
+  }
+
+  .step-card:nth-child(even) .step-header,
+  .step-card:nth-child(even) .step-media {
+    order: initial;
   }
 }
