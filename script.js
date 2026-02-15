@@ -20,21 +20,24 @@
   const SUPPORTED_LOCALES = new Set(["en", "ua", "ru"]);
   const LOCALE_PARAMS = ["locale", "lang", "lng"];
 
-  const FALLBACK_SHOWCASE_IMAGES = ["screen_home.png", "screen_profile.png"];
+  const FALLBACK_SHOWCASE_IMAGES = [
+    "assets/account.management/screen_home.png",
+    "assets/account.management/screen_profile.png",
+  ];
 
-  const SHOWCASE_IMAGES = {
-    en: [
-      "assets/screenshots/en-dashboard.png",
-      "assets/screenshots/en-trainings.png",
-    ],
-    ua: [
-      "assets/screenshots/ua-dashboard.png",
-      "assets/screenshots/ua-trainings.png",
-    ],
-    ru: [
-      "assets/screenshots/ru-dashboard.png",
-      "assets/screenshots/ru-trainings.png",
-    ],
+  const SHOWCASE_IMAGE_CANDIDATES = {
+    en: {
+      dashboard: ["assets/screenshots/dashboard_en.png"],
+      training: ["assets/screenshots/training_en.png"],
+    },
+    ua: {
+      dashboard: ["assets/screenshots/dashboard_ua.png"],
+      training: ["assets/screenshots/training_ua.png"],
+    },
+    ru: {
+      dashboard: ["assets/screenshots/dashboard_ru.png", "assets/screenshots/dashbard_ru.png"],
+      training: ["assets/screenshots/training_ru.png"],
+    },
   };
 
   const I18N = {
@@ -510,8 +513,20 @@
       window.history.pushState({ tab: tabId, locale: this.locale }, "", url);
     }
 
-    getShowcaseImagesForLocale() {
-      return SHOWCASE_IMAGES[this.locale] || SHOWCASE_IMAGES[DEFAULT_LOCALE] || FALLBACK_SHOWCASE_IMAGES;
+    getShowcaseCandidatesForLocale() {
+      const localized = SHOWCASE_IMAGE_CANDIDATES[this.locale] || SHOWCASE_IMAGE_CANDIDATES[DEFAULT_LOCALE];
+
+      if (!localized) {
+        return {
+          dashboard: [...FALLBACK_SHOWCASE_IMAGES],
+          training: [...FALLBACK_SHOWCASE_IMAGES].reverse(),
+        };
+      }
+
+      return {
+        dashboard: [...(localized.dashboard || []), FALLBACK_SHOWCASE_IMAGES[0], FALLBACK_SHOWCASE_IMAGES[1]].filter(Boolean),
+        training: [...(localized.training || []), FALLBACK_SHOWCASE_IMAGES[1], FALLBACK_SHOWCASE_IMAGES[0]].filter(Boolean),
+      };
     }
 
     setImageWithFallback(imageElement, candidates) {
@@ -541,9 +556,9 @@
         return;
       }
 
-      const localeImages = this.getShowcaseImagesForLocale();
-      const candidatesFirst = [localeImages[0], FALLBACK_SHOWCASE_IMAGES[0], FALLBACK_SHOWCASE_IMAGES[1]].filter(Boolean);
-      const candidatesSecond = [localeImages[1], FALLBACK_SHOWCASE_IMAGES[1], FALLBACK_SHOWCASE_IMAGES[0]].filter(Boolean);
+      const localeCandidates = this.getShowcaseCandidatesForLocale();
+      const candidatesFirst = localeCandidates.dashboard;
+      const candidatesSecond = localeCandidates.training;
 
       this.setImageWithFallback(this.showcasePrimary, candidatesFirst);
       this.setImageWithFallback(this.showcaseSecondary, candidatesSecond);
