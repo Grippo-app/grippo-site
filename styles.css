@@ -194,6 +194,11 @@ h1 {
   fill: var(--white);
 }
 
+.store-icon--play {
+  width: 28px;
+  height: 28px;
+}
+
 .store-text {
   display: grid;
   line-height: 1.15;
@@ -466,6 +471,12 @@ h1 {
 .cta-primary:hover,
 .cta-secondary:hover {
   transform: translateY(-1px);
+}
+
+.cta-primary:hover,
+.cta-primary:focus-visible,
+.cta-primary:visited {
+  color: var(--white);
 }
 
 .landing-footer nav {
