@@ -518,6 +518,7 @@
       const locale = this.locale in STORE_LINKS.appStore ? this.locale : DEFAULT_LOCALE;
       const appStoreUrl = STORE_LINKS.appStore[locale] || STORE_LINKS.appStore[DEFAULT_LOCALE];
       const googlePlayUrl = STORE_LINKS.googlePlay[locale] || STORE_LINKS.googlePlay[DEFAULT_LOCALE];
+      const preferredStore = this.detectPreferredStore();
 
       const storeLinks = Array.from(document.querySelectorAll("[data-store]"));
       storeLinks.forEach((link) => {
@@ -526,8 +527,30 @@
           link.setAttribute("href", appStoreUrl);
         } else if (storeType === "google-play") {
           link.setAttribute("href", googlePlayUrl);
+        } else if (storeType === "auto") {
+          link.setAttribute("href", preferredStore === "google-play" ? googlePlayUrl : appStoreUrl);
         }
       });
+    }
+
+    detectPreferredStore() {
+      const ua = (navigator.userAgent || "").toLowerCase();
+      const platform = (navigator.platform || "").toLowerCase();
+      const hasTouch = navigator.maxTouchPoints > 1;
+
+      const isAndroid = ua.includes("android");
+      const isIphone = ua.includes("iphone") || ua.includes("ipod");
+      const isIpad = ua.includes("ipad") || (platform.includes("mac") && hasTouch);
+
+      if (isAndroid) {
+        return "google-play";
+      }
+
+      if (isIphone || isIpad) {
+        return "app-store";
+      }
+
+      return "app-store";
     }
 
     setupKpiObserver() {
