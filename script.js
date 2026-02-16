@@ -31,7 +31,7 @@
       training: ["assets/screenshots/training_en.png"],
     },
     ua: {
-      dashboard: ["assets/screenshots/dashboard_ua.png"],
+      dashboard: ["assets/screenshots/dashboard_ua.png", "assets/screenshots/dashbard_ru.png"],
       training: ["assets/screenshots/training_ua.png"],
     },
     ru: {
