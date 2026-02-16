@@ -19,6 +19,20 @@
             Grippo is a workout app that shows not just exercises, but real progress. No quotes. No empty promises. Just
             training, numbers, and a clear view of what is happening to your body.
           </p>
+          <div class="kpi-grid" aria-label="Key performance indicators">
+            <article class="kpi-card">
+              <p class="kpi-label" data-i18n="landing.kpi.days.label">Active days</p>
+              <p class="kpi-value"><span data-kpi-target="6" data-kpi-suffix="+">0</span></p>
+            </article>
+            <article class="kpi-card">
+              <p class="kpi-label" data-i18n="landing.kpi.volume.label">Volume growth</p>
+              <p class="kpi-value"><span data-kpi-target="18" data-kpi-suffix="%">0</span></p>
+            </article>
+            <article class="kpi-card">
+              <p class="kpi-label" data-i18n="landing.kpi.balance.label">Muscle balance</p>
+              <p class="kpi-value"><span data-kpi-target="92" data-kpi-suffix="%">0</span></p>
+            </article>
+          </div>
           <nav class="store-buttons" aria-label="Download Grippo">
             <a class="store-button" data-store="app-store" href="https://apps.apple.com" target="_blank" rel="noreferrer">
               <span class="store-icon" aria-hidden="true">
@@ -82,9 +96,13 @@
             <div class="phone-glow" aria-hidden="true"></div>
             <img id="phoneShotPrimary" class="phone-shot is-active" src="assets/screenshots/dashboard_en.png" alt="Grippo app dashboard screenshot" />
             <img id="phoneShotSecondary" class="phone-shot" src="assets/screenshots/training_en.png" alt="Grippo app workout screenshot" />
-            <div class="phone-dots" id="phoneDots" aria-hidden="true">
-              <span class="phone-dot is-active"></span>
-              <span class="phone-dot"></span>
+            <div class="phone-controls">
+              <button class="phone-arrow" id="phonePrev" type="button" aria-label="Previous screenshot" data-i18n-aria-label="landing.showcase.prevAria">←</button>
+              <div class="phone-dots" id="phoneDots" aria-hidden="true">
+                <span class="phone-dot is-active"></span>
+                <span class="phone-dot"></span>
+              </div>
+              <button class="phone-arrow" id="phoneNext" type="button" aria-label="Next screenshot" data-i18n-aria-label="landing.showcase.nextAria">→</button>
             </div>
           </div>
         </section>
@@ -113,10 +131,32 @@
           </article>
         </section>
 
+        <section class="audience">
+          <p class="eyebrow" data-i18n="landing.audience.eyebrow">For Whom</p>
+          <div class="audience-grid">
+            <article class="audience-card">
+              <h3 data-i18n="landing.audience.first.title">Train regularly</h3>
+              <p data-i18n="landing.audience.first.body">Stay focused on progressive overload and consistent volume.</p>
+            </article>
+            <article class="audience-card">
+              <h3 data-i18n="landing.audience.second.title">Track numbers</h3>
+              <p data-i18n="landing.audience.second.body">Measure real output instead of relying on vague motivation.</p>
+            </article>
+            <article class="audience-card">
+              <h3 data-i18n="landing.audience.third.title">Need clear decisions</h3>
+              <p data-i18n="landing.audience.third.body">Know what to change in your next workout with confidence.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="landing-cta">
           <p class="eyebrow" data-i18n="landing.cta.eyebrow">Start With Your First Workout</p>
           <h2 data-i18n="landing.cta.title">Open the app, log your session, and see what others do not show.</h2>
           <p data-i18n="landing.cta.subtitle">Grippo gives you a clear snapshot of your training right now.</p>
+          <div class="cta-actions">
+            <a class="cta-primary" href="#" data-store="app-store" data-i18n="landing.cta.download">Download Grippo</a>
+            <a class="cta-secondary" href="?tab=privacy" data-tab-link="privacy" data-i18n="landing.cta.legal">Open Privacy &amp; Account</a>
+          </div>
         </section>
       </main>
 
@@ -133,6 +173,9 @@
     <!-- Policies/account view -->
     <div class="page" id="policyPage" data-view="policies">
       <header class="hero">
+        <div class="policy-nav">
+          <a class="back-button" href="?tab=landing" data-landing-link data-i18n="policies.back">← Back to landing</a>
+        </div>
         <div class="brand">
           <div class="logo">
             <img src="logo.png" alt="Grippo logo" />

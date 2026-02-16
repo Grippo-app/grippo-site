@@ -23,20 +23,42 @@
   const FALLBACK_SHOWCASE_IMAGES = [
     "assets/account.management/screen_home.png",
     "assets/account.management/screen_profile.png",
+    "assets/account.management/screen_settings.png",
   ];
+
+  const SHOWCASE_SLIDE_KEYS = ["dashboard", "training", "exercises", "muscles"];
 
   const SHOWCASE_IMAGE_CANDIDATES = {
     en: {
       dashboard: ["assets/screenshots/dashboard_en.png"],
       training: ["assets/screenshots/training_en.png"],
+      exercises: ["assets/screenshots/exercises_en.png"],
+      muscles: ["assets/screenshots/muscles_en.png"],
     },
     ua: {
-      dashboard: ["assets/screenshots/dashboard_ua.png", "assets/screenshots/dashbard_ru.png"],
+      dashboard: ["assets/screenshots/dashboard_ua.png"],
       training: ["assets/screenshots/training_ua.png"],
+      exercises: ["assets/screenshots/exercises_ua.png"],
+      muscles: ["assets/screenshots/muscles_ua.png"],
     },
     ru: {
-      dashboard: ["assets/screenshots/dashboard_ru.png", "assets/screenshots/dashbard_ru.png"],
+      dashboard: ["assets/screenshots/dashboard_ru.png"],
       training: ["assets/screenshots/training_ru.png"],
+      exercises: ["assets/screenshots/exercises_ru.png"],
+      muscles: ["assets/screenshots/muscles_ru.png"],
+    },
+  };
+
+  const STORE_LINKS = {
+    appStore: {
+      en: "https://apps.apple.com/us?utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=ios_en",
+      ua: "https://apps.apple.com/ua?utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=ios_ua",
+      ru: "https://apps.apple.com/ru?utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=ios_ru",
+    },
+    googlePlay: {
+      en: "https://play.google.com/store/apps/details?id=com.grippo.app&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_en",
+      ua: "https://play.google.com/store/apps/details?id=com.grippo.app&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_ua",
+      ru: "https://play.google.com/store/apps/details?id=com.grippo.app&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_ru",
     },
   };
 
@@ -65,6 +87,11 @@
       "landing.showcase.eyebrow": "Inside The App",
       "landing.showcase.title": "Real screens. Real numbers. Zero fluff.",
       "landing.showcase.subtitle": "Your dashboard and workout log update with your progress as you train.",
+      "landing.showcase.prevAria": "Previous screenshot",
+      "landing.showcase.nextAria": "Next screenshot",
+      "landing.kpi.days.label": "Active days",
+      "landing.kpi.volume.label": "Volume growth",
+      "landing.kpi.balance.label": "Muscle balance",
       "landing.features.first.title": "Smart insights, not templates",
       "landing.features.first.body":
         "Understand overload and underload by muscle group. Grippo helps you decide when to push harder and when to recover, based on your own training history.",
@@ -74,15 +101,25 @@
       "landing.features.third.title": "Built for serious training",
       "landing.features.third.body":
         "Grippo is for people who train regularly, care about measurable progress, and want to know why results appear or disappear.",
+      "landing.audience.eyebrow": "For Whom",
+      "landing.audience.first.title": "Train regularly",
+      "landing.audience.first.body": "Stay focused on progressive overload and consistent volume.",
+      "landing.audience.second.title": "Track numbers",
+      "landing.audience.second.body": "Measure real output instead of relying on vague motivation.",
+      "landing.audience.third.title": "Need clear decisions",
+      "landing.audience.third.body": "Know what to change in your next workout with confidence.",
       "landing.cta.eyebrow": "Start With Your First Workout",
       "landing.cta.title": "Open the app, log your session, and see what others do not show.",
       "landing.cta.subtitle": "Grippo gives you a clear snapshot of your training right now.",
+      "landing.cta.download": "Download Grippo",
+      "landing.cta.legal": "Open Privacy & Account",
       "landing.footer.navAria": "Legal and account links",
       "landing.footer.privacy": "Privacy Policy",
       "landing.footer.terms": "Terms & Conditions",
       "landing.footer.remove": "Account Management",
       "policies.hero.title": "Policies & Account",
       "policies.hero.subtitle": "Find the privacy policy, terms & conditions, and account removal instructions for the Grippo mobile app.",
+      "policies.back": "← Back to landing",
       "policies.hero.tabAria": "Policy sections",
       "policies.tabs.privacy": "Privacy Policy",
       "policies.tabs.terms": "Terms & Conditions",
@@ -100,6 +137,8 @@
       "footer.copyright": "Grippo © 2026. All rights reserved.",
       "showcase.alt.dashboard": "Grippo app dashboard screenshot",
       "showcase.alt.training": "Grippo app trainings screenshot",
+      "showcase.alt.exercises": "Grippo app exercises screenshot",
+      "showcase.alt.muscles": "Grippo app muscle analytics screenshot",
     },
     ua: {
       "brand.name": "Grippo",
@@ -125,21 +164,36 @@
       "landing.showcase.eyebrow": "Всередині додатку",
       "landing.showcase.title": "Реальні екрани. Реальні цифри. Без зайвого.",
       "landing.showcase.subtitle": "Дашборд і журнал тренувань оновлюються разом з вашим прогресом.",
+      "landing.showcase.prevAria": "Попередній скріншот",
+      "landing.showcase.nextAria": "Наступний скріншот",
+      "landing.kpi.days.label": "Активні дні",
+      "landing.kpi.volume.label": "Зростання обсягу",
+      "landing.kpi.balance.label": "Баланс м'язів",
       "landing.features.first.title": "Розумні інсайти, а не шаблони",
       "landing.features.first.body": "Розумійте перевантаження і недовантаження по групах м'язів та коригуйте план на основі власної історії тренувань.",
       "landing.features.second.title": "Повний контроль тренувань",
       "landing.features.second.body": "Швидко фіксуйте тренування, переглядайте статистику і бачте розподіл навантаження без зайвих дій.",
       "landing.features.third.title": "Для тих, хто тренується системно",
       "landing.features.third.body": "Grippo для людей, яким важливі цифри, стабільність і розуміння причин результату.",
+      "landing.audience.eyebrow": "Для кого",
+      "landing.audience.first.title": "Тренуєтесь регулярно",
+      "landing.audience.first.body": "Фокус на прогресивному навантаженні та стабільному обсязі.",
+      "landing.audience.second.title": "Працюєте з цифрами",
+      "landing.audience.second.body": "Вимірюйте реальний результат замість абстрактної мотивації.",
+      "landing.audience.third.title": "Потрібні чіткі рішення",
+      "landing.audience.third.body": "Точно знайте, що змінити у наступному тренуванні.",
       "landing.cta.eyebrow": "Почніть з першого тренування",
       "landing.cta.title": "Відкрийте додаток, запишіть тренування і побачте те, що інші не показують.",
       "landing.cta.subtitle": "Grippo показує чесний зріз вашої форми вже зараз.",
+      "landing.cta.download": "Завантажити Grippo",
+      "landing.cta.legal": "Відкрити політики та акаунт",
       "landing.footer.navAria": "Посилання на політики та керування акаунтом",
       "landing.footer.privacy": "Політика конфіденційності",
       "landing.footer.terms": "Умови використання",
       "landing.footer.remove": "Керування акаунтом",
       "policies.hero.title": "Політики та акаунт",
       "policies.hero.subtitle": "Тут ви знайдете політику конфіденційності, умови використання та інструкцію з видалення акаунта Grippo.",
+      "policies.back": "← Назад на лендинг",
       "policies.hero.tabAria": "Розділи політик",
       "policies.tabs.privacy": "Політика конфіденційності",
       "policies.tabs.terms": "Умови використання",
@@ -157,6 +211,8 @@
       "footer.copyright": "Grippo © 2026. Усі права захищено.",
       "showcase.alt.dashboard": "Скріншот дашборду Grippo",
       "showcase.alt.training": "Скріншот тренувань Grippo",
+      "showcase.alt.exercises": "Скріншот вправ Grippo",
+      "showcase.alt.muscles": "Скріншот аналітики м'язів Grippo",
     },
     ru: {
       "brand.name": "Grippo",
@@ -182,21 +238,36 @@
       "landing.showcase.eyebrow": "Внутри приложения",
       "landing.showcase.title": "Реальные экраны. Реальные цифры. Ничего лишнего.",
       "landing.showcase.subtitle": "Дашборд и журнал тренировок обновляются вместе с вашим прогрессом.",
+      "landing.showcase.prevAria": "Предыдущий скриншот",
+      "landing.showcase.nextAria": "Следующий скриншот",
+      "landing.kpi.days.label": "Активные дни",
+      "landing.kpi.volume.label": "Рост объема",
+      "landing.kpi.balance.label": "Баланс мышц",
       "landing.features.first.title": "Умные инсайты вместо шаблонов",
       "landing.features.first.body": "Понимайте перегруз и недогруз по мышечным группам и корректируйте план на основе вашей истории тренировок.",
       "landing.features.second.title": "Полный контроль тренировок",
       "landing.features.second.body": "Быстро фиксируйте тренировки, смотрите статистику упражнений и анализируйте нагрузку без лишних действий.",
       "landing.features.third.title": "Для тех, кто тренируется регулярно",
       "landing.features.third.body": "Grippo создан для тех, кому важны цифры, контроль и понимание причин результата.",
+      "landing.audience.eyebrow": "Для кого",
+      "landing.audience.first.title": "Тренируетесь регулярно",
+      "landing.audience.first.body": "Фокус на прогрессивной нагрузке и стабильном объеме.",
+      "landing.audience.second.title": "Следите за цифрами",
+      "landing.audience.second.body": "Измеряйте реальный результат вместо абстрактной мотивации.",
+      "landing.audience.third.title": "Нужны четкие решения",
+      "landing.audience.third.body": "Точно понимайте, что менять в следующей тренировке.",
       "landing.cta.eyebrow": "Начните с первой тренировки",
       "landing.cta.title": "Откройте приложение, запишите тренировку и увидьте то, чего не показывают другие.",
       "landing.cta.subtitle": "Grippo показывает честный срез вашего прогресса уже сейчас.",
+      "landing.cta.download": "Скачать Grippo",
+      "landing.cta.legal": "Открыть политики и аккаунт",
       "landing.footer.navAria": "Ссылки на политики и управление аккаунтом",
       "landing.footer.privacy": "Политика конфиденциальности",
       "landing.footer.terms": "Условия использования",
       "landing.footer.remove": "Управление аккаунтом",
       "policies.hero.title": "Политики и аккаунт",
       "policies.hero.subtitle": "Здесь вы найдете политику конфиденциальности, условия использования и инструкции по удалению аккаунта Grippo.",
+      "policies.back": "← Назад на лендинг",
       "policies.hero.tabAria": "Разделы политик",
       "policies.tabs.privacy": "Политика конфиденциальности",
       "policies.tabs.terms": "Условия использования",
@@ -214,6 +285,8 @@
       "footer.copyright": "Grippo © 2026. Все права защищены.",
       "showcase.alt.dashboard": "Скриншот дашборда Grippo",
       "showcase.alt.training": "Скриншот тренировок Grippo",
+      "showcase.alt.exercises": "Скриншот упражнений Grippo",
+      "showcase.alt.muscles": "Скриншот аналитики мышц Grippo",
     },
   };
 
@@ -229,12 +302,22 @@
       this.translatableElements = Array.from(document.querySelectorAll("[data-i18n]"));
       this.translatableAriaElements = Array.from(document.querySelectorAll("[data-i18n-aria-label]"));
       this.tabLinks = Array.from(document.querySelectorAll("[data-tab-link]"));
+      this.landingLinks = Array.from(document.querySelectorAll("[data-landing-link]"));
 
       this.showcasePrimary = document.getElementById("phoneShotPrimary");
       this.showcaseSecondary = document.getElementById("phoneShotSecondary");
-      this.showcaseDots = Array.from(document.querySelectorAll("#phoneDots .phone-dot"));
+      this.showcaseStage = document.querySelector(".phone-stage");
+      this.showcasePrev = document.getElementById("phonePrev");
+      this.showcaseNext = document.getElementById("phoneNext");
+      this.showcaseDotsContainer = document.getElementById("phoneDots");
+      this.showcaseDots = [];
       this.showcaseTimer = null;
       this.showcaseIndex = 0;
+      this.showcaseSlides = [];
+      this.showcaseActiveSlot = 0;
+      this.kpiValues = Array.from(document.querySelectorAll("[data-kpi-target]"));
+      this.kpiAnimated = false;
+      this.kpiObserver = null;
 
       this.locale = DEFAULT_LOCALE;
 
@@ -260,6 +343,23 @@
           this.setActiveTab(button.dataset.tab, { updateUrl: true });
         });
       });
+
+      if (this.showcasePrev) {
+        this.showcasePrev.addEventListener("click", () => {
+          this.advanceShowcaseFrame(-1, true);
+        });
+      }
+
+      if (this.showcaseNext) {
+        this.showcaseNext.addEventListener("click", () => {
+          this.advanceShowcaseFrame(1, true);
+        });
+      }
+
+      if (this.showcaseStage) {
+        this.showcaseStage.addEventListener("mouseenter", () => this.stopShowcaseCarousel());
+        this.showcaseStage.addEventListener("mouseleave", () => this.startShowcaseCarousel());
+      }
 
       window.addEventListener("popstate", this.handlePopState);
       window.addEventListener("hashchange", this.handleHashChange);
@@ -372,11 +472,13 @@
         }
       });
 
-      this.updateLocalizedTabLinks();
+      this.updateLocalizedNavigationLinks();
+      this.updateStoreLinks();
       this.updateShowcaseContent();
+      this.setupKpiObserver();
     }
 
-    updateLocalizedTabLinks() {
+    updateLocalizedNavigationLinks() {
       this.tabLinks.forEach((link) => {
         const tab = link.dataset.tabLink;
         if (!tab) {
@@ -394,6 +496,87 @@
 
         link.setAttribute("href", `${url.pathname}${url.search}`);
       });
+
+      this.landingLinks.forEach((link) => {
+        const url = new URL(window.location.href);
+        url.search = "";
+        url.hash = "";
+        url.searchParams.set(TAB_PARAM, "landing");
+
+        if (this.locale !== DEFAULT_LOCALE) {
+          url.searchParams.set("locale", this.locale);
+        }
+
+        link.setAttribute("href", `${url.pathname}${url.search}`);
+      });
+    }
+
+    updateStoreLinks() {
+      const locale = this.locale in STORE_LINKS.appStore ? this.locale : DEFAULT_LOCALE;
+      const appStoreUrl = STORE_LINKS.appStore[locale] || STORE_LINKS.appStore[DEFAULT_LOCALE];
+      const googlePlayUrl = STORE_LINKS.googlePlay[locale] || STORE_LINKS.googlePlay[DEFAULT_LOCALE];
+
+      const storeLinks = Array.from(document.querySelectorAll("[data-store]"));
+      storeLinks.forEach((link) => {
+        const storeType = link.dataset.store;
+        if (storeType === "app-store") {
+          link.setAttribute("href", appStoreUrl);
+        } else if (storeType === "google-play") {
+          link.setAttribute("href", googlePlayUrl);
+        }
+      });
+    }
+
+    setupKpiObserver() {
+      if (this.kpiAnimated || this.kpiValues.length === 0 || this.resolveViewMode() !== VIEW_MODE.LANDING) {
+        return;
+      }
+
+      if (this.kpiObserver) {
+        this.kpiObserver.disconnect();
+      }
+
+      this.kpiObserver = new IntersectionObserver(
+        (entries) => {
+          const shouldAnimate = entries.some((entry) => entry.isIntersecting);
+          if (!shouldAnimate) {
+            return;
+          }
+
+          this.kpiAnimated = true;
+          this.kpiValues.forEach((element) => this.animateKpiCounter(element));
+          if (this.kpiObserver) {
+            this.kpiObserver.disconnect();
+            this.kpiObserver = null;
+          }
+        },
+        { threshold: 0.35 }
+      );
+
+      const observedTarget = this.kpiValues[0] ? this.kpiValues[0].closest(".kpi-grid") : null;
+      if (observedTarget) {
+        this.kpiObserver.observe(observedTarget);
+      }
+    }
+
+    animateKpiCounter(element) {
+      const target = Number(element.dataset.kpiTarget || "0");
+      const suffix = element.dataset.kpiSuffix || "";
+      const duration = 1100;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        element.textContent = `${value}${suffix}`;
+
+        if (progress < 1) {
+          window.requestAnimationFrame(tick);
+        }
+      };
+
+      window.requestAnimationFrame(tick);
     }
 
     resolveViewMode() {
@@ -437,6 +620,7 @@
 
       if (isLanding) {
         this.startShowcaseCarousel();
+        this.setupKpiObserver();
       } else {
         this.stopShowcaseCarousel();
       }
@@ -513,23 +697,27 @@
       window.history.pushState({ tab: tabId, locale: this.locale }, "", url);
     }
 
-    getShowcaseCandidatesForLocale() {
-      const localized = SHOWCASE_IMAGE_CANDIDATES[this.locale] || SHOWCASE_IMAGE_CANDIDATES[DEFAULT_LOCALE];
+    getShowcaseSlidesForLocale() {
+      const localized = SHOWCASE_IMAGE_CANDIDATES[this.locale] || SHOWCASE_IMAGE_CANDIDATES[DEFAULT_LOCALE] || {};
+      const defaultLocalized = SHOWCASE_IMAGE_CANDIDATES[DEFAULT_LOCALE] || {};
 
-      if (!localized) {
+      return SHOWCASE_SLIDE_KEYS.map((key, index) => {
+        const fallbackImage = FALLBACK_SHOWCASE_IMAGES[index % FALLBACK_SHOWCASE_IMAGES.length];
+        const candidates = [
+          ...(localized[key] || []),
+          ...(defaultLocalized[key] || []),
+          fallbackImage,
+          ...FALLBACK_SHOWCASE_IMAGES,
+        ].filter(Boolean);
+
         return {
-          dashboard: [...FALLBACK_SHOWCASE_IMAGES],
-          training: [...FALLBACK_SHOWCASE_IMAGES].reverse(),
+          key,
+          candidates: [...new Set(candidates)],
         };
-      }
-
-      return {
-        dashboard: [...(localized.dashboard || []), FALLBACK_SHOWCASE_IMAGES[0], FALLBACK_SHOWCASE_IMAGES[1]].filter(Boolean),
-        training: [...(localized.training || []), FALLBACK_SHOWCASE_IMAGES[1], FALLBACK_SHOWCASE_IMAGES[0]].filter(Boolean),
-      };
+      }).filter((slide) => slide.candidates.length > 0);
     }
 
-    setImageWithFallback(imageElement, candidates) {
+    setImageWithFallback(imageElement, candidates, onResolved) {
       if (!imageElement || !Array.isArray(candidates) || candidates.length === 0) {
         return;
       }
@@ -540,12 +728,19 @@
           return;
         }
 
-        imageElement.src = candidates[index];
+        const candidate = candidates[index];
+        imageElement.src = candidate;
         index += 1;
       };
 
       imageElement.onerror = () => {
         tryNext();
+      };
+
+      imageElement.onload = () => {
+        if (typeof onResolved === "function") {
+          onResolved(imageElement.src);
+        }
       };
 
       tryNext();
@@ -556,29 +751,37 @@
         return;
       }
 
-      const localeCandidates = this.getShowcaseCandidatesForLocale();
-      const candidatesFirst = localeCandidates.dashboard;
-      const candidatesSecond = localeCandidates.training;
+      this.showcaseSlides = this.getShowcaseSlidesForLocale();
+      if (this.showcaseSlides.length === 0) {
+        return;
+      }
 
-      this.setImageWithFallback(this.showcasePrimary, candidatesFirst);
-      this.setImageWithFallback(this.showcaseSecondary, candidatesSecond);
+      this.showcaseIndex = 0;
+      this.showcaseActiveSlot = 0;
+      this.renderShowcaseDots(this.showcaseSlides.length);
 
-      this.showcasePrimary.alt = this.getTranslation("showcase.alt.dashboard");
-      this.showcaseSecondary.alt = this.getTranslation("showcase.alt.training");
+      const firstSlide = this.showcaseSlides[0];
+      this.setImageWithFallback(this.showcasePrimary, firstSlide.candidates);
+      this.showcasePrimary.alt = this.getTranslation(`showcase.alt.${firstSlide.key}`);
+      this.showcasePrimary.classList.add("is-active");
+      this.showcaseSecondary.classList.remove("is-active");
+
+      const secondSlide = this.showcaseSlides[1] || firstSlide;
+      this.setImageWithFallback(this.showcaseSecondary, secondSlide.candidates);
+      this.showcaseSecondary.alt = this.getTranslation(`showcase.alt.${secondSlide.key}`);
     }
 
     startShowcaseCarousel() {
-      if (!this.showcasePrimary || !this.showcaseSecondary) {
+      if (!this.showcasePrimary || !this.showcaseSecondary || this.showcaseSlides.length <= 1) {
+        this.renderShowcaseFrame();
         return;
       }
 
       this.stopShowcaseCarousel();
-      this.showcaseIndex = 0;
       this.renderShowcaseFrame();
 
       this.showcaseTimer = window.setInterval(() => {
-        this.showcaseIndex = this.showcaseIndex === 0 ? 1 : 0;
-        this.renderShowcaseFrame();
+        this.advanceShowcaseFrame(1, false);
       }, 3800);
     }
 
@@ -590,19 +793,78 @@
     }
 
     renderShowcaseFrame() {
-      const isPrimaryActive = this.showcaseIndex === 0;
-
-      if (this.showcasePrimary) {
-        this.showcasePrimary.classList.toggle("is-active", isPrimaryActive);
-      }
-
-      if (this.showcaseSecondary) {
-        this.showcaseSecondary.classList.toggle("is-active", !isPrimaryActive);
-      }
-
       this.showcaseDots.forEach((dot, index) => {
         dot.classList.toggle("is-active", index === this.showcaseIndex);
+        dot.setAttribute("aria-current", index === this.showcaseIndex ? "true" : "false");
       });
+    }
+
+    advanceShowcaseFrame(direction = 1, restartTimer = false) {
+      if (!this.showcasePrimary || !this.showcaseSecondary || this.showcaseSlides.length <= 1) {
+        return;
+      }
+
+      const normalizedDirection = direction >= 0 ? 1 : -1;
+      const nextIndex = (this.showcaseIndex + normalizedDirection + this.showcaseSlides.length) % this.showcaseSlides.length;
+      const hiddenSlot = this.showcaseActiveSlot === 0 ? 1 : 0;
+      const hiddenElement = hiddenSlot === 0 ? this.showcasePrimary : this.showcaseSecondary;
+      const visibleElement = hiddenSlot === 0 ? this.showcaseSecondary : this.showcasePrimary;
+      const nextSlide = this.showcaseSlides[nextIndex];
+
+      this.setImageWithFallback(hiddenElement, nextSlide.candidates);
+      hiddenElement.alt = this.getTranslation(`showcase.alt.${nextSlide.key}`);
+
+      visibleElement.classList.remove("is-active");
+      hiddenElement.classList.add("is-active");
+
+      this.showcaseActiveSlot = hiddenSlot;
+      this.showcaseIndex = nextIndex;
+      this.renderShowcaseFrame();
+
+      if (restartTimer) {
+        this.startShowcaseCarousel();
+      }
+    }
+
+    goToShowcaseSlide(nextIndex) {
+      if (!Number.isInteger(nextIndex) || nextIndex < 0 || nextIndex >= this.showcaseSlides.length || nextIndex === this.showcaseIndex) {
+        return;
+      }
+
+      const direction = nextIndex > this.showcaseIndex ? 1 : -1;
+      this.advanceShowcaseFrame(direction, true);
+      while (this.showcaseIndex !== nextIndex) {
+        this.advanceShowcaseFrame(direction, false);
+      }
+    }
+
+    renderShowcaseDots(count) {
+      if (!this.showcaseDotsContainer) {
+        this.showcaseDots = [];
+        return;
+      }
+
+      this.showcaseDotsContainer.innerHTML = "";
+      this.showcaseDots = [];
+
+      for (let i = 0; i < count; i += 1) {
+        const dot = document.createElement("span");
+        dot.className = "phone-dot";
+        dot.setAttribute("role", "button");
+        dot.setAttribute("tabindex", "0");
+        dot.setAttribute("aria-label", `Go to screenshot ${i + 1}`);
+        dot.addEventListener("click", () => this.goToShowcaseSlide(i));
+        dot.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            this.goToShowcaseSlide(i);
+          }
+        });
+        this.showcaseDotsContainer.appendChild(dot);
+        this.showcaseDots.push(dot);
+      }
+
+      this.renderShowcaseFrame();
     }
   }
 
