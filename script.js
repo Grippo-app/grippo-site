@@ -330,6 +330,8 @@
       this.kpiValues = Array.from(document.querySelectorAll("[data-kpi-target]"));
       this.kpiAnimated = false;
       this.kpiObserver = null;
+      this.revealTargets = Array.from(document.querySelectorAll("[data-reveal]"));
+      this.revealObserver = null;
 
       this.locale = DEFAULT_LOCALE;
 
@@ -344,6 +346,7 @@
 
       this.locale = this.resolveLocaleFromLocation();
       this.applyLocale();
+      this.setupRevealObserver();
       this.bindStaticEvents();
       this.syncUiFromLocation(false);
     }
@@ -375,6 +378,47 @@
 
       window.addEventListener("popstate", this.handlePopState);
       window.addEventListener("hashchange", this.handleHashChange);
+    }
+
+    setupRevealObserver() {
+      if (this.revealTargets.length === 0) {
+        return;
+      }
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      this.revealTargets.forEach((target, index) => {
+        target.classList.add("reveal-item");
+        target.style.setProperty("--reveal-delay", `${Math.min(index * 60, 360)}ms`);
+        if (reduceMotion) {
+          target.classList.add("is-visible");
+        }
+      });
+
+      if (reduceMotion) {
+        return;
+      }
+
+      if (this.revealObserver) {
+        this.revealObserver.disconnect();
+      }
+
+      this.revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add("is-visible");
+            if (this.revealObserver) {
+              this.revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+      );
+
+      this.revealTargets.forEach((target) => this.revealObserver.observe(target));
     }
 
     handlePopState() {
@@ -659,6 +703,8 @@
       } else {
         this.stopShowcaseCarousel();
       }
+
+      window.requestAnimationFrame(() => this.ensureVisibleForCurrentView());
     }
 
     resolveTabFromLocation() {
@@ -694,6 +740,8 @@
       this.panels.forEach((panel) => {
         panel.classList.toggle("active", panel.id === tabId);
       });
+
+      this.ensureVisibleForCurrentView();
 
       if (updateUrl) {
         this.pushUrlForTab(tabId);
@@ -900,6 +948,17 @@
       }
 
       this.renderShowcaseFrame();
+    }
+
+    ensureVisibleForCurrentView() {
+      const mode = this.resolveViewMode();
+
+      if (mode === VIEW_MODE.POLICIES) {
+        const activePanel = this.panels.find((panel) => panel.classList.contains("active"));
+        if (activePanel && activePanel.classList.contains("reveal-item") && !activePanel.classList.contains("is-visible")) {
+          window.requestAnimationFrame(() => activePanel.classList.add("is-visible"));
+        }
+      }
     }
   }
 

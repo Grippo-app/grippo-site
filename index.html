@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Grippo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="logo.png" />
   </head>
-  <body>
+  <body class="grippo-site">
     <!-- Landing view -->
     <div class="page" id="landingPage" data-view="landing" hidden>
       <header class="landing-hero">
-        <div class="landing-brand">
+        <div class="landing-brand" data-reveal>
           <img class="landing-logo" src="logo.png" alt="Grippo logo" />
           <p class="eyebrow" data-i18n="brand.name">Grippo</p>
           <h1 data-i18n="landing.hero.title">Workouts That Make Sense</h1>
@@ -50,7 +53,7 @@
           </section>
         </div>
         <div class="landing-points">
-          <article class="point-card">
+          <article class="point-card" data-reveal>
             <h2 data-i18n="landing.points.first.title">What makes Grippo different</h2>
             <ul>
               <li data-i18n="landing.points.first.item1">See how your strength grows over time</li>
@@ -59,7 +62,7 @@
               <li data-i18n="landing.points.first.item4">Know exactly what to adjust in the next workout</li>
             </ul>
           </article>
-          <article class="point-card">
+          <article class="point-card" data-reveal>
             <h2 data-i18n="landing.points.second.title">Progress from day one</h2>
             <ul>
               <li data-i18n="landing.points.second.item1">Calculates workout volume and load automatically</li>
@@ -72,7 +75,7 @@
       </header>
 
       <main class="landing-content">
-        <section class="kpi-section" aria-label="Key performance indicators">
+        <section class="kpi-section" aria-label="Key performance indicators" data-reveal>
           <p class="eyebrow" data-i18n="landing.kpi.section.eyebrow">Performance Snapshot</p>
           <h2 data-i18n="landing.kpi.section.title">Your progress in clear numbers</h2>
           <p class="kpi-subtitle" data-i18n="landing.kpi.section.subtitle">No noise, only the metrics that move your next workout decision.</p>
@@ -92,7 +95,7 @@
           </div>
         </section>
 
-        <section class="showcase">
+        <section class="showcase" data-reveal>
           <div class="showcase-copy">
             <p class="eyebrow" data-i18n="landing.showcase.eyebrow">Inside The App</p>
             <h2 data-i18n="landing.showcase.title">Real screens. Real numbers. Zero fluff.</h2>
@@ -115,22 +118,22 @@
           </div>
         </section>
 
-        <section class="feature-grid" aria-label="Grippo features">
-          <article class="feature-card">
+        <section class="feature-grid" aria-label="Grippo features" data-reveal>
+          <article class="feature-card" data-reveal>
             <h3 data-i18n="landing.features.first.title">Smart insights, not templates</h3>
             <p data-i18n="landing.features.first.body">
               Understand overload and underload by muscle group. Grippo helps you decide when to push harder and when to
               recover, based on your own training history.
             </p>
           </article>
-          <article class="feature-card">
+          <article class="feature-card" data-reveal>
             <h3 data-i18n="landing.features.second.title">Full workout control</h3>
             <p data-i18n="landing.features.second.body">
               Log workouts quickly, review exercise stats, and visualize muscle load in a clean, distraction-free interface.
               Spend less time tapping and more time understanding.
             </p>
           </article>
-          <article class="feature-card">
+          <article class="feature-card" data-reveal>
             <h3 data-i18n="landing.features.third.title">Built for serious training</h3>
             <p data-i18n="landing.features.third.body">
               Grippo is for people who train regularly, care about measurable progress, and want to know why results appear
@@ -139,25 +142,25 @@
           </article>
         </section>
 
-        <section class="audience">
+        <section class="audience" data-reveal>
           <p class="eyebrow" data-i18n="landing.audience.eyebrow">For Whom</p>
           <div class="audience-grid">
-            <article class="audience-card">
+            <article class="audience-card" data-reveal>
               <h3 data-i18n="landing.audience.first.title">Train regularly</h3>
               <p data-i18n="landing.audience.first.body">Stay focused on progressive overload and consistent volume.</p>
             </article>
-            <article class="audience-card">
+            <article class="audience-card" data-reveal>
               <h3 data-i18n="landing.audience.second.title">Track numbers</h3>
               <p data-i18n="landing.audience.second.body">Measure real output instead of relying on vague motivation.</p>
             </article>
-            <article class="audience-card">
+            <article class="audience-card" data-reveal>
               <h3 data-i18n="landing.audience.third.title">Need clear decisions</h3>
               <p data-i18n="landing.audience.third.body">Know what to change in your next workout with confidence.</p>
             </article>
           </div>
         </section>
 
-        <section class="landing-cta">
+        <section class="landing-cta" data-reveal>
           <p class="eyebrow" data-i18n="landing.cta.eyebrow">Start With Your First Workout</p>
           <h2 data-i18n="landing.cta.title">Open the app, log your session, and see what others do not show.</h2>
           <p data-i18n="landing.cta.subtitle">Grippo gives you a clear snapshot of your training right now.</p>
@@ -179,7 +182,7 @@
 
     <!-- Policies/account view -->
     <div class="page" id="policyPage" data-view="policies">
-      <header class="hero">
+      <header class="hero" data-reveal>
         <div class="policy-nav">
           <a class="back-button" href="?tab=landing" data-landing-link data-i18n="policies.back" aria-label="Back to landing" data-i18n-aria-label="policies.backAria">←</a>
         </div>
@@ -203,7 +206,7 @@
       </header>
 
       <main class="content">
-        <section class="tab-panel" id="privacy" data-tab-panel role="tabpanel" aria-labelledby="tab-privacy">
+        <section class="tab-panel" id="privacy" data-tab-panel role="tabpanel" aria-labelledby="tab-privacy" data-reveal>
           <h2>Privacy Policy</h2>
           <p>
             This privacy policy applies to the Grippo app (hereby referred to as "Application") for mobile devices that
@@ -312,7 +315,7 @@
           <p class="note">This privacy policy page was generated by <a href="https://app-privacy-policy-generator.nisrulz.com/" target="_blank" rel="noreferrer">App Privacy Policy Generator</a>.</p>
         </section>
 
-        <section class="tab-panel" id="terms" data-tab-panel role="tabpanel" aria-labelledby="tab-terms">
+        <section class="tab-panel" id="terms" data-tab-panel role="tabpanel" aria-labelledby="tab-terms" data-reveal>
           <h2>Terms &amp; Conditions</h2>
           <p>
             These terms and conditions apply to the Grippo app (hereby referred to as "Application") for mobile devices that was created by
@@ -393,14 +396,14 @@
           <p class="note">This Terms and Conditions page was generated by <a href="https://app-privacy-policy-generator.nisrulz.com/" target="_blank" rel="noreferrer">App Privacy Policy Generator</a>.</p>
         </section>
 
-        <section class="tab-panel" id="remove" data-tab-panel role="tabpanel" aria-labelledby="tab-remove">
+        <section class="tab-panel" id="remove" data-tab-panel role="tabpanel" aria-labelledby="tab-remove" data-reveal>
           <h2 data-i18n="remove.title">Account Management</h2>
           <p data-i18n="remove.subtitle">
             Follow the steps below to permanently delete your Grippo account. After confirmation, all data associated with the account
             is removed and cannot be restored.
           </p>
           <div class="steps">
-            <article class="step-card">
+            <article class="step-card" data-reveal>
               <div class="step-header">
                 <span class="step-number">1</span>
                 <div>
@@ -412,7 +415,7 @@
                 <img src="assets/account.management/screen_home.png" alt="Home screen with the profile icon" />
               </div>
             </article>
-            <article class="step-card">
+            <article class="step-card" data-reveal>
               <div class="step-header">
                 <span class="step-number">2</span>
                 <div>
@@ -424,7 +427,7 @@
                 <img src="assets/account.management/screen_profile.png" alt="Profile screen with the Settings section" />
               </div>
             </article>
-            <article class="step-card">
+            <article class="step-card" data-reveal>
               <div class="step-header">
                 <span class="step-number">3</span>
                 <div>
@@ -437,7 +440,7 @@
               </div>
             </article>
           </div>
-          <div class="warning">
+          <div class="warning" data-reveal>
             <strong data-i18n="remove.warning.label">Important:</strong>
             <span data-i18n="remove.warning.body">deletion is irreversible. Activity history, settings, and related information are removed forever.</span>
           </div>
