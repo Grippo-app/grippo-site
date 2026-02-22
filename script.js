@@ -469,13 +469,19 @@
         return DEFAULT_LOCALE;
       }
 
-      const normalized = locale.toLowerCase();
-      if (normalized === "uk") {
+      const normalized = String(locale).toLowerCase().trim();
+      const baseLocale = normalized.split(/[-_]/)[0];
+
+      if (normalized === "uk" || normalized === "uk-ua" || baseLocale === "uk") {
         return "ua";
       }
 
       if (SUPPORTED_LOCALES.has(normalized)) {
         return normalized;
+      }
+
+      if (SUPPORTED_LOCALES.has(baseLocale)) {
+        return baseLocale;
       }
 
       return DEFAULT_LOCALE;
@@ -489,7 +495,22 @@
           return this.normalizeLocale(rawValue);
         }
       }
-      return DEFAULT_LOCALE;
+
+      return this.resolveLocaleFromNavigator();
+    }
+
+    resolveLocaleFromNavigator() {
+      const preferredLocales = Array.isArray(navigator.languages) ? navigator.languages : [];
+      const candidates = [...preferredLocales, navigator.language, navigator.userLanguage].filter(Boolean);
+
+      for (const candidate of candidates) {
+        const normalized = this.normalizeLocale(candidate);
+        if (normalized !== DEFAULT_LOCALE) {
+          return normalized;
+        }
+      }
+
+      return this.normalizeLocale(candidates[0] || DEFAULT_LOCALE);
     }
 
     getTranslation(key) {
