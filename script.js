@@ -56,9 +56,9 @@
       ru: "https://apps.apple.com/ru?utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=ios_ru",
     },
     googlePlay: {
-      en: "https://play.google.com/store/apps/details?id=com.grippo.app&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_en",
-      ua: "https://play.google.com/store/apps/details?id=com.grippo.app&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_ua",
-      ru: "https://play.google.com/store/apps/details?id=com.grippo.app&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_ru",
+      en: "https://play.google.com/store/apps/details?id=com.grippo.android&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_en",
+      ua: "https://play.google.com/store/apps/details?id=com.grippo.android&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_ua",
+      ru: "https://play.google.com/store/apps/details?id=com.grippo.android&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_ru",
     },
   };
 
