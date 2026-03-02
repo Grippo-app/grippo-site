@@ -9,10 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="logo.png" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNMQ6NHH6M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function gtag() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag("js", new Date());
+      window.gtag("config", "G-VNMQ6NHH6M");
+
+      (function setInitialView() {
+        const policyTabs = new Set(["privacy", "terms", "remove"]);
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get("tab");
+        const hashTab = window.location.hash.replace("#", "");
+        const initialView = policyTabs.has(tab) || policyTabs.has(hashTab) ? "policies" : "landing";
+        document.documentElement.setAttribute("data-initial-view", initialView);
+      })();
+    </script>
   </head>
   <body class="grippo-site">
     <!-- Landing view -->
-    <div class="page" id="landingPage" data-view="landing" hidden>
+    <div class="page" id="landingPage" data-view="landing">
       <header class="landing-hero">
         <div class="landing-brand" data-reveal>
           <img class="landing-logo" src="logo.png" alt="Grippo logo" />
@@ -22,6 +40,11 @@
             Grippo is a workout app that shows not just exercises, but real progress. No quotes. No empty promises. Just
             training, numbers, and a clear view of what is happening to your body.
           </p>
+          <div class="hero-proof" aria-label="Grippo benefits">
+            <span class="proof-chip" data-i18n="landing.hero.proof.first">Track volume, sets, and load in one place</span>
+            <span class="proof-chip" data-i18n="landing.hero.proof.second">See muscle balance instead of guessing</span>
+            <span class="proof-chip" data-i18n="landing.hero.proof.third">Install on iPhone or Android in one tap</span>
+          </div>
           <section class="hero-actions" aria-label="Download Grippo">
             <nav class="store-buttons">
               <a class="store-button" data-store="app-store" href="https://apps.apple.com" target="_blank" rel="noreferrer">
@@ -50,6 +73,9 @@
                 </span>
               </a>
             </nav>
+            <p class="store-note" data-i18n="landing.store.note">
+              Pick your store now, or use the auto button below and let Grippo open the best match for your device.
+            </p>
           </section>
         </div>
         <div class="landing-points">
@@ -165,8 +191,11 @@
           <h2 data-i18n="landing.cta.title">Open the app, log your session, and see what others do not show.</h2>
           <p data-i18n="landing.cta.subtitle">Grippo gives you a clear snapshot of your training right now.</p>
           <div class="cta-actions">
-            <a class="cta-primary" href="#" data-store="auto" data-i18n="landing.cta.download">Download Grippo</a>
+            <a class="cta-primary" href="#" data-store="auto" data-i18n="landing.cta.download">Get Grippo on Your Phone</a>
           </div>
+          <p class="cta-note" data-i18n="landing.cta.note">
+            The button chooses the best store for this device. Manual App Store and Google Play links stay available above.
+          </p>
         </section>
       </main>
 
@@ -178,10 +207,15 @@
           <a href="?tab=remove" data-tab-link="remove" data-i18n="landing.footer.remove">Account Management</a>
         </nav>
       </footer>
+
+      <div class="mobile-store-bar" id="mobileStoreBar" aria-label="Quick download actions" data-i18n-aria-label="landing.mobileCta.aria">
+        <a class="mobile-store-primary" id="mobileStorePrimary" href="#" data-store="auto" data-i18n="landing.mobileCta.primary">Get Grippo</a>
+        <a class="mobile-store-secondary" id="mobileStoreSecondary" href="#" data-store="google-play">Google Play</a>
+      </div>
     </div>
 
     <!-- Policies/account view -->
-    <div class="page" id="policyPage" data-view="policies">
+    <div class="page" id="policyPage" data-view="policies" hidden>
       <header class="hero" data-reveal>
         <div class="policy-nav">
           <a class="back-button" href="?tab=landing" data-landing-link data-i18n="policies.back" aria-label="Back to landing" data-i18n-aria-label="policies.backAria">←</a>

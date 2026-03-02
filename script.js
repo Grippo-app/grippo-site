@@ -19,6 +19,11 @@
   const DEFAULT_LOCALE = "en";
   const SUPPORTED_LOCALES = new Set(["en", "ua", "ru"]);
   const LOCALE_PARAMS = ["locale", "lang", "lng"];
+  const PREFERRED_STORE_KEY = "grippo_preferred_store";
+  const STORE_EVENT_NAMES = {
+    "app-store": "appstore_click",
+    "google-play": "playmarket_click",
+  };
 
   const FALLBACK_SHOWCASE_IMAGES = [
     "assets/account.management/screen_home.png",
@@ -70,10 +75,14 @@
       "landing.hero.title": "Workouts That Make Sense",
       "landing.hero.subtitle":
         "Grippo is a workout app that shows not just exercises, but real progress. No quotes. No empty promises. Just training, numbers, and a clear view of what is happening to your body.",
+      "landing.hero.proof.first": "Track volume, sets, and load in one place",
+      "landing.hero.proof.second": "See muscle balance instead of guessing",
+      "landing.hero.proof.third": "Install on iPhone or Android in one tap",
       "landing.store.appStore.overline": "Download on the",
       "landing.store.appStore.title": "App Store",
       "landing.store.googlePlay.overline": "Get it on",
       "landing.store.googlePlay.title": "Google Play",
+      "landing.store.note": "Pick your store now, or use the auto button below and let Grippo open the best match for your device.",
       "landing.points.first.title": "What makes Grippo different",
       "landing.points.first.item1": "See how your strength grows over time",
       "landing.points.first.item2": "Track which muscles actually get load",
@@ -114,8 +123,11 @@
       "landing.cta.eyebrow": "Start With Your First Workout",
       "landing.cta.title": "Open the app, log your session, and see what others do not show.",
       "landing.cta.subtitle": "Grippo gives you a clear snapshot of your training right now.",
-      "landing.cta.download": "Download Grippo",
+      "landing.cta.download": "Get Grippo on Your Phone",
+      "landing.cta.note": "The button chooses the best store for this device. Manual App Store and Google Play links stay available above.",
       "landing.cta.legal": "Open Privacy & Account",
+      "landing.mobileCta.primary": "Get Grippo",
+      "landing.mobileCta.aria": "Quick download actions",
       "landing.footer.navAria": "Legal and account links",
       "landing.footer.privacy": "Privacy Policy",
       "landing.footer.terms": "Terms & Conditions",
@@ -151,10 +163,14 @@
       "landing.hero.title": "Тренування, які мають сенс",
       "landing.hero.subtitle":
         "Grippo — це фітнес-додаток, який показує не просто вправи, а реальний прогрес. Без мотиваційних цитат. Без порожніх обіцянок. Лише тренування, цифри та чітке розуміння того, що відбувається з вашим тілом.",
+      "landing.hero.proof.first": "Ведіть обсяг, підходи й навантаження в одному місці",
+      "landing.hero.proof.second": "Бачте баланс м'язів замість здогадок",
+      "landing.hero.proof.third": "Встановіть на iPhone або Android в один дотик",
       "landing.store.appStore.overline": "Завантажити в",
       "landing.store.appStore.title": "App Store",
       "landing.store.googlePlay.overline": "Доступно в",
       "landing.store.googlePlay.title": "Google Play",
+      "landing.store.note": "Оберіть магазин зараз або скористайтеся кнопкою нижче, і Grippo відкриє найкращий варіант для вашого пристрою.",
       "landing.points.first.title": "Що відрізняє Grippo",
       "landing.points.first.item1": "Бачте, як зростає сила з часом",
       "landing.points.first.item2": "Відстежуйте, які м'язи реально отримують навантаження",
@@ -192,8 +208,11 @@
       "landing.cta.eyebrow": "Почніть з першого тренування",
       "landing.cta.title": "Відкрийте додаток, запишіть тренування і побачте те, що інші не показують.",
       "landing.cta.subtitle": "Grippo показує чесний зріз вашої форми вже зараз.",
-      "landing.cta.download": "Завантажити Grippo",
+      "landing.cta.download": "Отримати Grippo на телефон",
+      "landing.cta.note": "Кнопка сама відкриє найкращий магазин для цього пристрою. Ручні посилання на App Store і Google Play залишаються вище.",
       "landing.cta.legal": "Відкрити політики та акаунт",
+      "landing.mobileCta.primary": "Отримати Grippo",
+      "landing.mobileCta.aria": "Швидке завантаження",
       "landing.footer.navAria": "Посилання на політики та керування акаунтом",
       "landing.footer.privacy": "Політика конфіденційності",
       "landing.footer.terms": "Умови використання",
@@ -229,10 +248,14 @@
       "landing.hero.title": "Тренировки, которые имеют смысл",
       "landing.hero.subtitle":
         "Grippo — это фитнес-приложение, которое показывает не просто упражнения, а реальный прогресс. Без мотивационных цитат. Без пустых обещаний. Только тренировки, цифры и ясное понимание того, что происходит с вашим телом.",
+      "landing.hero.proof.first": "Ведите объем, подходы и нагрузку в одном месте",
+      "landing.hero.proof.second": "Видьте баланс мышц вместо догадок",
+      "landing.hero.proof.third": "Установите на iPhone или Android в одно нажатие",
       "landing.store.appStore.overline": "Скачать в",
       "landing.store.appStore.title": "App Store",
       "landing.store.googlePlay.overline": "Доступно в",
       "landing.store.googlePlay.title": "Google Play",
+      "landing.store.note": "Выберите магазин сейчас или используйте кнопку ниже, и Grippo откроет лучший вариант для вашего устройства.",
       "landing.points.first.title": "Что отличает Grippo",
       "landing.points.first.item1": "Видно, как растет сила со временем",
       "landing.points.first.item2": "Понятно, какие мышцы действительно получают нагрузку",
@@ -270,8 +293,11 @@
       "landing.cta.eyebrow": "Начните с первой тренировки",
       "landing.cta.title": "Откройте приложение, запишите тренировку и увидьте то, чего не показывают другие.",
       "landing.cta.subtitle": "Grippo показывает честный срез вашего прогресса уже сейчас.",
-      "landing.cta.download": "Скачать Grippo",
+      "landing.cta.download": "Получить Grippo на телефон",
+      "landing.cta.note": "Кнопка сама откроет лучший магазин для этого устройства. Ручные ссылки на App Store и Google Play остаются выше.",
       "landing.cta.legal": "Открыть политики и аккаунт",
+      "landing.mobileCta.primary": "Получить Grippo",
+      "landing.mobileCta.aria": "Быстрое скачивание",
       "landing.footer.navAria": "Ссылки на политики и управление аккаунтом",
       "landing.footer.privacy": "Политика конфиденциальности",
       "landing.footer.terms": "Условия использования",
@@ -315,6 +341,11 @@
       this.translatableAriaElements = Array.from(document.querySelectorAll("[data-i18n-aria-label]"));
       this.tabLinks = Array.from(document.querySelectorAll("[data-tab-link]"));
       this.landingLinks = Array.from(document.querySelectorAll("[data-landing-link]"));
+      this.storeLinks = Array.from(document.querySelectorAll("[data-store]"));
+      this.landingHero = document.querySelector(".landing-hero");
+      this.mobileStoreBar = document.getElementById("mobileStoreBar");
+      this.mobileStorePrimary = document.getElementById("mobileStorePrimary");
+      this.mobileStoreSecondary = document.getElementById("mobileStoreSecondary");
 
       this.showcasePrimary = document.getElementById("phoneShotPrimary");
       this.showcaseSecondary = document.getElementById("phoneShotSecondary");
@@ -334,9 +365,12 @@
       this.revealObserver = null;
 
       this.locale = DEFAULT_LOCALE;
+      this.manualPreferredStore = null;
 
       this.handlePopState = this.handlePopState.bind(this);
       this.handleHashChange = this.handleHashChange.bind(this);
+      this.handleScroll = this.handleScroll.bind(this);
+      this.handleResize = this.handleResize.bind(this);
     }
 
     init() {
@@ -349,6 +383,7 @@
       this.setupRevealObserver();
       this.bindStaticEvents();
       this.syncUiFromLocation(false);
+      this.updateStickyStoreBarVisibility();
     }
 
     bindStaticEvents() {
@@ -356,6 +391,12 @@
         button.setAttribute("role", "tab");
         button.addEventListener("click", () => {
           this.setActiveTab(button.dataset.tab, { updateUrl: true });
+        });
+      });
+
+      this.storeLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          this.handleStoreClick(event, link);
         });
       });
 
@@ -378,6 +419,8 @@
 
       window.addEventListener("popstate", this.handlePopState);
       window.addEventListener("hashchange", this.handleHashChange);
+      window.addEventListener("scroll", this.handleScroll, { passive: true });
+      window.addEventListener("resize", this.handleResize);
     }
 
     setupRevealObserver() {
@@ -428,6 +471,14 @@
 
     handleHashChange() {
       this.syncUiFromLocation(false);
+    }
+
+    handleScroll() {
+      this.updateStickyStoreBarVisibility();
+    }
+
+    handleResize() {
+      this.updateStickyStoreBarVisibility();
     }
 
     syncLocaleFromLocation() {
@@ -594,8 +645,7 @@
       const googlePlayUrl = STORE_LINKS.googlePlay[locale] || STORE_LINKS.googlePlay[DEFAULT_LOCALE];
       const preferredStore = this.detectPreferredStore();
 
-      const storeLinks = Array.from(document.querySelectorAll("[data-store]"));
-      storeLinks.forEach((link) => {
+      this.storeLinks.forEach((link) => {
         const storeType = link.dataset.store;
         if (storeType === "app-store") {
           link.setAttribute("href", appStoreUrl);
@@ -605,9 +655,20 @@
           link.setAttribute("href", preferredStore === "google-play" ? googlePlayUrl : appStoreUrl);
         }
       });
+
+      this.updateMobileStoreBar(preferredStore, { appStoreUrl, googlePlayUrl });
     }
 
     detectPreferredStore() {
+      if (this.manualPreferredStore === "app-store" || this.manualPreferredStore === "google-play") {
+        return this.manualPreferredStore;
+      }
+
+      const rememberedStore = this.readStoredPreferredStore();
+      if (rememberedStore) {
+        return rememberedStore;
+      }
+
       const ua = (navigator.userAgent || "").toLowerCase();
       const platform = (navigator.platform || "").toLowerCase();
       const hasTouch = navigator.maxTouchPoints > 1;
@@ -625,6 +686,208 @@
       }
 
       return "app-store";
+    }
+
+    readStoredPreferredStore() {
+      try {
+        const value = window.localStorage.getItem(PREFERRED_STORE_KEY);
+        if (value === "app-store" || value === "google-play") {
+          return value;
+        }
+      } catch (error) {
+        // Ignore storage access issues in private browsing or restricted environments.
+      }
+
+      return null;
+    }
+
+    rememberStorePreference(storeType) {
+      if (storeType !== "app-store" && storeType !== "google-play") {
+        return;
+      }
+
+      this.manualPreferredStore = storeType;
+
+      try {
+        window.localStorage.setItem(PREFERRED_STORE_KEY, storeType);
+      } catch (error) {
+        // Ignore storage access issues in private browsing or restricted environments.
+      }
+
+      this.updateStoreLinks();
+      this.updateStickyStoreBarVisibility();
+    }
+
+    getAlternateStore(storeType) {
+      return storeType === "google-play" ? "app-store" : "google-play";
+    }
+
+    updateMobileStoreBar(primaryStore, urls) {
+      if (!this.mobileStorePrimary || !this.mobileStoreSecondary) {
+        return;
+      }
+
+      const normalizedPrimary = primaryStore === "google-play" ? "google-play" : "app-store";
+      const secondaryStore = this.getAlternateStore(normalizedPrimary);
+      const primaryHref = normalizedPrimary === "google-play" ? urls.googlePlayUrl : urls.appStoreUrl;
+      const secondaryHref = secondaryStore === "google-play" ? urls.googlePlayUrl : urls.appStoreUrl;
+      const secondaryLabelKey = secondaryStore === "google-play" ? "landing.store.googlePlay.title" : "landing.store.appStore.title";
+
+      this.mobileStorePrimary.dataset.store = normalizedPrimary;
+      this.mobileStorePrimary.setAttribute("href", primaryHref);
+      this.mobileStorePrimary.textContent = this.getTranslation("landing.mobileCta.primary");
+
+      this.mobileStoreSecondary.dataset.store = secondaryStore;
+      this.mobileStoreSecondary.setAttribute("href", secondaryHref);
+      this.mobileStoreSecondary.textContent = this.getTranslation(secondaryLabelKey);
+    }
+
+    updateStickyStoreBarVisibility() {
+      if (!this.mobileStoreBar) {
+        return;
+      }
+
+      const isLanding = this.resolveViewMode() === VIEW_MODE.LANDING;
+      const isMobile = window.matchMedia("(max-width: 720px)").matches;
+      const heroBottom = this.landingHero ? this.landingHero.getBoundingClientRect().bottom : 0;
+      const revealThreshold = Math.max(220, window.innerHeight * 0.72);
+      const shouldShow = isLanding && isMobile && heroBottom < revealThreshold;
+
+      this.mobileStoreBar.classList.toggle("is-visible", shouldShow);
+    }
+
+    inferStoreTypeFromHref(href) {
+      if (!href) {
+        return null;
+      }
+
+      const normalizedHref = String(href).toLowerCase();
+      if (normalizedHref.includes("play.google.com")) {
+        return "google-play";
+      }
+
+      if (normalizedHref.includes("apps.apple.com")) {
+        return "app-store";
+      }
+
+      return null;
+    }
+
+    resolveStoreType(link) {
+      if (!link) {
+        return null;
+      }
+
+      const declaredStore = link.dataset.store;
+      if (declaredStore === "app-store" || declaredStore === "google-play") {
+        return declaredStore;
+      }
+
+      const hrefStore = this.inferStoreTypeFromHref(link.href);
+      if (hrefStore) {
+        return hrefStore;
+      }
+
+      if (declaredStore === "auto") {
+        return this.detectPreferredStore();
+      }
+
+      return null;
+    }
+
+    getStoreEventName(storeType) {
+      return STORE_EVENT_NAMES[storeType] || null;
+    }
+
+    isModifiedClick(event) {
+      if (!event) {
+        return false;
+      }
+
+      return event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+    }
+
+    getStoreClickSource(link) {
+      if (!link) {
+        return "unknown";
+      }
+
+      if (link.classList.contains("mobile-store-primary") || link.classList.contains("mobile-store-secondary")) {
+        return "sticky";
+      }
+
+      if (link.classList.contains("cta-primary")) {
+        return "cta";
+      }
+
+      if (link.classList.contains("store-button")) {
+        return "hero";
+      }
+
+      return "unknown";
+    }
+
+    trackAnalyticsEvent(eventName, params = {}) {
+      if (typeof window.gtag !== "function") {
+        return false;
+      }
+
+      window.gtag("event", eventName, {
+        transport_type: "beacon",
+        ...params,
+      });
+
+      return true;
+    }
+
+    handleStoreClick(event, link) {
+      const storeType = this.resolveStoreType(link);
+      const eventName = this.getStoreEventName(storeType);
+
+      if (!eventName) {
+        return;
+      }
+
+      const href = link.href;
+      const target = (link.getAttribute("target") || "").toLowerCase();
+      const eventParams = {
+        store: storeType,
+        source: this.getStoreClickSource(link),
+        locale: this.locale,
+        link_url: href,
+      };
+
+      this.rememberStorePreference(storeType);
+
+      if (target === "_blank" || this.isModifiedClick(event)) {
+        this.trackAnalyticsEvent(eventName, eventParams);
+        return;
+      }
+
+      if (typeof window.gtag !== "function") {
+        return;
+      }
+
+      event.preventDefault();
+
+      let didNavigate = false;
+      const navigate = () => {
+        if (didNavigate) {
+          return;
+        }
+
+        didNavigate = true;
+        window.location.assign(href);
+      };
+
+      const fallbackTimeout = window.setTimeout(navigate, 300);
+      this.trackAnalyticsEvent(eventName, {
+        ...eventParams,
+        event_callback: () => {
+          window.clearTimeout(fallbackTimeout);
+          navigate();
+        },
+      });
     }
 
     setupKpiObserver() {
@@ -683,9 +946,14 @@
       const params = this.getSearchParams();
       const tabParam = params.get(TAB_PARAM);
       const normalizedTabParam = tabParam ? tabParam.toLowerCase() : null;
+      const hashTab = window.location.hash.replace("#", "");
 
       // Legal/account deep links always have priority over landing mode params.
       if (this.isValidTab(tabParam)) {
+        return VIEW_MODE.POLICIES;
+      }
+
+      if (this.isValidTab(hashTab)) {
         return VIEW_MODE.POLICIES;
       }
 
@@ -708,7 +976,7 @@
         return VIEW_MODE.LANDING;
       }
 
-      return VIEW_MODE.POLICIES;
+      return VIEW_MODE.LANDING;
     }
 
     setViewMode(mode) {
@@ -725,6 +993,7 @@
         this.stopShowcaseCarousel();
       }
 
+      this.updateStickyStoreBarVisibility();
       window.requestAnimationFrame(() => this.ensureVisibleForCurrentView());
     }
 
