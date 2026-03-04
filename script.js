@@ -380,6 +380,7 @@
 
       this.locale = this.resolveLocaleFromLocation();
       this.applyLocale();
+      document.body.classList.add("i18n-ready");
       this.setupRevealObserver();
       this.bindStaticEvents();
       this.syncUiFromLocation(false);
@@ -1187,12 +1188,34 @@
       this.setImageWithFallback(hiddenElement, nextSlide.candidates);
       hiddenElement.alt = this.getTranslation(`showcase.alt.${nextSlide.key}`);
 
+      // Slide animation: position incoming off-screen instantly, then animate in
+      hiddenElement.style.transition = "none";
+      hiddenElement.style.transform = "translateX(" + (normalizedDirection * 55) + "%)";
+      hiddenElement.style.opacity = "0";
+      void hiddenElement.offsetWidth;
+      hiddenElement.style.transition = "";
+      hiddenElement.style.transform = "";
+      hiddenElement.style.opacity = "";
+
+      // Animate outgoing slide out in opposite direction
+      visibleElement.style.transform = "translateX(" + (-normalizedDirection * 55) + "%)";
+      visibleElement.style.opacity = "0";
+
       visibleElement.classList.remove("is-active");
       hiddenElement.classList.add("is-active");
 
       this.showcaseActiveSlot = hiddenSlot;
       this.showcaseIndex = nextIndex;
       this.renderShowcaseFrame();
+
+      // Clean up inline styles after transition completes
+      setTimeout(() => {
+        visibleElement.style.transition = "none";
+        visibleElement.style.transform = "";
+        visibleElement.style.opacity = "";
+        void visibleElement.offsetWidth;
+        visibleElement.style.transition = "";
+      }, 600);
 
       if (restartTimer) {
         this.startShowcaseCarousel();
