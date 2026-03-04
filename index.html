@@ -6,7 +6,7 @@
     <title>Grippo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="logo.png" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNMQ6NHH6M"></script>
@@ -29,14 +29,26 @@
     </script>
   </head>
   <body class="grippo-site">
-    <!-- Landing view -->
+
+    <!-- ======================== LANDING ======================== -->
     <div class="page" id="landingPage" data-view="landing">
+
+      <nav class="topnav">
+        <a class="topnav-brand" href="/">
+          <img src="logo.png" alt="Grippo" class="topnav-logo" />
+          <span data-i18n="brand.name">Grippo</span>
+        </a>
+        <a class="topnav-cta store-button" href="#" data-store="auto" data-i18n="landing.mobileCta.primary">Get Grippo</a>
+      </nav>
+
       <header class="landing-hero">
-        <div class="landing-brand" data-reveal>
-          <img class="landing-logo" src="logo.png" alt="Grippo logo" />
-          <p class="eyebrow" data-i18n="brand.name">Grippo</p>
+        <div class="hero-text" data-reveal>
+          <div class="hero-badge">
+            <span class="badge-pulse" aria-hidden="true"></span>
+            <span data-i18n="landing.kpi.section.eyebrow">Performance Snapshot</span>
+          </div>
           <h1 data-i18n="landing.hero.title">Workouts That Make Sense</h1>
-          <p class="subtitle landing-subtitle" data-i18n="landing.hero.subtitle">
+          <p class="hero-sub" data-i18n="landing.hero.subtitle">
             Grippo is a workout app that shows not just exercises, but real progress. No quotes. No empty promises. Just
             training, numbers, and a clear view of what is happening to your body.
           </p>
@@ -78,118 +90,154 @@
             </p>
           </section>
         </div>
-        <div class="landing-points">
-          <article class="point-card" data-reveal>
-            <h2 data-i18n="landing.points.first.title">What makes Grippo different</h2>
-            <ul>
-              <li data-i18n="landing.points.first.item1">See how your strength grows over time</li>
-              <li data-i18n="landing.points.first.item2">Track which muscles actually get load</li>
-              <li data-i18n="landing.points.first.item3">Spot where progress happens and where it stalls</li>
-              <li data-i18n="landing.points.first.item4">Know exactly what to adjust in the next workout</li>
-            </ul>
-          </article>
-          <article class="point-card" data-reveal>
-            <h2 data-i18n="landing.points.second.title">Progress from day one</h2>
-            <ul>
-              <li data-i18n="landing.points.second.item1">Calculates workout volume and load automatically</li>
-              <li data-i18n="landing.points.second.item2">Analyzes sets, reps, and strength dynamics</li>
-              <li data-i18n="landing.points.second.item3">Turns raw numbers into readable insights</li>
-              <li data-i18n="landing.points.second.item4">No "someday" predictions, only your current state</li>
-            </ul>
-          </article>
-        </div>
-      </header>
 
-      <main class="landing-content">
-        <section class="kpi-section" aria-label="Key performance indicators" data-reveal>
-          <p class="eyebrow" data-i18n="landing.kpi.section.eyebrow">Performance Snapshot</p>
-          <h2 data-i18n="landing.kpi.section.title">Your progress in clear numbers</h2>
-          <p class="kpi-subtitle" data-i18n="landing.kpi.section.subtitle">No noise, only the metrics that move your next workout decision.</p>
-          <div class="kpi-grid">
-            <article class="kpi-card">
-              <p class="kpi-label" data-i18n="landing.kpi.days.label">Active days</p>
-              <p class="kpi-value"><span data-kpi-target="6" data-kpi-suffix="+">0</span></p>
-            </article>
-            <article class="kpi-card">
-              <p class="kpi-label" data-i18n="landing.kpi.volume.label">Volume growth</p>
-              <p class="kpi-value"><span data-kpi-target="18" data-kpi-suffix="%">0</span></p>
-            </article>
-            <article class="kpi-card">
-              <p class="kpi-label" data-i18n="landing.kpi.balance.label">Muscle balance</p>
-              <p class="kpi-value"><span data-kpi-target="92" data-kpi-suffix="%">0</span></p>
-            </article>
-          </div>
-        </section>
-
-        <section class="showcase" data-reveal>
-          <div class="showcase-copy">
-            <p class="eyebrow" data-i18n="landing.showcase.eyebrow">Inside The App</p>
-            <h2 data-i18n="landing.showcase.title">Real screens. Real numbers. Zero fluff.</h2>
-            <p data-i18n="landing.showcase.subtitle">
-              Your dashboard and workout log update with your progress as you train.
-            </p>
-          </div>
+        <div class="hero-visual" data-reveal>
           <div class="phone-stage" aria-live="polite">
             <div class="phone-glow" aria-hidden="true"></div>
-            <img id="phoneShotPrimary" class="phone-shot is-active" src="assets/screenshots/dashboard_en.png" alt="Grippo app dashboard screenshot" />
-            <img id="phoneShotSecondary" class="phone-shot" src="assets/screenshots/training_en.png" alt="Grippo app workout screenshot" />
+            <div class="phone-frame">
+              <img id="phoneShotPrimary" class="phone-shot is-active" src="assets/screenshots/dashboard_en.png" alt="Grippo app dashboard screenshot" />
+              <img id="phoneShotSecondary" class="phone-shot" src="assets/screenshots/training_en.png" alt="Grippo app workout screenshot" />
+            </div>
             <div class="phone-controls">
-              <button class="phone-arrow" id="phonePrev" type="button" aria-label="Previous screenshot" data-i18n-aria-label="landing.showcase.prevAria">←</button>
+              <button class="phone-arrow" id="phonePrev" type="button" aria-label="Previous screenshot" data-i18n-aria-label="landing.showcase.prevAria">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12L6 8l4-4"/></svg>
+              </button>
               <div class="phone-dots" id="phoneDots" aria-hidden="true">
                 <span class="phone-dot is-active"></span>
                 <span class="phone-dot"></span>
               </div>
-              <button class="phone-arrow" id="phoneNext" type="button" aria-label="Next screenshot" data-i18n-aria-label="landing.showcase.nextAria">→</button>
+              <button class="phone-arrow" id="phoneNext" type="button" aria-label="Next screenshot" data-i18n-aria-label="landing.showcase.nextAria">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg>
+              </button>
             </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="landing-body">
+
+        <!-- KPI -->
+        <section class="kpi-strip" aria-label="Key performance indicators" data-reveal>
+          <div class="kpi-grid">
+            <article class="kpi-card">
+              <p class="kpi-value"><span data-kpi-target="6" data-kpi-suffix="+">0</span></p>
+              <p class="kpi-label" data-i18n="landing.kpi.days.label">Active days</p>
+            </article>
+            <div class="kpi-sep" aria-hidden="true"></div>
+            <article class="kpi-card">
+              <p class="kpi-value"><span data-kpi-target="18" data-kpi-suffix="%">0</span></p>
+              <p class="kpi-label" data-i18n="landing.kpi.volume.label">Volume growth</p>
+            </article>
+            <div class="kpi-sep" aria-hidden="true"></div>
+            <article class="kpi-card">
+              <p class="kpi-value"><span data-kpi-target="92" data-kpi-suffix="%">0</span></p>
+              <p class="kpi-label" data-i18n="landing.kpi.balance.label">Muscle balance</p>
+            </article>
           </div>
         </section>
 
-        <section class="feature-grid" aria-label="Grippo features" data-reveal>
-          <article class="feature-card" data-reveal>
-            <h3 data-i18n="landing.features.first.title">Smart insights, not templates</h3>
-            <p data-i18n="landing.features.first.body">
-              Understand overload and underload by muscle group. Grippo helps you decide when to push harder and when to
-              recover, based on your own training history.
+        <!-- Bento Features -->
+        <section class="features" data-reveal>
+          <div class="sect-head">
+            <p class="overline" data-i18n="landing.showcase.eyebrow">Inside The App</p>
+            <h2 data-i18n="landing.showcase.title">Real screens. Real numbers. Zero fluff.</h2>
+            <p class="sect-sub" data-i18n="landing.showcase.subtitle">
+              Your dashboard and workout log update with your progress as you train.
             </p>
-          </article>
-          <article class="feature-card" data-reveal>
-            <h3 data-i18n="landing.features.second.title">Full workout control</h3>
-            <p data-i18n="landing.features.second.body">
-              Log workouts quickly, review exercise stats, and visualize muscle load in a clean, distraction-free interface.
-              Spend less time tapping and more time understanding.
-            </p>
-          </article>
-          <article class="feature-card" data-reveal>
-            <h3 data-i18n="landing.features.third.title">Built for serious training</h3>
-            <p data-i18n="landing.features.third.body">
-              Grippo is for people who train regularly, care about measurable progress, and want to know why results appear
-              or disappear.
-            </p>
-          </article>
+          </div>
+          <div class="bento">
+            <article class="bento-card bento-lg" data-reveal>
+              <div class="bento-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <h3 data-i18n="landing.points.first.title">What makes Grippo different</h3>
+              <ul>
+                <li data-i18n="landing.points.first.item1">See how your strength grows over time</li>
+                <li data-i18n="landing.points.first.item2">Track which muscles actually get load</li>
+                <li data-i18n="landing.points.first.item3">Spot where progress happens and where it stalls</li>
+                <li data-i18n="landing.points.first.item4">Know exactly what to adjust in the next workout</li>
+              </ul>
+            </article>
+            <article class="bento-card bento-lg" data-reveal>
+              <div class="bento-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h3 data-i18n="landing.points.second.title">Progress from day one</h3>
+              <ul>
+                <li data-i18n="landing.points.second.item1">Calculates workout volume and load automatically</li>
+                <li data-i18n="landing.points.second.item2">Analyzes sets, reps, and strength dynamics</li>
+                <li data-i18n="landing.points.second.item3">Turns raw numbers into readable insights</li>
+                <li data-i18n="landing.points.second.item4">No "someday" predictions, only your current state</li>
+              </ul>
+            </article>
+            <article class="bento-card" data-reveal>
+              <div class="bento-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+              </div>
+              <h3 data-i18n="landing.features.first.title">Smart insights, not templates</h3>
+              <p data-i18n="landing.features.first.body">
+                Understand overload and underload by muscle group. Grippo helps you decide when to push harder and when to
+                recover, based on your own training history.
+              </p>
+            </article>
+            <article class="bento-card" data-reveal>
+              <div class="bento-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <h3 data-i18n="landing.features.second.title">Full workout control</h3>
+              <p data-i18n="landing.features.second.body">
+                Log workouts quickly, review exercise stats, and visualize muscle load in a clean, distraction-free interface.
+                Spend less time tapping and more time understanding.
+              </p>
+            </article>
+            <article class="bento-card" data-reveal>
+              <div class="bento-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3 data-i18n="landing.features.third.title">Built for serious training</h3>
+              <p data-i18n="landing.features.third.body">
+                Grippo is for people who train regularly, care about measurable progress, and want to know why results appear
+                or disappear.
+              </p>
+            </article>
+          </div>
         </section>
 
+        <!-- Audience -->
         <section class="audience" data-reveal>
-          <p class="eyebrow" data-i18n="landing.audience.eyebrow">For Whom</p>
+          <div class="sect-head">
+            <p class="overline" data-i18n="landing.audience.eyebrow">For Whom</p>
+          </div>
           <div class="audience-grid">
             <article class="audience-card" data-reveal>
+              <div class="audience-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+              </div>
               <h3 data-i18n="landing.audience.first.title">Train regularly</h3>
               <p data-i18n="landing.audience.first.body">Stay focused on progressive overload and consistent volume.</p>
             </article>
             <article class="audience-card" data-reveal>
+              <div class="audience-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
               <h3 data-i18n="landing.audience.second.title">Track numbers</h3>
               <p data-i18n="landing.audience.second.body">Measure real output instead of relying on vague motivation.</p>
             </article>
             <article class="audience-card" data-reveal>
+              <div class="audience-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4"/><path d="M12 16V8"/></svg>
+              </div>
               <h3 data-i18n="landing.audience.third.title">Need clear decisions</h3>
               <p data-i18n="landing.audience.third.body">Know what to change in your next workout with confidence.</p>
             </article>
           </div>
         </section>
 
+        <!-- CTA -->
         <section class="landing-cta" data-reveal>
-          <p class="eyebrow" data-i18n="landing.cta.eyebrow">Start With Your First Workout</p>
+          <p class="overline" data-i18n="landing.cta.eyebrow">Start With Your First Workout</p>
           <h2 data-i18n="landing.cta.title">Open the app, log your session, and see what others do not show.</h2>
-          <p data-i18n="landing.cta.subtitle">Grippo gives you a clear snapshot of your training right now.</p>
+          <p class="cta-sub" data-i18n="landing.cta.subtitle">Grippo gives you a clear snapshot of your training right now.</p>
           <div class="cta-actions">
             <a class="cta-primary" href="#" data-store="auto" data-i18n="landing.cta.download">Get Grippo on Your Phone</a>
           </div>
@@ -199,8 +247,8 @@
         </section>
       </main>
 
-      <footer class="footer landing-footer">
-        <p data-i18n="footer.copyright">Grippo © 2026. All rights reserved.</p>
+      <footer class="footer">
+        <p data-i18n="footer.copyright">Grippo &copy; 2026. All rights reserved.</p>
         <nav aria-label="Legal and account links" data-i18n-aria-label="landing.footer.navAria">
           <a href="?tab=privacy" data-tab-link="privacy" data-i18n="landing.footer.privacy">Privacy Policy</a>
           <a href="?tab=terms" data-tab-link="terms" data-i18n="landing.footer.terms">Terms &amp; Conditions</a>
@@ -214,24 +262,24 @@
       </div>
     </div>
 
-    <!-- Policies/account view -->
+    <!-- ======================== POLICIES ======================== -->
     <div class="page" id="policyPage" data-view="policies" hidden>
-      <header class="hero" data-reveal>
-        <div class="policy-nav">
-          <a class="back-button" href="?tab=landing" data-landing-link data-i18n="policies.back" aria-label="Back to landing" data-i18n-aria-label="policies.backAria">←</a>
-        </div>
-        <div class="brand">
-          <div class="logo">
-            <img src="logo.png" alt="Grippo logo" />
-          </div>
-          <div>
-            <p class="eyebrow" data-i18n="brand.name">Grippo</p>
-            <h1 data-i18n="policies.hero.title">Policies &amp; Account</h1>
-            <p class="subtitle" data-i18n="policies.hero.subtitle">
-              Find the privacy policy, terms &amp; conditions, and account removal instructions for the Grippo mobile app.
-            </p>
-          </div>
-        </div>
+      <nav class="topnav">
+        <a class="topnav-brand" href="?tab=landing" data-landing-link>
+          <img src="logo.png" alt="Grippo" class="topnav-logo" />
+          <span data-i18n="brand.name">Grippo</span>
+        </a>
+        <a class="topnav-back" href="?tab=landing" data-landing-link aria-label="Back to landing" data-i18n-aria-label="policies.backAria">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12L6 8l4-4"/></svg>
+          <span data-i18n="policies.back" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)"></span>
+        </a>
+      </nav>
+
+      <header class="policy-hero" data-reveal>
+        <h1 data-i18n="policies.hero.title">Policies &amp; Account</h1>
+        <p class="hero-sub" data-i18n="policies.hero.subtitle">
+          Find the privacy policy, terms &amp; conditions, and account removal instructions for the Grippo mobile app.
+        </p>
         <div class="tab-links" role="tablist" aria-label="Policy sections" data-i18n-aria-label="policies.hero.tabAria">
           <button class="tab-button" id="tab-privacy" data-tab="privacy" aria-controls="privacy" data-i18n="policies.tabs.privacy">Privacy Policy</button>
           <button class="tab-button" id="tab-terms" data-tab="terms" aria-controls="terms" data-i18n="policies.tabs.terms">Terms &amp; Conditions</button>
@@ -239,7 +287,7 @@
         </div>
       </header>
 
-      <main class="content">
+      <main class="policy-content">
         <section class="tab-panel" id="privacy" data-tab-panel role="tabpanel" aria-labelledby="tab-privacy" data-reveal>
           <h2>Privacy Policy</h2>
           <p>
@@ -482,7 +530,7 @@
       </main>
 
       <footer class="footer">
-        <p data-i18n="footer.copyright">Grippo © 2026. All rights reserved.</p>
+        <p data-i18n="footer.copyright">Grippo &copy; 2026. All rights reserved.</p>
       </footer>
     </div>
 
