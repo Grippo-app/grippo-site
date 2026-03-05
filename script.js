@@ -557,12 +557,12 @@
 
       for (const candidate of candidates) {
         const normalized = this.normalizeLocale(candidate);
-        if (normalized !== DEFAULT_LOCALE) {
+        if (SUPPORTED_LOCALES.has(normalized)) {
           return normalized;
         }
       }
 
-      return this.normalizeLocale(candidates[0] || DEFAULT_LOCALE);
+      return DEFAULT_LOCALE;
     }
 
     getTranslation(key) {
