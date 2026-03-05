@@ -865,11 +865,12 @@
         return;
       }
 
+      event.preventDefault();
+
       if (typeof window.gtag !== "function") {
+        window.location.assign(href);
         return;
       }
-
-      event.preventDefault();
 
       let didNavigate = false;
       const navigate = () => {
