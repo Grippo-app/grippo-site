@@ -516,9 +516,9 @@
       return Boolean(tabId) && this.panelById.has(tabId);
     }
 
-    normalizeLocale(locale) {
+    mapLocaleCandidate(locale) {
       if (!locale) {
-        return DEFAULT_LOCALE;
+        return null;
       }
 
       const normalized = String(locale).toLowerCase().trim();
@@ -536,7 +536,11 @@
         return baseLocale;
       }
 
-      return DEFAULT_LOCALE;
+      return null;
+    }
+
+    normalizeLocale(locale) {
+      return this.mapLocaleCandidate(locale) || DEFAULT_LOCALE;
     }
 
     resolveLocaleFromLocation() {
@@ -544,7 +548,10 @@
       for (const key of LOCALE_PARAMS) {
         const rawValue = params.get(key);
         if (rawValue) {
-          return this.normalizeLocale(rawValue);
+          const normalized = this.mapLocaleCandidate(rawValue);
+          if (normalized) {
+            return normalized;
+          }
         }
       }
 
@@ -556,8 +563,8 @@
       const candidates = [...preferredLocales, navigator.language, navigator.userLanguage].filter(Boolean);
 
       for (const candidate of candidates) {
-        const normalized = this.normalizeLocale(candidate);
-        if (SUPPORTED_LOCALES.has(normalized)) {
+        const normalized = this.mapLocaleCandidate(candidate);
+        if (normalized) {
           return normalized;
         }
       }
