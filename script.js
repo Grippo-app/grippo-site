@@ -56,9 +56,9 @@
 
   const STORE_LINKS = {
     appStore: {
-      en: "https://apps.apple.com/us/app/grippo",
-      ua: "https://apps.apple.com/us/app/grippo",
-      ru: "https://apps.apple.com/us/app/grippo",
+      en: "https://apps.apple.com/us/app/grippo/id6758158216",
+      ua: "https://apps.apple.com/ua/app/grippo/id6758158216",
+      ru: "https://apps.apple.com/ru/app/grippo/id6758158216",
     },
     googlePlay: {
       en: "https://play.google.com/store/apps/details?id=com.grippo.android&utm_source=landing&utm_medium=web&utm_campaign=launch&utm_content=android_en",
