@@ -14,6 +14,7 @@ import {
 import { getStoreUrls, getAutoUrl } from './modules/store/store-links'
 import { detectPreferred, writeStored } from './modules/store/store-detector'
 import { handleStoreClick } from './modules/store/store-click-handler'
+import { RippleEffect } from './modules/ripple/ripple'
 import { MobileBar } from './ui/mobile-bar'
 import { PolicyTabs } from './ui/tabs'
 
@@ -28,6 +29,7 @@ export class App {
   private carousel: ShowcaseCarousel | null = null
   private kpiObserver!: KpiObserver
   private revealObserver!: RevealObserver
+  private rippleEffect!: RippleEffect
   private mobileBar: MobileBar | null = null
   private tabs!: PolicyTabs
 
@@ -126,6 +128,16 @@ export class App {
 
     // Sticky mobile store bar
     this.mobileBar = MobileBar.create()
+
+    // Ripple feedback — query every interactive button/link after all modules
+    // have rendered their DOM so nothing is missed.
+    const rippleTargets = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        '.store-button, .cta-primary, .mobile-store-primary, .mobile-store-secondary, .phone-arrow, .topnav-back, .tab-button',
+      ),
+    )
+    this.rippleEffect = new RippleEffect(rippleTargets)
+    this.rippleEffect.setup()
 
     // 6. Window-level events
     this._bindWindowEvents()

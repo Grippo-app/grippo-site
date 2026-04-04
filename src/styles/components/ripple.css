@@ -1,0 +1,103 @@
+/* ===========================
+   RIPPLE & CLICK FEEDBACK
+   Applied as a final CSS layer — rules here intentionally override
+   component-level hover/transition values during :active state.
+
+   Three problems solved here:
+   1. touch-action: manipulation  →  eliminates the 300ms tap delay on
+      iOS/Android without requiring any JS or meta-viewport changes.
+   2. user-select: none           →  prevents accidental text selection
+      on long-press on mobile.
+   3. :active states              →  immediate visual feedback on press
+      (scale/opacity snap) so clicks feel instantaneous.
+   4. .ripple-wave keyframe       →  smooth expanding circle from the
+      pointer origin, created by RippleEffect.ts.
+   =========================== */
+
+/* ---- Touch & selection hygiene for every interactive element ---- */
+.store-button,
+.cta-primary,
+.mobile-store-primary,
+.mobile-store-secondary,
+.phone-arrow,
+.topnav-back,
+.tab-button {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required for the absolutely-positioned ripple-wave child */
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- :active press states ---- */
+/*
+  transition-duration: 60ms overrides the component-level value only
+  during the active phase, so the press feels instant while the
+  release uses the normal easing.
+*/
+.store-button:active {
+  transform: scale(.96);
+  border-color: rgba(255,255,255,.14);
+  transition-duration: 60ms;
+}
+
+.cta-primary:active {
+  transform: scale(.96);
+  box-shadow: var(--sh-accent);
+  transition-duration: 60ms;
+}
+
+.mobile-store-primary:active {
+  transform: scale(.95);
+  transition-duration: 60ms;
+}
+
+.mobile-store-secondary:active {
+  background: rgba(255,255,255,.1);
+  transition-duration: 60ms;
+}
+
+.phone-arrow:active {
+  transform: scale(.85);
+  border-color: var(--accent);
+  transition-duration: 60ms;
+}
+
+.topnav-back:active {
+  transform: scale(.96);
+  border-color: rgba(255,255,255,.22);
+  transition-duration: 60ms;
+}
+
+.tab-button:active {
+  transform: scale(.97);
+  opacity: .8;
+  transition-duration: 60ms;
+}
+
+/* ---- Ripple wave element ---- */
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  opacity: 1;
+  background: rgba(255, 255, 255, .18);
+  animation: rippleExpand 550ms cubic-bezier(.4, 0, .2, 1) forwards;
+  /* Sits below text/icons but above the button background */
+  z-index: 0;
+}
+
+/* Accent buttons get a slightly brighter ripple to stay visible */
+.cta-primary .ripple-wave,
+.mobile-store-primary .ripple-wave {
+  background: rgba(255, 255, 255, .24);
+}
+
+@keyframes rippleExpand {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
