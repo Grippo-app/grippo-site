@@ -366,6 +366,8 @@
 
       this.locale = DEFAULT_LOCALE;
       this.manualPreferredStore = null;
+      this._scrollRafPending = false;
+      this._resizeRafPending = false;
 
       this.handlePopState = this.handlePopState.bind(this);
       this.handleHashChange = this.handleHashChange.bind(this);
@@ -475,11 +477,27 @@
     }
 
     handleScroll() {
-      this.updateStickyStoreBarVisibility();
+      // Throttle to one rAF frame to avoid forced layout on every scroll pixel.
+      if (this._scrollRafPending) {
+        return;
+      }
+      this._scrollRafPending = true;
+      window.requestAnimationFrame(() => {
+        this._scrollRafPending = false;
+        this.updateStickyStoreBarVisibility();
+      });
     }
 
     handleResize() {
-      this.updateStickyStoreBarVisibility();
+      // Throttle to one rAF frame to batch rapid resize events.
+      if (this._resizeRafPending) {
+        return;
+      }
+      this._resizeRafPending = true;
+      window.requestAnimationFrame(() => {
+        this._resizeRafPending = false;
+        this.updateStickyStoreBarVisibility();
+      });
     }
 
     syncLocaleFromLocation() {
@@ -743,11 +761,19 @@
 
       this.mobileStorePrimary.dataset.store = normalizedPrimary;
       this.mobileStorePrimary.setAttribute("href", primaryHref);
-      this.mobileStorePrimary.textContent = this.getTranslation("landing.mobileCta.primary");
+      // Update only the label text to preserve icon and sub-text DOM structure.
+      const primaryLabel = this.mobileStorePrimary.querySelector(".msb-label");
+      if (primaryLabel) {
+        primaryLabel.textContent = this.getTranslation("landing.mobileCta.primary");
+      }
 
       this.mobileStoreSecondary.dataset.store = secondaryStore;
       this.mobileStoreSecondary.setAttribute("href", secondaryHref);
-      this.mobileStoreSecondary.textContent = this.getTranslation(secondaryLabelKey);
+      // Update only the label text to preserve icon DOM structure.
+      const secondaryLabel = this.mobileStoreSecondary.querySelector(".msb-label");
+      if (secondaryLabel) {
+        secondaryLabel.textContent = this.getTranslation(secondaryLabelKey);
+      }
     }
 
     updateStickyStoreBarVisibility() {
