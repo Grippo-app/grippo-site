@@ -36,18 +36,6 @@
   pointer-events: none;
   z-index: 2;
 }
-/* dynamic island pill */
-.phone-frame::before {
-  content: "";
-  position: absolute;
-  top: 12px; left: 50%;
-  transform: translateX(-50%);
-  width: 88px; height: 26px;
-  background: #000;
-  border-radius: 14px;
-  z-index: 3;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.07);
-}
 
 .phone-glow {
   position: absolute;
