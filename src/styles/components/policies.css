@@ -128,7 +128,7 @@
   /* Android screenshots render UI within ~18–20px rounded corners at display
      size (240px). border-radius must exceed that value so the CSS clip never
      exposes the step-card background behind the image's own rounded corners. */
-  border-radius: 24px;
+  border-radius: 36px;
   box-shadow: var(--sh-md);
 }
 
