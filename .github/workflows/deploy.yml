@@ -2,7 +2,7 @@ name: Build & Deploy
 
 on:
   push:
-    branches: ['**']   # любой пуш на любую ветку
+    branches: [main]
 
 # Разрешаем деплой на GitHub Pages
 permissions:
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ─── JOB 1: Build + Test (на ЛЮБОЙ ветке) ───────────────────────────────────
+  # ─── JOB 1: Build + Test ─────────────────────────────────────────────────────
   build:
     name: Build & Test
     runs-on: ubuntu-latest
@@ -42,17 +42,14 @@ jobs:
           VITE_BASE_URL: '/grippo-site/'
 
       - name: Upload Pages artifact
-        # Артефакт загружается только из ветки main
-        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-  # ─── JOB 2: Deploy (только main) ─────────────────────────────────────────────
+  # ─── JOB 2: Deploy ───────────────────────────────────────────────────────────
   deploy:
     name: Deploy to GitHub Pages
     needs: build
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
