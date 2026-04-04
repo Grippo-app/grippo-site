@@ -25,6 +25,9 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity .35s var(--ease), transform .45s var(--ease);
+  /* Promote to its own GPU layer so the slide animation never triggers
+     a main-thread repaint or layout — critical on iOS during overscroll. */
+  will-change: transform, opacity;
   z-index: 50;
 }
 /* top accent line */

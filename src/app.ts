@@ -40,6 +40,9 @@ export class App {
   private _kpiObserved = false
   private _scrollRafPending = false
   private _resizeRafPending = false
+  // Tracks current bar state for hysteresis — prevents rapid toggling during
+  // iOS overscroll bounce and browser-chrome show/hide (see _updateMobileBarVisibility).
+  private _mobileBarVisible = false
 
   // DOM refs
   private landingPage!: HTMLElement
@@ -298,10 +301,42 @@ export class App {
   private _updateMobileBarVisibility(): void {
     const isLanding = this._currentMode === 'landing'
     const isMobile = window.matchMedia('(max-width: 720px)').matches
+
+    if (!isLanding || !isMobile) {
+      // Non-landing view or desktop — always hidden, reset hysteresis state.
+      if (this._mobileBarVisible) {
+        this._mobileBarVisible = false
+        this.mobileBar?.setVisible(false)
+      }
+      return
+    }
+
     const heroBottom = this.landingHero?.getBoundingClientRect().bottom ?? 0
-    const revealThreshold = Math.max(220, window.innerHeight * 0.72)
-    const shouldShow = isLanding && isMobile && heroBottom < revealThreshold
-    this.mobileBar?.setVisible(shouldShow)
+    const innerH = window.innerHeight
+
+    // Hysteresis (Schmitt-trigger pattern): two separate thresholds prevent
+    // rapid show/hide toggling caused by iOS overscroll bounce and the
+    // browser-chrome (URL bar) appearing/disappearing on scroll-to-top.
+    //   SHOW  threshold — hero's bottom edge is well above 62% of viewport
+    //   HIDE  threshold — hero's bottom edge is back above 80% of viewport
+    // The dead zone between 62% and 80% absorbs the ±50px fluctuations that
+    // occur during rubber-band bounce and viewport-height changes (~56px on iOS).
+    const showThreshold = Math.max(200, innerH * 0.62)
+    const hideThreshold = Math.max(280, innerH * 0.80)
+
+    let shouldShow: boolean
+    if (this._mobileBarVisible) {
+      // Currently visible → only hide when hero is clearly back in view.
+      shouldShow = heroBottom < hideThreshold
+    } else {
+      // Currently hidden → only show when hero is clearly scrolled away.
+      shouldShow = heroBottom < showThreshold
+    }
+
+    if (shouldShow !== this._mobileBarVisible) {
+      this._mobileBarVisible = shouldShow
+      this.mobileBar?.setVisible(shouldShow)
+    }
   }
 
   // ---------------------------------------------------------------------------
