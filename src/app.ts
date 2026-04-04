@@ -9,6 +9,7 @@ import {
   resolveViewMode,
   resolveTabFromLocation,
   buildTabUrl,
+  buildLandingUrl,
 } from './modules/router/router'
 import { getStoreUrls, getAutoUrl } from './modules/store/store-links'
 import { detectPreferred, writeStored } from './modules/store/store-detector'
@@ -243,11 +244,9 @@ export class App {
       link.href = `${url.pathname}${url.search}`
     })
 
-    // Landing links — go back to landing
+    // Landing links — go back to landing (cleans all routing params + hash)
     document.querySelectorAll<HTMLAnchorElement>('[data-landing-link]').forEach((link) => {
-      const url = new URL(pathname, origin)
-      url.searchParams.set(TAB_PARAM, 'landing')
-      if (this._locale !== DEFAULT_LOCALE) url.searchParams.set('locale', this._locale)
+      const url = buildLandingUrl(new URL(pathname, origin), this._locale, DEFAULT_LOCALE)
       link.href = `${url.pathname}${url.search}`
     })
 

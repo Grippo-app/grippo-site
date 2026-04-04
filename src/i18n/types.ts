@@ -13,6 +13,7 @@ export type TranslationKey =
   | 'landing.store.googlePlay.title'
   | 'landing.store.note'
   | 'landing.points.first.title'
+  | 'landing.points.first.desc'
   | 'landing.points.first.item1'
   | 'landing.points.first.item2'
   | 'landing.points.first.item3'

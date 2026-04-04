@@ -17,6 +17,8 @@ export const en: TranslationMap = {
   'landing.store.note':
     'Pick your store now, or use the auto button below and let Grippo open the best match for your device.',
   'landing.points.first.title': 'What makes Grippo different',
+  'landing.points.first.desc':
+    'Logs your training and turns raw numbers into decisions — volume, muscle load, strength trends, all in one clear view.',
   'landing.points.first.item1': 'See how your strength grows over time',
   'landing.points.first.item2': 'Track which muscles actually get load',
   'landing.points.first.item3': 'Spot where progress happens and where it stalls',
