@@ -14,6 +14,8 @@ import {
 import { getStoreUrls, getAutoUrl } from './modules/store/store-links'
 import { detectPreferred, writeStored } from './modules/store/store-detector'
 import { handleStoreClick } from './modules/store/store-click-handler'
+import { STORE_RATINGS } from './modules/store/store-ratings'
+import { RatingDisplay } from './ui/rating-display'
 import { RippleEffect } from './modules/ripple/ripple'
 import { MobileBar } from './ui/mobile-bar'
 import { PolicyTabs } from './ui/tabs'
@@ -30,6 +32,7 @@ export class App {
   private kpiObserver!: KpiObserver
   private revealObserver!: RevealObserver
   private rippleEffect!: RippleEffect
+  private ratingDisplay: RatingDisplay | null = null
   private mobileBar: MobileBar | null = null
   private tabs!: PolicyTabs
 
@@ -131,6 +134,9 @@ export class App {
 
     // Sticky mobile store bar
     this.mobileBar = MobileBar.create()
+
+    // Adaptive store rating display
+    this.ratingDisplay = RatingDisplay.create()
 
     // Ripple feedback — query every interactive button/link after all modules
     // have rendered their DOM so nothing is missed.
@@ -292,6 +298,8 @@ export class App {
       urls,
       getLabel: (key) => this.i18n.getTranslation(key as TranslationKey),
     })
+
+    this.ratingDisplay?.update(STORE_RATINGS[preferred])
   }
 
   // ---------------------------------------------------------------------------
