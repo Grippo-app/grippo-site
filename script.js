@@ -1196,9 +1196,9 @@
       this.setImageWithFallback(hiddenElement, nextSlide.candidates);
       hiddenElement.alt = this.getTranslation(`showcase.alt.${nextSlide.key}`);
 
-      // Slide animation: position incoming off-screen instantly, then animate in
+      // Slide animation: subtle nudge + crossfade (10% shift feels natural, not jarring)
       hiddenElement.style.transition = "none";
-      hiddenElement.style.transform = "translateX(" + (normalizedDirection * 55) + "%)";
+      hiddenElement.style.transform = "translateX(" + (normalizedDirection * 10) + "%)";
       hiddenElement.style.opacity = "0";
       void hiddenElement.offsetWidth;
       hiddenElement.style.transition = "";
@@ -1206,7 +1206,7 @@
       hiddenElement.style.opacity = "";
 
       // Animate outgoing slide out in opposite direction
-      visibleElement.style.transform = "translateX(" + (-normalizedDirection * 55) + "%)";
+      visibleElement.style.transform = "translateX(" + (-normalizedDirection * 10) + "%)";
       visibleElement.style.opacity = "0";
 
       visibleElement.classList.remove("is-active");
