@@ -1,1 +1,22 @@
+# Dependencies
+node_modules/
 
+# Build output
+dist/
+
+# Test coverage
+coverage/
+
+# Vite/Vitest auto-generated timestamp cache files
+*.timestamp-*.mjs
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*

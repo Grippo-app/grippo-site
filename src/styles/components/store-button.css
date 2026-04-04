@@ -1,0 +1,102 @@
+/* Store buttons */
+.store-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.store-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  min-width: 190px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-0);
+  transition: transform var(--dur-f), border-color var(--dur-f), box-shadow var(--dur-f);
+  position: relative;
+  overflow: hidden;
+}
+/* shimmer sweep on hover */
+.store-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.07) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform .5s ease;
+}
+.store-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.18);
+  box-shadow: var(--sh-sm), 0 0 0 1px rgba(255,255,255,.04) inset;
+  color: var(--text-0);
+}
+.store-button:hover::after {
+  transform: translateX(100%);
+}
+
+.store-icon {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.store-icon svg { width: 100%; height: 100%; fill: var(--text-0); }
+.store-icon--play { width: 24px; height: 24px; }
+
+.store-text { display: grid; line-height: 1.15; }
+.store-overline { font-size: .7rem; color: var(--text-2); }
+.store-title { font-size: .95rem; font-weight: 700; color: var(--text-0); margin-top: 1px; }
+
+.store-note, .cta-note {
+  margin-top: 12px;
+  color: var(--text-2);
+  font-size: .82rem;
+  max-width: 48ch;
+}
+
+.store-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.store-rating-stars {
+  color: #FBBF24;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+.store-rating-text {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-2);
+  letter-spacing: .02em;
+}
+
+.store-rating-sep {
+  color: var(--text-2);
+  font-size: .78rem;
+  opacity: .5;
+}
+
+.store-free-tag {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #4ade80;
+  background: rgba(74,222,128,.1);
+  border: 1px solid rgba(74,222,128,.2);
+  border-radius: var(--r-pill);
+  padding: 1px 8px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .store-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
