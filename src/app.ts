@@ -210,6 +210,7 @@ export class App {
     this._currentMode = mode
     const isLanding = mode === 'landing'
 
+    document.documentElement.setAttribute('data-initial-view', mode)
     this.landingPage.hidden = !isLanding
     this.policyPage.hidden = isLanding
 
