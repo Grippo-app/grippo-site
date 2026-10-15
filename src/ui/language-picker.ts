@@ -1,14 +1,54 @@
-/** Dismisses the language menu with Escape, outside clicks and keyboard exit. */
-export function initLanguagePicker(): void {
+import { type Locale } from '../i18n/types'
+import { resolveFromParams } from '../modules/locale/locale-resolver'
+import { LOCALE_PARAMS } from '../modules/locale/types'
+
+/** Changes language in place while keeping native links for modified clicks. */
+export function initLanguagePicker(onChange: () => void): void {
   const picker = document.querySelector<HTMLDetailsElement>('.language-picker')
   const summary = picker?.querySelector<HTMLElement>('summary')
   if (!picker || !summary) return
 
+  const close = (): void => {
+    picker.open = false
+    summary.focus({ preventScroll: true })
+  }
+  const localeUrl = (locale: Locale): URL => {
+    const url = new URL(window.location.href)
+    LOCALE_PARAMS.forEach((param) => url.searchParams.delete(param))
+    url.searchParams.set('locale', locale)
+    return url
+  }
+  const options = Array.from(picker.querySelectorAll<HTMLAnchorElement>('.language-options a'))
+    .map((link) => ({ link, locale: resolveFromParams(new URL(link.href).searchParams) }))
+  const updateLinks = (): void => {
+    options.forEach(({ link, locale }) => {
+      if (locale) link.href = localeUrl(locale).href
+    })
+  }
+
+  updateLinks()
+  picker.addEventListener('toggle', updateLinks)
+  options.forEach(({ link, locale }) => {
+    if (!locale) return
+    link.addEventListener('click', (event) => {
+      updateLinks()
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey ||
+          event.shiftKey || event.altKey || link.target === '_blank') return
+
+      event.preventDefault()
+      const currentLocale = document.documentElement.lang === 'uk' ? 'ua' : document.documentElement.lang
+      if (locale !== currentLocale) {
+        window.history.pushState(null, '', localeUrl(locale))
+        onChange()
+      }
+      close()
+    })
+  })
+
   picker.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || !picker.open) return
     event.preventDefault()
-    picker.open = false
-    summary.focus()
+    close()
   })
 
   document.addEventListener('click', (event) => {

@@ -38,6 +38,7 @@ export class App {
   private ratingDisplay: RatingDisplay | null = null
   private mobileBar: MobileBar | null = null
   private tabs!: PolicyTabs
+  private refreshProgressDemo?: () => void
 
   // State
   private _locale!: Locale
@@ -86,9 +87,9 @@ export class App {
 
     // 4. Signal that translations are applied — CSS can fade in content
     document.body.classList.add('i18n-ready')
-    initProgressDemo()
+    this.refreshProgressDemo = initProgressDemo()
     initScreenZoom()
-    initLanguagePicker()
+    initLanguagePicker(() => this._syncFromLocation(false))
 
     // 5. Wire up modules ---------------------------------------------------
 
@@ -284,6 +285,7 @@ export class App {
     })
 
     this._updateStoreLinks()
+    this.refreshProgressDemo?.()
   }
 
   // ---------------------------------------------------------------------------

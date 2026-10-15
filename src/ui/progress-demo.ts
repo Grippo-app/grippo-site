@@ -97,7 +97,7 @@ function isDemoPeriod(value: string | undefined): value is DemoPeriod {
 }
 
 /** A local, fixed example of how Grippo displays training progress. */
-export function initProgressDemo(): void {
+export function initProgressDemo(): (() => void) | undefined {
   const root = document.querySelector<HTMLElement>('[data-progress-demo]')
   if (!root) return
 
@@ -108,14 +108,7 @@ export function initProgressDemo(): void {
 
   const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('button[data-period]'))
   const axes = Array.from(root.querySelectorAll<HTMLElement>('[data-progress-axis]'))
-  const locale = document.documentElement.lang || 'en'
-  const numberFormat = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 })
-  const changeFormat = new Intl.NumberFormat(locale, {
-    style: 'percent',
-    signDisplay: 'always',
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-  })
+  let selectedPeriod: DemoPeriod = 'quarter'
 
   for (const output of [value, change]) {
     if (!output.closest('[aria-live]')) {
@@ -125,6 +118,14 @@ export function initProgressDemo(): void {
   }
 
   const render = (period: DemoPeriod): void => {
+    const locale = document.documentElement.lang || 'en'
+    const numberFormat = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 })
+    const changeFormat = new Intl.NumberFormat(locale, {
+      style: 'percent',
+      signDisplay: 'always',
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    })
     const data = DEMO_DATA[period]
     const workouts = workoutsBetween(data.start, data.end)
     const totalVolume = sumVolume(workouts)
@@ -162,8 +163,12 @@ export function initProgressDemo(): void {
 
   buttons.forEach((button) => {
     const period = button.dataset.period
-    if (isDemoPeriod(period)) button.addEventListener('click', () => render(period))
+    if (isDemoPeriod(period)) button.addEventListener('click', () => {
+      selectedPeriod = period
+      render(period)
+    })
   })
 
-  render('quarter')
+  render(selectedPeriod)
+  return () => render(selectedPeriod)
 }
