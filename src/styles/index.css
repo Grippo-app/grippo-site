@@ -5,9 +5,9 @@
 @import './components/hero.css';
 @import './components/store-button.css';
 @import './components/phone-showcase.css';
-@import './components/kpi.css';
-@import './components/bento.css';
-@import './components/audience.css';
+@import './components/progress.css';
+@import './components/screen-zoom.css';
+@import './components/story.css';
 @import './components/cta.css';
 @import './components/mobile-bar.css';
 @import './components/footer.css';

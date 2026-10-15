@@ -44,14 +44,15 @@
 
 .tab-panel {
   display: none;
-  padding: 36px;
+  padding: 32px;
+  overflow-wrap: anywhere;
   border-radius: var(--r-xl);
   background: var(--bg-card);
   border: 1px solid var(--border);
 }
 .tab-panel.active { display: block; }
 
-.tab-panel h2 { margin-bottom: 16px; }
+.tab-panel h2 { margin-bottom: 20px; font-size: clamp(1.65rem, 3.6vw, 2.6rem); line-height: 1.15; }
 .tab-panel h3 {
   margin-top: 28px;
   color: var(--accent-light);
@@ -132,6 +133,7 @@
   box-shadow: var(--sh-md);
 }
 
+.step-card:nth-child(even) { grid-template-columns: .8fr 1.2fr; }
 .step-card:nth-child(even) .step-header { order: 2; }
 .step-card:nth-child(even) .step-media { order: 1; }
 
@@ -145,12 +147,27 @@
   font-size: .92rem;
 }
 
-@media (max-width: 640px) {
-  .step-card {
+@media (max-width: 800px) {
+  .tab-panel { padding: 24px; }
+  .tab-panel ul { padding-left: 22px; }
+  .step-card, .step-card:nth-child(even) {
     grid-template-columns: 1fr;
     padding: 18px;
   }
   .step-header { grid-template-columns: 1fr; }
   .step-card:nth-child(even) .step-header,
   .step-card:nth-child(even) .step-media { order: initial; }
+}
+
+.tab-panel :is(p, ul) { font-size: 16px; }
+.tab-panel a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 3px; }
+.tab-panel a:hover { color: var(--accent-warm); }
+#policyPage > .footer { font-size: 12px; }
+.topnav-back { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+@media (max-width: 480px) {
+  .tab-panel { padding: 20px; border-radius: 16px; }
+  .tab-panel :is(p, ul) { font-size: 15px; }
+  .step-card, .step-card:nth-child(even) { padding: 16px; }
+  .step-header { gap: 12px; }
+  .tab-button { width: 100%; text-align: left; border-radius: 10px; }
 }

@@ -13,22 +13,22 @@ export const SHOWCASE_SLIDE_KEYS: readonly string[] = [
 
 export const SHOWCASE_IMAGE_CANDIDATES: Record<string, Record<string, string[]>> = {
   en: {
-    dashboard: ['assets/screenshots/dashboard_en.png'],
-    training: ['assets/screenshots/training_en.png'],
-    exercises: ['assets/screenshots/exercises_en.png'],
-    muscles: ['assets/screenshots/muscles_en.png'],
+    dashboard: ['assets/screenshots/dashboard_en.webp', 'assets/screenshots/dashboard_en.png'],
+    training: ['assets/screenshots/training_en.webp', 'assets/screenshots/training_en.png'],
+    exercises: ['assets/screenshots/exercises_en.webp', 'assets/screenshots/exercises_en.png'],
+    muscles: ['assets/screenshots/muscles_en.webp', 'assets/screenshots/muscles_en.png'],
   },
   ua: {
-    dashboard: ['assets/screenshots/dashboard_ua.png'],
-    training: ['assets/screenshots/training_ua.png'],
-    exercises: ['assets/screenshots/exercises_ua.png'],
-    muscles: ['assets/screenshots/muscles_ua.png'],
+    dashboard: ['assets/screenshots/dashboard_ua.webp', 'assets/screenshots/dashboard_ua.png'],
+    training: ['assets/screenshots/training_ua.webp', 'assets/screenshots/training_ua.png'],
+    exercises: ['assets/screenshots/exercises_ua.webp', 'assets/screenshots/exercises_ua.png'],
+    muscles: ['assets/screenshots/muscles_ua.webp', 'assets/screenshots/muscles_ua.png'],
   },
   ru: {
-    dashboard: ['assets/screenshots/dashboard_ru.png'],
-    training: ['assets/screenshots/training_ru.png'],
-    exercises: ['assets/screenshots/exercises_ru.png'],
-    muscles: ['assets/screenshots/muscles_ru.png'],
+    dashboard: ['assets/screenshots/dashboard_ru.webp', 'assets/screenshots/dashboard_ru.png'],
+    training: ['assets/screenshots/training_ru.webp', 'assets/screenshots/training_ru.png'],
+    exercises: ['assets/screenshots/exercises_ru.webp', 'assets/screenshots/exercises_ru.png'],
+    muscles: ['assets/screenshots/muscles_ru.webp', 'assets/screenshots/muscles_ru.png'],
   },
 }
 

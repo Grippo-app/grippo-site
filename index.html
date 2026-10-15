@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Grippo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="description" content="Your training. Made visible. Track sets, understand muscle load and see your strength progress with Grippo for iOS and Android." />
+    <meta name="theme-color" content="#12151a" />
+    <link rel="preload" href="assets/fonts/manrope_extra_bold.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="icon" type="image/png" href="logo.png" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNMQ6NHH6M"></script>
     <script>
@@ -23,30 +23,145 @@
     <!-- ======================== LANDING ======================== -->
     <div class="page" id="landingPage" data-view="landing">
 
-      <nav class="topnav">
-        <a class="topnav-brand" href=".">
-          <img src="logo.png" alt="Grippo" class="topnav-logo" />
-          <span data-i18n="brand.name">Grippo</span>
+      <a class="skip-link" href="#main-content" data-i18n="landing.a11y.skip">Skip to content</a>
+      <nav class="topnav content-shell" aria-label="Main navigation" data-i18n-aria-label="landing.a11y.navigation">
+        <a class="topnav-brand" href="." data-landing-link aria-label="Grippo home" data-i18n-aria-label="landing.a11y.home">
+          <img src="logo.png" alt="" class="topnav-logo" width="40" height="40" />
+          <span>grippo<span class="brand-period">.</span></span>
         </a>
+        <div class="topnav-links">
+          <a href="#app" data-i18n="landing.nav.app">The app</a>
+          <a href="#progress" data-i18n="landing.nav.progress">Your progress</a>
+          <a href="#mindset" data-i18n="landing.nav.mindset">The mindset</a>
+        </div>
+        <div class="topnav-actions">
+          <details class="language-picker">
+            <summary aria-label="Choose language" data-i18n-aria-label="landing.nav.language"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg><span class="current-language" aria-hidden="true">EN</span><span aria-hidden="true">⌄</span></summary>
+            <div class="language-options"><a href="?locale=en" lang="en">English <span>EN</span></a><a href="?locale=ua" lang="uk">Українська <span>UA</span></a><a href="?locale=ru" lang="ru">Русский <span>RU</span></a></div>
+          </details>
+          <a class="nav-download" href="#download"><span data-i18n="landing.nav.download">Get Grippo</span><span aria-hidden="true">↗</span></a>
+        </div>
       </nav>
 
-      <header class="landing-hero">
-        <div class="hero-text" data-reveal>
-          <div class="hero-badge">
-            <span class="badge-pulse" aria-hidden="true"></span>
-            <span data-i18n="landing.kpi.section.eyebrow">Performance Snapshot</span>
+      <header class="landing-hero content-shell">
+        <div class="hero-text">
+          <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span><span data-i18n="landing.kpi.section.eyebrow">Workout journal &amp; insights</span></p>
+          <h1><span data-i18n="landing.hero.title">Every rep.</span><span class="hero-title-accent" data-i18n="landing.hero.accent">A reason.</span></h1>
+          <p class="hero-sub" data-i18n="landing.hero.subtitle">Log weights, reps and sets. Compare sessions and see how your strength and muscle load change over time.</p>
+          <div class="hero-actions">
+            <a class="button-primary" href="#" data-store="auto"><span data-i18n="landing.nav.download">Get Grippo</span><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+            <a class="button-text" href="#app"><span class="play-icon" aria-hidden="true">↗</span><span data-i18n="landing.hero.explore">See the app</span></a>
           </div>
-          <h1 data-i18n="landing.hero.title">Workouts That Make Sense</h1>
-          <p class="hero-sub" data-i18n="landing.hero.subtitle">
-            Real workout data — volume, muscle balance, and progress — not motivation quotes.
-          </p>
-          <div class="hero-proof" aria-label="Grippo benefits">
-            <span class="proof-chip" data-i18n="landing.hero.proof.first">Track volume, sets, and load in one place</span>
-            <span class="proof-chip" data-i18n="landing.hero.proof.second">See muscle balance instead of guessing</span>
-            <span class="proof-chip" data-i18n="landing.hero.proof.third">Install on iPhone or Android in one tap</span>
+          <p class="hero-note"><span class="tiny-plus" aria-hidden="true">+</span><span data-i18n="landing.hero.note">Made for iOS &amp; Android</span></p>
+        </div>
+        <div class="hero-visual" aria-label="Grippo training preview" data-i18n-aria-label="landing.hero.visual">
+          <div class="hero-orbit" aria-hidden="true"><span></span><i></i></div>
+          <span class="visual-coordinate coordinate-top" aria-hidden="true">GRP / 001</span>
+          <img class="hero-object" src="assets/brand/onboarding_hero.webp" width="768" height="768" alt="" decoding="async" />
+          <div class="hero-preview">
+            <button class="hero-preview-button" type="button" data-screen-zoom data-zoom-source="#heroPhone" data-i18n-aria-label="landing.explorer.zoom" aria-label="View screen larger">
+              <img id="heroPhone" class="hero-phone" src="assets/screenshots/dashboard_en.webp" width="1669" height="3553" alt="Grippo app dashboard screenshot" fetchpriority="high" decoding="async" />
+              <span class="hero-preview-caption"><span aria-hidden="true">⊕</span><span data-i18n="landing.hero.preview">Your training, at a glance</span></span>
+            </button>
           </div>
-          <section class="hero-actions" aria-label="Download Grippo">
-            <nav class="store-buttons">
+        </div>
+        <div class="hero-baseline">
+          <p><span class="baseline-mark" aria-hidden="true">↗</span><span data-i18n="landing.hero.built">Built for strength</span></p>
+          <p><span class="baseline-mark" aria-hidden="true">⊞</span><span data-i18n="landing.hero.platforms">iOS + Android</span></p>
+          <p><span class="baseline-mark" aria-hidden="true">◎</span><span data-i18n="landing.hero.personal">Your data. Your progress.</span></p>
+          <a href="#progress" class="scroll-cue"><span data-i18n="landing.hero.scroll">A closer look</span><span aria-hidden="true">↓</span></a>
+        </div>
+      </header>
+
+      <main class="landing-body" id="main-content" tabindex="-1">
+        <section class="progress-section" id="progress" aria-labelledby="progress-title">
+          <div class="content-shell">
+            <div class="section-intro" data-reveal>
+              <div><p class="overline" data-i18n="landing.progress.eyebrow">01 / Turn effort into evidence</p><h2 id="progress-title" data-i18n="landing.progress.title">You’re getting stronger.
+Now you can see it.</h2></div>
+              <p class="intro-body" data-i18n="landing.progress.body">The small wins add up. See your training volume take shape, understand your muscle balance, and make your next session count.</p>
+            </div>
+            <div class="progress-grid">
+              <article class="volume-panel" data-progress-demo>
+                <div class="panel-topline"><span class="eyebrow" data-i18n="landing.progress.volume">Training volume</span><span class="panel-symbol" aria-hidden="true">↗</span></div>
+                <div class="volume-number" aria-live="polite" aria-atomic="true"><span data-progress-value>184,320</span><span class="volume-unit" data-i18n="landing.hero.unit">kg</span><span class="volume-change" data-progress-change>+18.6%</span></div>
+                <p class="volume-comparison" data-i18n="landing.progress.change">vs previous period</p>
+                <p class="chart-label" data-i18n="landing.progress.chartLabel">Volume by workout</p>
+                <div class="chart-container">
+                  <div class="chart-gridlines" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <svg class="volume-chart" viewBox="0 0 520 165" aria-hidden="true"></svg>
+                </div>
+                <div class="chart-axis" aria-hidden="true"><span data-progress-axis>Oct</span><span data-progress-axis>Nov</span><span data-progress-axis>Dec</span><span data-progress-axis>Jan</span></div>
+                <div class="chart-bottom"><p class="chart-demo-label"><span class="status-dot" aria-hidden="true"></span><span data-i18n="landing.progress.sample">Sample data</span></p><div class="period-switch" role="group" data-i18n-aria-label="landing.progress.demo" aria-label="Explore an illustrative training history"><button type="button" data-period="week" aria-pressed="false" data-i18n="landing.progress.week">Week</button><button type="button" data-period="month" aria-pressed="false" data-i18n="landing.progress.month">Month</button><button type="button" data-period="quarter" aria-pressed="true" data-i18n="landing.progress.quarter">3 months</button></div></div>
+              </article>
+              <article class="muscle-panel">
+                <div class="panel-topline"><h3 data-i18n="landing.progress.muscles">Every muscle. In the picture.</h3><span class="panel-symbol" aria-hidden="true">◎</span></div>
+                <p class="muscle-description" data-i18n="landing.progress.musclesBody">See how your work is distributed across muscle groups.</p>
+                <fieldset class="muscle-filters"><legend class="sr-only" data-i18n="landing.progress.load">Muscle load</legend>
+                  <input type="radio" name="muscle" id="muscle-all" checked><label for="muscle-all" class="muscle-reset" data-i18n="landing.progress.balanced">See your balance</label>
+                  <input type="radio" name="muscle" id="muscle-chest"><label for="muscle-chest" data-i18n="landing.progress.chest">Chest</label>
+                  <input type="radio" name="muscle" id="muscle-back"><label for="muscle-back" data-i18n="landing.progress.back">Back</label>
+                  <input type="radio" name="muscle" id="muscle-legs"><label for="muscle-legs" data-i18n="landing.progress.legs">Legs</label>
+                  <input type="radio" name="muscle" id="muscle-arms"><label for="muscle-arms" data-i18n="landing.progress.arms">Arms</label>
+                </fieldset>
+                <div class="muscle-anatomy" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 411 773" width="411" height="773" fill="none" data-view="front"><title>Grippo muscle map, front</title><path data-muscle="backgroundFront" data-group="silhouette" fill="#3a4045" stroke="#b7b5ad" stroke-width="1" d="M172.19,727.77L169.19,740.27L151.69,766.27C149.69,768.43,151.46,771.27,174.69,771.27C180.69,771.27,189.19,770.77,191.69,770.27L194.69,763.27L191.69,740.27V710.77C190.69,699.93,189.29,677.47,191.69,674.27C194.09,671.07,197.35,639.6,198.69,624.27C199.02,614.43,197.59,586.47,189.19,553.27C188,538,189.19,522,192.19,507.77C195.02,473.93,201.49,405.17,204.69,400.77C207.89,396.37,211.02,427.27,212.19,443.27C215.52,471.6,222.29,528.57,222.69,529.77C223.09,530.97,222.85,544.6,222.69,551.27C219.02,569.77,211.89,608.67,212.69,616.27C213.69,625.77,217.69,671.27,220.19,688.77C222.19,702.77,221.02,726.93,220.19,737.27L218.69,752.27L217.69,766.27L223.69,772.27L260.19,771.34L263.69,769.77V766.27L258.69,761.27L241.19,737.27L240.19,727.77L239.19,721.27C238.52,715.77,237.59,704.07,239.19,701.27C241.19,697.77,250.69,647.77,251.69,646.27C252.49,645.07,258.35,625.77,261.19,616.27C263.85,605.27,267.09,577.67,258.69,555.27C257.52,552.93,256.39,542.37,261.19,518.77C266.19,505.27,275.59,465.17,273.19,412.77C270.79,360.37,266.19,330.6,264.19,322.27L257.19,300.77L257.69,263.77C272.69,243.77,274.69,214.77,275.19,222.77C275.59,229.17,286.02,252.1,291.19,262.77C290.79,273.17,300.69,293.43,305.69,302.27C314.69,314.1,334.09,339.17,339.69,344.77C346.69,351.77,354.69,368.77,355.69,375.77C356.69,382.77,361.69,394.77,362.19,397.77C362.69,400.77,371.69,418.27,374.19,421.27C376.19,423.67,377.69,421.6,378.19,420.27C376.52,415.77,373.09,406.27,372.69,404.27C372.29,402.27,373.19,402.77,373.69,403.27L383.69,426.27C387.69,430.27,389.69,426.6,390.19,424.27C386.35,415.77,378.59,398.47,378.19,397.27C377.79,396.07,378.35,396.43,378.69,396.77L392.19,426.77C397.39,430.37,398.35,425.27,398.19,422.27L384.19,391.27C387.69,399.77,395.59,417.17,399.19,418.77C402.79,420.37,403.02,416.77,402.69,414.77L388.19,374.27C391.85,376.77,400.49,381.77,405.69,381.77C410.89,381.77,410.52,377.77,409.69,375.77C405.85,374.43,396.69,370.07,390.69,363.27C384.69,356.47,376.52,354.43,373.19,354.27C363.19,345.47,354.35,323.6,351.19,313.77C347.99,292.17,328.19,261.77,318.69,249.27C321.49,231.27,312.52,203.43,307.69,191.77V156.77C301.19,123.77,259.69,124.27,257.19,124.27C254.69,124.27,238.19,112.77,233.19,107.27C229.19,102.87,229.52,97.43,230.19,95.27L234.19,89.77L235.69,82.27L236.19,74.77C237.39,75.17,238.02,74.27,238.19,73.77C239.52,69.6,242.49,60.67,243.69,58.27C244.89,55.87,240.85,53.6,238.69,52.77C243.19,15.77,220.19,-6.23,194.19,3.27C173.39,10.87,170.85,40.1,172.19,53.77C166.99,54.97,166.35,56.6,166.69,57.27C167.52,59.77,169.59,65.97,171.19,70.77C172.79,75.57,174.52,76.1,175.19,75.77L176.69,89.77L182.19,95.27C183.02,97.6,183.79,103.27,180.19,107.27C176.59,111.27,160.69,120.27,153.19,124.27C116.39,126.27,104.52,146.43,103.19,156.27V191.77C96.39,198.97,93.02,234.1,92.19,250.77C90.35,253.27,84.79,260.77,77.19,270.77C67.69,283.27,65.19,296.27,59.19,316.27C54.39,332.27,42.19,349.27,36.69,355.77C33.49,355.37,30.02,356.27,28.69,356.77L1.19,375.77C0.69,378.27,0.89,383.07,5.69,382.27C11.69,381.27,21.69,374.27,23.19,373.77C24.39,373.37,24.02,373.93,23.69,374.27L19.69,384.77C16.69,392.27,10.29,408.67,8.69,414.27C7.09,419.87,10.69,419.27,12.69,418.27L24.19,395.27C25.79,393.27,26.19,394.77,26.19,395.77C22.52,403.27,14.69,419.37,12.69,423.77C10.69,428.17,15.52,428.27,18.19,427.77L30.19,401.27C32.59,398.47,32.19,400.77,31.69,402.27C28.85,409.27,22.89,423.57,21.69,424.77C20.19,426.27,23.19,431.77,26.19,428.77C28.59,426.37,34.19,411.77,36.69,404.77C38.29,402.77,38.69,403.93,38.69,404.77C38.85,405.1,38.29,407.77,34.69,415.77C31.09,423.77,35.52,422.77,38.19,421.27C48.59,407.27,53.52,384.77,54.69,375.27L61.19,357.77C61.69,356.43,68.19,347.47,90.19,322.27C112.19,297.07,119.02,271.43,119.69,261.77C126.49,256.57,132.85,234.27,135.19,223.77C134.79,226.97,147.69,252.1,154.19,264.27C154.19,270.77,154.19,285.97,154.19,294.77C154.19,303.57,149.19,318.1,146.69,324.27C139.69,364.43,130.49,458.67,149.69,514.27L153.69,545.77C149.35,563.93,144.32,609.53,151.69,624.27C159.69,640.27,167.69,677.6,171.19,698.27L172.19,727.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M178.19,754.27L169.19,746.27C163.35,752.6,152.19,765.77,154.19,767.77C156.19,769.77,169.35,769.6,175.69,769.27L178.19,754.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M179.69,769.27L180.69,758.27C181.49,755.07,183.69,756.93,184.69,758.27L188.19,763.27V769.27H179.69Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M223.69,761.77V767.77V769.27H231.19V759.77C228.79,752.17,225.19,757.93,223.69,761.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M235.69,769.27C234.49,766.47,233.85,758.1,233.69,754.27V753.27L243.19,746.27C257.59,761.87,258.85,767.1,257.69,767.77L235.69,769.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M188.69,759.27C186.69,753.67,176.19,744.93,171.19,741.27C171.85,738.27,173.29,730.57,173.69,723.77C174.09,716.97,175.85,716.6,176.69,717.27C184.69,725.27,189.02,736.6,190.19,741.27C190.52,749.6,190.69,764.87,188.69,759.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M221.19,755.77L221.69,742.27C228.49,719.87,234.19,716.6,236.19,717.77L238.69,731.77L239.69,742.27C236.85,742.77,230.19,745.67,226.19,753.27C222.19,760.87,221.19,758.1,221.19,755.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M223.69,725.77V710.27L232.69,703.77C233.85,705.1,235.79,708.07,234.19,709.27C232.59,710.47,226.52,720.77,223.69,725.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M187.19,725.77L176.69,708.27C176.29,705.87,178.52,704.27,179.69,703.77L187.69,710.77C188.89,717.97,187.85,723.77,187.19,725.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M185.19,690.27C193.02,662.93,204.69,601.87,188.69,576.27C182.35,581.93,172.79,612.67,185.19,690.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M177.69,663.77C177.69,622.57,162.69,576.6,155.19,558.77L154.19,576.27C155.19,583.77,158.59,602.57,164.19,617.77C169.79,632.97,172.85,654.77,173.69,663.77C176.19,675.27,177.69,677.77,180.19,693.27C182.19,705.67,184.35,704.1,185.19,701.77C181.99,696.17,178.85,674.1,177.69,663.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M166.19,635.27C166.19,632.07,156.85,598.93,152.19,582.77C150.36,591.97,152.76,609.93,154.19,617.77L159.19,638.27L167.19,667.27C168.69,673.43,172.39,687.57,175.19,694.77C178.69,703.77,179.19,696.27,177.69,694.77C176.49,693.57,172.52,672.6,170.69,662.27C169.19,654.6,166.19,638.47,166.19,635.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M223.19,574.27C229.19,586.27,238.29,626.27,226.69,690.27C219.02,665.43,207.59,607.47,223.19,574.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M244.69,629.27C256.69,595.97,257.35,568.4,256.19,558.77C251.02,571.77,240.19,605.07,238.19,634.27C236.19,663.47,230.02,688.43,227.19,697.27C226.79,704.87,229.02,703.43,230.19,701.77L244.69,629.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M258.69,617.77L260.19,583.27L249.19,622.77C246.85,631.43,242.19,650.87,242.19,659.27C242.19,667.67,236.52,685.43,233.69,693.27L234.69,697.27C238.02,690.77,244.69,675.47,244.69,666.27C244.69,657.07,254.02,630.1,258.69,617.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M234.69,582.77C235.89,577.57,229.52,544.27,226.19,528.27L224.69,552.27C227.52,564.6,233.49,587.97,234.69,582.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M185.19,538.27C180.79,547.47,177.69,571.77,176.69,582.77C189.49,554.77,187.69,534.77,185.19,528.27V538.27Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M251.77,521C261.44,491,278.58,424.6,269.77,399C259.61,437,241.77,514.6,251.77,521Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M234.77,428.5C229.18,437.7,235.44,491.67,239.27,517.5C241.27,518.17,245.46,519.11,245.46,511.73C245.46,504.47,247.23,487,248.96,478.5C259.46,427,271.96,386.73,263.27,340.5C256.11,366,240.38,419.3,234.77,428.5Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M231.96,478.5C233.59,501.86,235.96,514.5,230.77,519.27C221.57,525.27,218.94,499,219.27,483.5C220.61,477.33,220.56,467.03,222.96,456.23C225.36,445.43,229.61,441.67,229.77,443.5C230.93,456.23,230.46,457,231.96,478.5Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M230.5,431.5C243.7,408.3,261.5,338,255.77,338C254,338,243.19,355.5,237,371C230.66,386.88,218.64,424.17,216.5,438C215.83,452.83,214.37,462.02,218,459C224,454,223.5,440.5,230.5,431.5Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M159.08,521C149.41,491,132.28,424.6,141.08,399C151.24,437,169.08,514.6,159.08,521Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M176.08,428.5C181.68,437.7,175.41,491.67,171.58,517.5C169.58,518.17,165.39,519.11,165.39,511.73C165.39,504.47,163.62,487,161.89,478.5C151.39,427,138.89,386.73,147.58,340.5C154.74,366,170.48,419.3,176.08,428.5Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M178.89,478.5C177.26,501.86,174.89,514.5,180.08,519.27C189.28,525.27,191.91,499,191.58,483.5C190.24,477.33,190.29,467.03,187.89,456.23C185.49,445.43,181.24,441.67,181.08,443.5C179.92,456.23,180.39,457,178.89,478.5Z"/><path data-muscle="quadriceps" data-group="legs" fill="#8aa889" d="M180.35,431.5C167.15,408.3,149.35,338,155.08,338C156.85,338,167.67,355.5,173.85,371C180.19,386.88,192.22,424.17,194.35,438C195.02,452.83,196.48,462.02,192.85,459C186.85,454,187.35,440.5,180.35,431.5Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M181.69,374.77L163.69,340.27C168.89,342.27,188.19,361.1,197.19,370.27C189.99,389.07,186.19,392.43,185.19,391.77C184.19,391.1,181.69,374.77,181.69,374.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M248.19,340.27L214.69,368.77C218.52,379.43,226.29,398.97,226.69,391.77C227.19,382.77,229.69,374.77,230.69,374.77C231.49,374.77,242.69,351.77,248.19,340.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M220.69,406.77C224.69,399.97,214.69,381.27,209.19,372.77C209.19,381.77,209.69,402.37,211.69,412.77C213.69,423.17,216.85,425.43,218.19,425.27C217.35,421.93,216.69,413.57,220.69,406.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M195.19,424.77C200.79,419.17,202.52,387.93,202.19,372.77C191.69,394.77,187.19,400.27,191.19,406.77C194.39,411.97,193.85,417.93,193.19,420.27C193.99,426.27,194.85,425.77,195.19,424.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M174.69,552.27L167.19,534.77V530.77C175.19,523.97,179.52,529.93,180.69,533.77L174.69,552.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M165.69,543.27L155.19,517.77C155.19,526.97,156.85,542.93,157.69,549.77C167.69,556.17,169.19,555.77,168.69,554.77L165.69,543.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M237.69,552.27L245.19,534.77V530.77C237.19,523.97,232.85,529.93,231.69,533.77L237.69,552.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M246.69,543.27L257.19,517.77C257.19,526.97,255.52,542.93,254.69,549.77C244.69,556.17,243.19,555.77,243.69,554.77L246.69,543.27Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M174.69,291.77C174.29,320.17,185.52,347.6,191.19,357.77C196.39,361.77,199.35,357.77,200.19,355.27L198.69,302.77C193.89,289.57,180.69,289.93,174.69,291.77Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M172.69,281.27V268.27C189.89,257.07,198.19,262.6,200.19,266.77C200.69,274.27,201.39,288.97,200.19,287.77C198.99,286.57,192.02,284.6,188.69,283.77C178.29,284.17,173.69,282.27,172.69,281.27Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M173.69,256.77L172.69,245.77C181.09,230.17,195.19,230.93,201.19,233.27C201.19,238.47,199.52,249.77,198.69,254.77C184.29,253.17,176.02,255.43,173.69,256.77Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M188.69,209.27C173.89,212.07,171.85,226.43,172.69,233.27C182.29,224.87,195.02,223.77,200.19,224.27C201.02,219.93,202.19,210.87,200.19,209.27C198.19,207.67,191.69,208.6,188.69,209.27Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M156.69,271.27C154.69,276.07,155.85,310.43,156.69,327.77C157.89,330.17,164.85,332.43,168.19,333.27L169.69,327.77L166.19,278.77C163.85,273.77,158.69,266.47,156.69,271.27Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M162.69,251.77L162.19,262.77C158.99,264.37,153.19,258.1,150.69,254.77C149.02,247.93,146.29,235.27,148.69,239.27C151.09,243.27,159.02,249.27,162.69,251.77Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M159.19,241.77L149.69,229.27V224.77C152.09,223.97,158.69,228.77,161.69,231.27C161.69,233.43,161.59,238.37,161.19,240.77C160.79,243.17,159.69,242.43,159.19,241.77Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M159.19,224.77L150.19,214.27C149.19,211.27,151.69,211.77,154.69,211.77C157.09,211.77,161.35,214.1,163.19,215.27C163.85,216.6,165.09,220.07,164.69,223.27C164.29,226.47,160.85,225.6,159.19,224.77Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M163.69,210.27L149.69,200.27C148.69,196.27,152.69,197.27,155.69,197.77C158.09,198.17,164.35,200.6,167.19,201.77C168.19,201.93,169.89,203.17,168.69,206.77C167.49,210.37,164.85,210.6,163.69,210.27Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M237.29,292.26C237.69,320.65,226.46,348.09,220.79,358.26C215.59,362.26,212.62,358.26,211.79,355.76L213.29,303.26C218.09,290.05,231.29,290.42,237.29,292.26Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M239.29,281.76V268.76C222.09,257.55,213.79,263.09,211.79,267.26C211.29,274.76,210.59,289.45,211.79,288.26C212.99,287.05,219.96,285.09,223.29,284.26C233.69,284.65,238.29,282.76,239.29,281.76Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M238.29,257.26L239.29,246.26C230.89,230.65,216.79,231.42,210.79,233.76C210.79,238.96,212.46,250.26,213.29,255.26C227.69,253.65,235.96,255.92,238.29,257.26Z"/><path data-muscle="rectusAbdominis" data-group="abs" fill="#c6d1b6" d="M223.29,209.76C238.09,212.55,240.12,226.92,239.29,233.76C229.69,225.35,216.96,224.26,211.79,224.76C210.96,220.42,209.79,211.35,211.79,209.76C213.79,208.15,220.29,209.09,223.29,209.76Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M255.29,271.76C257.29,276.55,256.12,310.92,255.29,328.26C254.09,330.65,247.12,332.92,243.79,333.76L242.29,328.26L245.79,279.26C248.12,274.26,253.29,266.95,255.29,271.76Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M249.29,252.26L249.79,263.26C252.99,264.86,258.79,258.59,261.29,255.26C262.96,248.42,265.69,235.76,263.29,239.76C260.89,243.76,252.96,249.76,249.29,252.26Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M252.79,242.26L262.29,229.76V225.26C259.89,224.46,253.29,229.26,250.29,231.76C250.29,233.92,250.39,238.85,250.79,241.26C251.19,243.65,252.29,242.92,252.79,242.26Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M252.79,225.26L261.79,214.76C262.79,211.76,260.29,212.26,257.29,212.26C254.89,212.26,250.62,214.59,248.79,215.76C248.12,217.09,246.89,220.55,247.29,223.76C247.69,226.96,251.12,226.09,252.79,225.26Z"/><path data-muscle="obliquesAbdominis" data-group="abs" fill="#b6c8ac" d="M248.29,210.76L262.29,200.76C263.29,196.76,259.29,197.76,256.29,198.26C253.89,198.65,247.62,201.09,244.79,202.26C243.79,202.42,242.09,203.65,243.29,207.26C244.49,210.85,247.12,211.09,248.29,210.76Z"/><path data-muscle="lateralDeltoid" data-group="shoulders" fill="#9bb49a" d="M137.69,132.77C108.49,130.77,105.52,160.27,107.69,175.27L108.69,176.77C109.49,163.57,128.35,141.93,137.69,132.77Z"/><path data-muscle="anteriorDeltoid" data-group="shoulders" fill="#9bb49a" d="M113.19,180.77C116.69,167.6,129.69,140.17,153.69,135.77C151.35,148.93,139.99,176.37,113.19,180.77Z"/><path data-muscle="lateralDeltoid" data-group="shoulders" fill="#9bb49a" d="M273.69,132.86C302.89,130.86,305.85,160.36,303.69,175.36L302.69,176.86C301.89,163.66,283.02,142.03,273.69,132.86Z"/><path data-muscle="anteriorDeltoid" data-group="shoulders" fill="#9bb49a" d="M298.19,180.86C294.69,167.7,281.69,140.26,257.69,135.86C260.02,149.03,271.39,176.46,298.19,180.86Z"/><path data-muscle="biceps" data-group="arms" fill="#719b7a" d="M311.19,251.27C276.79,226.07,277.19,196.43,281.69,184.77C304.69,181.77,313.19,205.27,313.19,214.27C313.19,221.47,314.19,232.27,314.69,236.77C317.49,248.77,313.52,251.43,311.19,251.27Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M346.69,311.77C336.29,273.37,321.02,259.1,314.69,256.77C313.89,261.17,315.69,270.6,316.69,274.77C320.85,283.43,330.09,301.37,333.69,303.77C338.19,306.77,358.19,343.27,359.69,346.27C360.89,348.67,361.19,347.27,361.19,346.27L346.69,311.77Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M299.69,281.77V268.77C300.49,266.37,302.35,267.43,303.19,268.27C309.19,274.77,319.19,286.77,321.69,291.77C323.69,295.77,321.19,295.43,319.69,294.77C314.85,291.6,304.59,285.17,302.19,284.77C299.79,284.37,299.52,282.6,299.69,281.77Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M355.69,347.77C353.29,344.57,328.02,313.1,315.69,297.77C315.02,296.77,315.69,296.07,323.69,301.27C331.69,306.47,348.35,332.43,355.69,344.77C356.69,347.1,358.09,350.97,355.69,347.77Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M351.69,346.27C333.69,331.87,314.52,306.27,307.19,295.27C305.19,294.07,306.35,297.43,307.19,299.27C319.69,323.27,346.69,344.77,350.19,346.77C352.99,348.37,352.35,347.1,351.69,346.27Z"/><path data-muscle="biceps" data-group="arms" fill="#719b7a" d="M101.69,250.53C136.09,225.33,135.69,195.7,131.19,184.03C108.19,181.03,99.69,204.53,99.69,213.53C99.69,220.73,98.69,231.53,98.19,236.03C95.39,248.03,99.35,250.7,101.69,250.53Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M66.19,311.03C76.59,272.63,91.85,258.36,98.19,256.03C98.99,260.43,97.19,269.86,96.19,274.03C92.02,282.7,82.79,300.63,79.19,303.03C74.69,306.03,54.69,342.53,53.19,345.53C51.99,347.93,51.69,346.53,51.69,345.53L66.19,311.03Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M113.19,281.03V268.03C112.39,265.63,110.52,266.7,109.69,267.53C103.69,274.03,93.69,286.03,91.19,291.03C89.19,295.03,91.69,294.7,93.19,294.03C98.02,290.86,108.29,284.43,110.69,284.03C113.09,283.63,113.35,281.86,113.19,281.03Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M57.19,347.03C59.59,343.83,84.85,312.36,97.19,297.03C97.85,296.03,97.19,295.33,89.19,300.53C81.19,305.73,64.52,331.7,57.19,344.03C56.19,346.36,54.79,350.23,57.19,347.03Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M61.19,345.53C79.19,331.13,98.35,305.53,105.69,294.53C107.69,293.33,106.52,296.7,105.69,298.53C93.19,322.53,66.19,344.03,62.69,346.03C59.89,347.63,60.52,346.36,61.19,345.53Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M40.19,396.27L28.19,383.27C26.59,382.07,26.52,380.1,26.69,379.27L33.69,368.27C39.52,361.27,51.79,349.87,54.19,360.27C57.19,373.27,49.19,388.27,47.19,394.27C45.59,399.07,41.85,397.6,40.19,396.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M35.69,362.27C18.09,376.27,6.69,378.77,3.19,378.27C2.79,377.07,3.69,376.43,4.19,376.27L31.69,358.27C37.69,356.67,36.85,360.27,35.69,362.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M11.69,410.27L22.69,386.27C24.02,385.93,26.69,385.87,26.69,388.27C26.69,391.27,16.69,408.27,14.19,413.77C12.19,418.17,11.69,413.27,11.69,410.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M30.19,398.77C31.79,392.77,29.19,393.6,27.69,394.77C26.92,395.27,17.69,418.27,16.69,421.77C15.89,424.57,18.35,424.93,19.69,424.77C22.52,418.6,28.59,404.77,30.19,398.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M36.69,403.77C37.89,400.97,35.52,399.6,34.19,399.27L32.69,400.27C30.19,405.77,25.09,417.57,24.69,420.77C24.29,423.97,26.85,423.77,28.19,423.27C30.52,417.93,35.49,406.57,36.69,403.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M36.69,413.27L42.69,401.77C45.49,400.17,45.52,403.43,45.19,405.27C44.35,407.43,42.09,412.67,39.69,416.27C37.29,419.87,36.69,415.77,36.69,413.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M129.19,230.77C123.99,240.77,109.69,253.93,103.19,259.27C103.19,262.07,105.52,261.43,106.69,260.77C113.02,256.6,126.39,246.47,129.19,239.27C131.99,232.07,130.35,230.6,129.19,230.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M372.35,396.95L384.35,383.95C385.95,382.75,386.02,380.79,385.85,379.95L378.85,368.95C373.02,361.95,360.75,350.55,358.35,360.95C355.35,373.95,363.35,388.95,365.35,394.95C366.95,399.75,370.69,398.29,372.35,396.95Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M376.85,362.95C394.45,376.95,405.85,379.45,409.35,378.95C409.75,377.75,408.85,377.12,408.35,376.95L380.85,358.95C374.85,357.35,375.69,360.95,376.85,362.95Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M400.85,410.95L389.85,386.95C388.52,386.62,385.85,386.55,385.85,388.95C385.85,391.95,395.85,408.95,398.35,414.45C400.35,418.85,400.85,413.95,400.85,410.95Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M382.35,399.45C380.75,393.45,383.35,394.29,384.85,395.45C385.62,395.95,394.85,418.95,395.85,422.45C396.65,425.25,394.19,425.62,392.85,425.45C390.02,419.29,383.95,405.45,382.35,399.45Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M375.85,404.45C374.65,401.65,377.02,400.29,378.35,399.95L379.85,400.95C382.35,406.45,387.45,418.25,387.85,421.45C388.25,424.65,385.69,424.45,384.35,423.95C382.02,418.62,377.05,407.25,375.85,404.45Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M375.85,413.95L369.85,402.45C367.05,400.85,367.02,404.12,367.35,405.95C368.19,408.12,370.45,413.35,372.85,416.95C375.25,420.55,375.85,416.45,375.85,413.95Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M308.19,259.27C301.39,255.67,288.69,239.1,283.19,231.27C279.99,228.07,280.52,233.27,281.19,236.27C283.99,243.87,298.69,255.77,305.69,260.77C308.49,261.97,308.52,260.27,308.19,259.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M139.19,222.27L137.69,195.77C137.19,193.43,137.09,190.17,140.69,195.77C144.29,201.37,146.19,211.77,146.69,216.27C146.69,223.27,146.19,236.77,144.19,234.77C142.19,232.77,140.02,225.6,139.19,222.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M200.19,143.27L184.69,112.77C184.29,101.57,185.19,98.77,185.69,98.77C188.49,101.57,197.85,122.27,202.19,132.27C202.59,140.27,201.02,142.93,200.19,143.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M184.19,124.77L178.69,132.27C183.09,135.87,186.52,134.43,187.69,133.27L184.19,124.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M179.69,119.27L167.19,131.27C163.69,131.27,155.99,131.17,153.19,130.77C150.39,130.37,151.35,128.93,152.19,128.27C158.19,124.43,171.59,116.37,177.19,114.77C182.79,113.17,181.19,117.1,179.69,119.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M206.19,129.77L198.69,105.77H214.69L206.19,129.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M209.19,132.27C210.39,128.27,220.83,108.27,225.9,98.77C227.27,97.57,226.33,108.93,225.69,114.77L209.69,143.27C209.02,141.27,207.99,136.27,209.19,132.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M221.69,133.27L226.19,124.77C229.39,127.17,230.52,131.43,230.69,133.27C229.09,135.27,224.02,134.1,221.69,133.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M241.69,130.27L228.69,118.27C227.49,113.07,232.52,114.43,235.19,115.77C243.52,119.6,259.84,127.77,258.46,129.77C257.09,131.77,246.71,130.93,241.69,130.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M265.69,232.77V211.77L274.69,191.77L274.19,213.27C273.85,216.77,272.59,225.47,270.19,232.27C267.79,239.07,266.19,235.43,265.69,232.77Z"/><path data-muscle="pectoralisMajorSternocostal" data-group="chest" fill="#aec2a3" d="M202.19,196C185.5,206.5,164,179.5,143,176.5C168.09,147.82,191.32,157.62,202.05,162.15L202.19,162.21V196Z"/><path data-muscle="pectoralisMajorAbdominal" data-group="chest" fill="#aec2a3" d="M142.5,178C146,197,172.5,203.5,186,198.5C167.5,192.5,158,182,142.5,178Z"/><path data-muscle="pectoralisMajorClavicular" data-group="chest" fill="#aec2a3" d="M202.19,150.71C168.59,121.51,149.33,150.5,142,173V175C165.6,145.4,190.35,155.54,202.19,160.21V150.71Z"/><path data-muscle="pectoralisMajorSternocostal" data-group="chest" fill="#aec2a3" d="M209,196C225.69,206.5,247.19,179.5,268.19,176.5C243.09,147.82,219.87,157.62,209.14,162.15L209,162.21V196Z"/><path data-muscle="pectoralisMajorAbdominal" data-group="chest" fill="#aec2a3" d="M268.69,178C265.19,197,238.69,203.5,225.19,198.5C243.69,192.5,253.19,182,268.69,178Z"/><path data-muscle="pectoralisMajorClavicular" data-group="chest" fill="#aec2a3" d="M209,150.71C242.6,121.51,261.85,150.5,269.19,173V175C245.59,145.4,220.83,155.54,209,160.21V150.71Z"/></svg>
+<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 411 774" width="411" height="774" fill="none" data-view="back"><title>Grippo muscle map, back</title><path data-muscle="backgroundBack" data-group="silhouette" fill="#3a4045" stroke="#b7b5ad" stroke-width="1" d="M182.59,86.77V93.77M182.59,93.77V104.77C178.75,110.93,163.38,124.47,132.59,129.27C101.79,134.07,101.08,172.27,104.58,190.77C94.18,213.17,91.92,241.77,92.08,253.27C84.58,260.1,68.48,279.57,64.08,302.77C59.68,325.97,43.92,348.43,36.58,356.77C32.18,356.77,29.42,358.1,28.58,358.77C20.25,364.6,3.28,376.37,2.08,376.77C0.88,377.17,0.92,378.27,1.08,378.77C2.68,385.17,9.75,383.43,13.08,381.77C16.58,379.1,23.58,374.17,23.58,375.77C23.58,377.77,12.58,405.77,9.08,414.27C6.28,421.07,11.25,420.43,14.08,419.27L25.08,394.77C22.75,399.93,17.18,412.47,13.58,421.27C9.98,430.07,15.75,429.6,19.08,428.27L31.08,400.27L21.08,424.27C20.68,431.87,25.58,429.1,28.08,426.77C30.58,420.27,35.98,406.47,37.58,403.27C39.18,400.07,39.58,401.93,39.58,403.27L34.08,417.77C32.88,424.17,35.92,422.77,37.58,421.27C44.78,412.87,51.58,390.43,54.08,380.27L62.08,358.27C112.49,299.07,121.75,270.27,120.08,263.27C126.89,257.67,133.59,234.93,136.09,224.27L154.59,266.27L154.09,305.27L152.59,309.77C144.59,324.97,144.25,338.1,145.09,342.77L141.09,368.77C140.42,388.6,138.99,433.47,138.59,454.27C138.18,475.07,147.09,511.6,151.59,527.27C150.79,530.87,152.92,540.77,154.09,545.27C153.09,552.93,150.49,571.67,148.09,585.27C145.09,602.27,154.59,635.27,155.09,636.27C155.49,637.07,161.92,658.6,165.09,669.27C166.75,677.93,170.49,696.17,172.09,699.77C173.68,703.37,172.75,717.27,172.09,723.77C168.49,726.97,169.25,733.77,170.09,736.77C169.59,738.6,168.09,742.37,166.09,742.77C164.09,743.17,160.25,751.93,158.59,756.27C156.92,758.6,152.79,763.67,149.59,765.27C146.38,766.87,149.25,770.6,151.09,772.27C160.25,772.93,180.18,773.97,186.59,772.77C192.99,771.57,193.92,767.27,193.59,765.27V754.27C192.42,750.77,190.29,742.37,191.09,736.77C191.88,731.17,190.75,725.77,190.09,723.77C189.68,719.37,191.25,694.6,192.09,682.77C198.59,628.27,198.09,631.27,198.59,611.77C199.09,592.27,188.09,546.27,188.09,544.27C188.09,542.67,189.09,532.27,189.59,527.27L192.59,503.27C196.25,472.43,203.79,409.47,204.59,404.27C205.38,399.07,206.25,399.43,206.59,400.27L215.09,461.27C217.25,482.6,221.88,525.77,223.09,527.77C224.29,529.77,223.59,540.93,223.09,546.27L220.59,564.27L213.09,606.77C212.75,617.6,212.68,641.47,215.09,650.27C217.49,659.07,220.09,702.93,221.09,723.77C219.49,726.17,220.09,733.77,220.59,737.27C220.09,741.27,218.79,751.47,217.59,760.27C216.38,769.07,219.42,772.27,221.09,772.77C232.09,772.93,255.18,773.17,259.58,772.77C263.98,772.37,263.75,767.93,263.08,765.77C260.92,765.27,256.08,762.87,254.09,757.27C252.09,751.67,245.25,742.6,242.09,738.77V735.27C242.49,730.07,240.59,724.77,239.59,722.77C239.42,719.77,239.18,711.77,239.59,703.77C239.99,695.77,247.42,666.43,251.09,652.77C252.59,650.1,256.79,639.37,261.58,617.77C266.39,596.17,260.58,561.1,257.08,546.27C259.48,542.67,260.08,534.43,260.08,530.77C264.89,519.17,270.42,480.27,272.58,462.27C272.25,442.6,271.29,395.67,270.08,365.27C268.89,334.87,261.25,310.93,257.58,302.77L257.08,264.77C263.89,259.17,272.58,233.43,276.08,221.27C277.29,236.87,287.25,256.77,292.08,264.77C289.68,277.17,304.42,300.93,312.08,311.27L352.08,361.77L352.58,365.27C354.18,380.07,367.58,408.77,374.08,421.27C377.68,424.47,377.58,420.6,377.08,418.27C375.92,414.43,373.39,406.17,372.58,403.77C371.79,401.37,373.25,402.43,374.08,403.27L383.08,426.77C389.08,431.97,390.25,426.93,390.08,423.77L379.08,397.27L391.08,425.27C398.68,432.07,397.58,422.77,396.08,417.27L384.08,390.77L397.08,418.27C402.68,423.07,403.08,417.93,402.58,414.77L387.58,374.77C390.75,376.93,398.58,381.47,404.58,382.27C410.58,383.07,410.08,378.93,409.08,376.77L390.08,364.27C382.89,355.87,376.42,354.77,374.08,355.27C362.89,346.87,354.08,325.1,351.08,315.27C343.89,283.67,326.42,259.1,318.58,250.77C320.98,235.97,311.92,204.6,307.08,190.77C314.29,144.37,290.42,129.77,277.58,128.27C256.39,129.07,238.09,112.93,231.59,104.77V88.27V93.77H233.59L238.09,71.77H241.09C242.42,66.93,245.29,56.67,246.09,54.27C246.88,51.87,242.42,49.6,240.09,48.77C241.75,31.43,236.99,-2.33,204.59,1.27C172.18,4.87,170.09,36.1,173.09,51.27C167.49,51.27,166.75,53.27,167.09,54.27L173.09,72.77H174.59L180.09,92.77L182.59,93.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M163.09,769.77C162.29,767.77,168.75,749.6,172.09,740.77V761.77C172.75,763.93,175.18,767.47,179.59,764.27C185.09,760.27,181.59,734.77,186.59,743.27C190.59,750.07,189.92,763.77,189.09,769.77C180.75,770.6,163.88,771.77,163.09,769.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M222.59,769.77C220.99,766.97,224.25,750.93,226.09,743.27C227.09,751.43,230.38,767.47,235.59,766.27C240.79,765.07,239.42,748.77,238.09,740.77C242.49,743.17,246.92,761.1,248.59,769.77C240.59,770.93,224.18,772.57,222.59,769.77Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M166.59,663.77C172.59,674.97,176.09,712.77,177.09,730.27C181.59,736.27,180.09,730.27,180.59,727.77C180.99,725.77,178.42,695.6,177.09,680.77C175.25,673.43,170.99,655.47,168.59,642.27C166.18,629.07,162.92,631.77,161.59,634.77C160.75,639.77,160.59,652.57,166.59,663.77Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M187.09,729.27C185.88,734.07,184.59,730.93,184.09,728.77L186.09,698.77L188.09,664.77L189.09,644.27C189.92,640.1,191.88,632.07,193.09,633.27C194.29,634.47,193.59,647.1,193.09,653.27C192.25,660.27,190.49,674.87,190.09,677.27C189.68,679.67,188.25,697.27,187.59,705.77L187.09,729.27Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M226.09,729.27C225.29,733.27,224.42,731.6,224.09,730.27V723.27C224.09,722.07,221.75,690.43,220.59,674.77C219.79,672.37,218.25,659.77,217.59,653.77L216.59,640.77C216.99,632.37,217.75,631.27,218.09,631.77L222.09,647.77C222.25,649.6,222.49,653.77,222.09,655.77C221.68,657.77,222.92,677.93,223.59,687.77L226.09,729.27Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M233.59,727.77C230.79,735.77,229.75,731.77,229.59,728.77C230.09,721.77,231.09,707.17,231.09,704.77C231.09,702.37,233.75,684.43,235.09,675.77C237.25,664.6,241.79,641.47,242.59,638.27C243.59,634.27,245.09,631.77,248.59,632.27C251.38,632.67,250.42,642.77,249.59,647.77C246.75,657.6,240.49,678.27,238.09,682.27C235.68,686.27,234.09,714.27,233.59,727.77Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M227.59,626.77C220.38,635.57,218.25,630.43,218.09,626.77C218.09,620.6,217.79,604.87,216.59,591.27C215.38,577.67,232.42,538.27,241.09,520.27V558.27C240.09,565.1,238.09,582.27,238.09,596.27C238.09,610.27,236.09,617.1,235.09,618.77C235.59,617.77,234.79,617.97,227.59,626.77Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M240.09,618.77C245.68,608.37,245.75,547.77,245.09,518.77C249.88,511.17,251.75,515.6,252.09,518.77L256.58,549.27C258.25,562.6,261.58,590.67,261.58,596.27C261.58,601.87,251.59,619.93,246.59,628.27L240.09,618.77Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M170.09,551.27L171.09,521.27C185.09,542.87,192.25,575.27,194.09,588.77C194.59,598.77,195.29,620.37,194.09,626.77C192.88,633.17,186.92,630.43,184.09,628.27C180.75,625.1,174.29,618.27,175.09,616.27C175.88,614.27,172.09,572.1,170.09,551.27Z"/><path data-muscle="calf" data-group="legs" fill="#749477" d="M166.59,518.77C161.79,511.97,160.59,515.27,160.59,517.77L156.59,542.77C154.42,556.6,149.99,585.97,149.59,592.77C149.18,599.57,159.42,619.27,164.59,628.27L171.09,618.77C165.49,609.17,165.75,548.1,166.59,518.77Z"/><path data-muscle="hamstrings" data-group="legs" fill="#8aa889" d="M161.09,502.77L152.59,521.77L147.9,479.5C147.06,465,148.18,438.1,152.59,428.5C156.99,418.9,162.92,410.77,166.59,409.27C152.99,442.07,157.25,485.27,161.09,502.77Z"/><path data-muscle="hamstrings" data-group="legs" fill="#8aa889" d="M183.4,525.5C181.8,528.7,182.9,533.5,178.59,529.27C159.09,501.77,163.09,481.27,161.09,465.27C159.49,452.47,169.09,418.6,174.09,403.27C176.09,404.07,179.73,434.83,180.9,449C188.4,485.5,191.4,509.5,183.4,525.5Z"/><path data-muscle="hamstrings" data-group="legs" fill="#8aa889" d="M227.63,463.17C231.29,440.68,235.39,416.88,238.09,403.27C260.89,473.67,244.25,516.6,233.09,529.27C231.02,529.27,229.41,528.5,228.17,527.17C222.1,520.67,224.64,500.6,223.4,490C224.64,481.86,226.1,472.63,227.63,463.17Z"/><path data-muscle="hamstrings" data-group="legs" fill="#8aa889" d="M250.09,502.77C257.58,471,251.25,427.6,244.59,409.27C248.09,408.6,253,408.9,259.4,430.5C265.8,452.1,262.08,501.6,257.58,521.77L250.09,502.77Z"/><path data-muscle="adductors" data-group="legs" fill="#839c83" d="M190.4,482.17C190.46,482.54,190.52,482.91,190.59,483.27C190.51,482.95,190.45,482.58,190.4,482.17C186.03,455.48,178.11,403.53,180.09,400.77C182.09,397.97,192.25,391.6,197.09,388.77C199.94,400.27,203.45,429.57,194.59,454.77C192.87,461.77,189.82,476.36,190.4,482.17Z"/><path data-muscle="adductors" data-group="legs" fill="#839c83" d="M231.09,400.77L214.09,388.77C207.68,410.37,216.75,460.77,222.09,483.27C220.88,478.07,225.59,450.1,228.09,436.77C232.88,416.37,232.09,404.27,231.09,400.77Z"/><path data-muscle="abductors" data-group="legs" fill="#8fa88c" d="M142.09,395.27C144.88,398.47,152.4,418.53,151.9,421.27C151.4,424,148.82,433.86,146.9,442C144.73,451.18,143.9,463,143.9,463L140.9,459L142.09,429.5V395.27Z"/><path data-muscle="abductors" data-group="legs" fill="#8fa88c" d="M268.73,395C265.93,398.2,258.42,418.27,258.92,421C259.42,423.73,262,433.6,263.92,441.73C266.09,450.92,266.92,462.73,266.92,462.73L269.92,458.73L268.73,429.23V395Z"/><path data-muscle="gluteal" data-group="legs" fill="#96af91" d="M151.09,410.27C144.29,396.27,145.92,369.43,147.59,357.77C159.59,336.27,198.59,336.27,201.59,337.77C203.99,338.97,202.59,361.6,201.59,372.77L194.09,382.77C189.09,385.93,176.59,393.27,166.59,397.27C156.59,401.27,152.09,407.6,151.09,410.27Z"/><path data-muscle="gluteal" data-group="legs" fill="#96af91" d="M208.09,372.77V337.77C229.09,335.27,255.59,345.77,262.08,357.77C267.29,367.37,261.58,396.77,258.08,410.27C257.75,408.1,254.09,402.47,242.09,397.27C230.09,392.07,219.42,385.43,215.59,382.77L208.09,372.77Z"/><path data-muscle="rhomboids" data-group="back" fill="#96b194" d="M235.61,300.91C235.21,304.91,219.44,322.58,211.61,330.91C207.61,325.41,210.61,265.41,211.61,268.91C212.41,271.71,227.94,291.41,235.61,300.91Z"/><path data-muscle="rhomboids" data-group="back" fill="#96b194" d="M173.59,301.27C173.99,305.27,189.75,322.93,197.59,331.27C201.59,325.77,198.59,265.77,197.59,269.27C196.79,272.07,181.25,291.77,173.59,301.27Z"/><path data-muscle="latissimus" data-group="back" fill="#96b194" d="M149.59,245.77C162.79,266.57,169.09,285.77,170.59,292.77C199.79,269.17,202.09,236.6,199.59,223.27C191.09,217.27,173.59,204.37,171.59,200.77C169.59,197.17,165.42,195.27,163.59,194.77L133.09,191.27C132.09,197.27,133.09,219.77,149.59,245.77Z"/><path data-muscle="latissimus" data-group="back" fill="#96b194" d="M260.34,245.27C247.14,266.07,240.84,285.27,239.34,292.27C210.14,268.67,207.84,236.1,210.34,222.77C218.84,216.77,236.34,203.87,238.34,200.27C240.34,196.67,244.51,194.77,246.34,194.27L276.84,190.77C277.84,196.77,276.84,219.27,260.34,245.27Z"/><path data-muscle="trapezius" data-group="back" fill="#adc0a4" d="M136.09,134.27C136.4,134.19,136.75,134.13,137.12,134.1L152.09,131.77C167.42,133.6,198.79,139.77,201.59,149.77C204.38,159.77,201.75,198.6,200.09,216.77C187.29,211.57,174.42,189.93,169.59,179.77C158.21,141.85,143.84,133.58,137.12,134.1L136.09,134.27Z"/><path data-muscle="trapezius" data-group="back" fill="#adc0a4" d="M200.09,137.77C198.88,134.97,173.92,129.6,161.59,127.27H160.59C196.99,107.27,203.09,80.93,201.59,70.27L205.59,71.77C203.09,78.77,201.59,141.27,200.09,137.77Z"/><path data-muscle="trapezius" data-group="back" fill="#adc0a4" d="M278.08,134.77C277.85,134.71,277.58,134.67,277.29,134.64L262.08,132.27C246.75,134.1,213.38,138.27,210.59,148.27C207.79,158.27,208.92,197.6,210.59,215.77C223.38,210.57,237.25,190.43,242.09,180.27C248.33,144.22,270.13,134.05,277.29,134.64L278.08,134.77Z"/><path data-muscle="trapezius" data-group="back" fill="#adc0a4" d="M214.09,138.27C215.29,135.47,240.25,130.1,252.59,127.77H253.59C217.18,107.77,211.09,81.43,212.59,70.77L208.59,72.27C211.09,79.27,212.59,141.77,214.09,138.27Z"/><path data-muscle="posteriorDeltoid" data-group="shoulders" fill="#9bb49a" d="M111.08,186.27C117.89,183.07,138.92,157.27,148.59,144.77C147.09,142.27,120.08,135.27,112.08,149.77C105.68,161.37,108.75,178.93,111.08,186.27Z"/><path data-muscle="posteriorDeltoid" data-group="shoulders" fill="#9bb49a" d="M300.58,186.16C293.79,182.96,272.75,157.16,263.08,144.66C264.58,142.16,291.58,135.16,299.58,149.66C305.98,161.26,302.92,178.83,300.58,186.16Z"/><path data-muscle="teresMajor" data-group="back" fill="#8ca78d" d="M151.59,152.77C145.59,154.37,134.42,171.43,129.59,179.77C135.99,186.97,156.59,187.77,166.09,187.27C163.75,175.1,157.59,151.17,151.59,152.77Z"/><path data-muscle="teresMajor" data-group="back" fill="#8ca78d" d="M260.08,152.66C266.08,154.26,277.25,171.33,282.08,179.66C275.68,186.86,255.09,187.66,245.59,187.16C247.92,175,254.09,151.06,260.08,152.66Z"/><path data-muscle="triceps" data-group="arms" fill="#88a68b" d="M116.08,235.77C110.08,196.97,121.25,182.27,127.58,179.77C126.79,182.57,128.59,193.93,129.59,199.27C130.42,204.77,132.09,217.97,132.09,226.77C132.09,237.77,113.58,264.27,116.08,257.77C118.08,252.57,116.92,240.93,116.08,235.77Z"/><path data-muscle="triceps" data-group="arms" fill="#88a68b" d="M105.58,244.77C105.58,241.97,108.25,224.6,109.58,216.27L111.08,244.77C108.68,257.97,106.42,250.27,105.58,244.77Z"/><path data-muscle="triceps" data-group="arms" fill="#88a68b" d="M295.58,235.77C301.58,196.97,290.42,182.27,284.08,179.77C284.89,182.57,283.08,193.93,282.08,199.27C281.25,204.77,279.58,217.97,279.58,226.77C279.58,237.77,298.08,264.27,295.58,257.77C293.58,252.57,294.75,240.93,295.58,235.77Z"/><path data-muscle="triceps" data-group="arms" fill="#88a68b" d="M306.08,244.77C306.08,241.97,303.42,224.6,302.08,216.27L300.58,244.77C302.98,257.97,305.25,250.27,306.08,244.77Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M308.58,280.27C303.79,280.67,297.92,278.1,295.58,276.77C302.79,299.57,327.25,327.6,338.58,338.77L332.08,326.27C326.25,310.77,313.39,279.87,308.58,280.27Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M322.08,269.77C324.25,287.43,332.08,326.27,346.08,340.27C345.08,329.27,338.89,299.77,322.08,269.77Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M353.58,353.77C353.58,346.17,337.25,292.27,329.08,266.27C330.08,266.27,357.58,339.77,360.08,347.77C362.08,354.17,356.58,354.43,353.58,353.77Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M103.51,280.77C108.31,281.17,114.18,278.6,116.51,277.27C109.31,300.07,84.85,328.1,73.51,339.27L80.01,326.77C85.85,311.27,98.71,280.37,103.51,280.77Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M90.01,270.27C87.85,287.93,80.01,326.77,66.01,340.77C67.01,329.77,73.21,300.27,90.01,270.27Z"/><path data-muscle="forearm" data-group="arms" fill="#5b7864" d="M58.51,354.27C58.51,346.67,74.85,292.77,83.01,266.77C82.01,266.77,54.51,340.27,52.01,348.27C50.01,354.67,55.51,354.93,58.51,354.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M149.09,347.77C153.75,341.1,167.79,327.77,186.59,327.77C176.25,315.1,154.29,301.37,149.09,347.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M158.59,308.27V275.27C161.79,275.27,167.25,292.93,169.59,301.77L158.59,308.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M250.59,275.27C246.18,279.67,242.42,293.77,241.09,300.27C241.09,303.47,247.42,306.93,250.59,308.27V275.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M223.09,327.77C231.75,328.6,251.18,333.77,259.58,347.77C258.75,329.1,250.29,298.97,223.09,327.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M300.08,263.77C300.08,264.97,309.42,275.27,314.08,280.27C315.08,276.1,315.58,266.17,309.58,259.77C302.08,251.77,300.08,262.27,300.08,263.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M111.08,265.27L97.08,279.77L100.08,263.77C100.92,261.43,103.99,256.87,109.58,257.27C115.18,257.67,112.92,262.77,111.08,265.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M41.58,357.27L26.58,380.77C27.08,381.93,29.68,385.77,36.08,391.77C42.48,397.77,44.75,396.6,45.08,395.27C55.48,384.47,54.75,365.43,53.08,357.27H41.58Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M44.58,401.77C44.98,399.77,43.75,399.93,43.08,400.27C42.58,401.27,37.58,410.77,36.58,414.27C35.78,417.07,37.92,416.43,39.08,415.77L41.08,412.77C42.08,409.93,44.18,403.77,44.58,401.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M36.58,400.77C37.78,396.77,35.08,397.43,33.58,398.27C32.78,398.62,27.25,413.08,24.58,420.27C24.58,424.27,26.92,422.93,28.08,421.77C30.42,416.43,35.38,404.77,36.58,400.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M27.08,394.27L16.58,420.27C16.58,424.67,18.92,424.43,20.08,423.77C23.25,416.43,29.88,400.67,31.08,396.27C32.28,391.87,28.92,393.1,27.08,394.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M14.58,413.77C12.58,416.97,12.08,413.43,12.08,411.27C14.25,404.43,19.28,389.97,22.08,386.77C24.88,383.57,25.58,387.1,25.58,389.27C22.75,396.1,16.58,410.57,14.58,413.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M31.08,360.27L11.08,371.77C10.08,372.6,7.18,374.77,3.58,376.77C-0.02,378.77,4.08,379.93,6.58,380.27H11.58L17.58,377.27C22.08,373.93,31.78,366.37,34.58,362.77C37.38,359.17,33.42,359.6,31.08,360.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M365.58,396.27C357.18,383.87,357.08,365.77,358.08,358.27C360.75,356.93,366.89,354.97,370.08,357.77C373.29,360.57,381.08,373.27,384.58,379.27C385.42,380.1,386.29,382.27,383.08,384.27C379.89,386.27,377.75,388.77,377.08,389.77C373.48,396.17,367.92,396.77,365.58,396.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M369.58,401.27C367.18,397.67,366.58,400.1,366.58,401.77C367.75,404.93,370.48,412.07,372.08,415.27C373.68,418.47,374.75,415.93,375.08,414.27C374.25,411.43,371.98,404.87,369.58,401.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M378.58,398.77C375.79,393.17,374.75,398.1,374.58,401.27L383.08,421.27C387.08,424.87,387.08,421.1,386.58,418.77C385.08,414.43,381.39,404.37,378.58,398.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M384.58,395.27C380.98,389.27,380.08,394.43,380.08,397.77L391.58,423.27C395.18,427.67,395.08,421.43,394.58,417.77C392.75,412.77,388.18,401.27,384.58,395.27Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M390.58,387.77C388.18,382.57,386.25,386.93,385.58,389.77L396.08,413.77C399.68,417.77,399.92,412.1,399.58,408.77C397.58,403.93,392.98,392.97,390.58,387.77Z"/><path data-muscle="other" data-group="structure" fill="#474e51" d="M403.58,380.27C395.98,379.87,383.08,369.43,377.58,364.27C376.92,362.93,375.98,360.17,377.58,359.77C379.18,359.37,381.25,360.6,382.08,361.27L395.08,369.27L407.08,376.27C409.08,377.77,411.18,380.67,403.58,380.27Z"/></svg>
+</div>
+                <div class="muscle-insights" aria-live="polite">
+                  <p data-muscle-hint="all" data-i18n="landing.progress.allHint">Explore the muscle groups to see a sample distribution.</p>
+                  <p data-muscle-hint="chest" data-i18n="landing.progress.chestHint">Chest · 28% of sample volume</p>
+                  <p data-muscle-hint="back" data-i18n="landing.progress.backHint">Back · 26% of sample volume</p>
+                  <p data-muscle-hint="legs" data-i18n="landing.progress.legsHint">Legs · 32% of sample volume</p>
+                  <p data-muscle-hint="arms" data-i18n="landing.progress.armsHint">Arms · 14% of sample volume</p>
+                </div>
+                <div class="muscle-scale"><span data-i18n="landing.progress.load">Muscle load</span><span class="load-spectrum" aria-hidden="true"></span><span aria-hidden="true">− / +</span></div>
+              </article>
+            </div>
+            <p class="demo-caption" data-i18n="landing.progress.caption">Example data. Your progress tells its own story.</p>
+          </div>
+        </section>
+
+        <section class="app-section content-shell" id="app" aria-labelledby="app-title">
+          <div class="section-intro" data-reveal><div><p class="overline" data-i18n="landing.showcase.eyebrow">02 / Meet your training companion</p><h2 id="app-title" data-i18n="landing.showcase.title">Less tapping. More training.</h2></div><p class="intro-body" data-i18n="landing.showcase.subtitle">A training journal that keeps up. Log your sets, revisit your sessions, and see the bigger picture.</p></div>
+          <div class="app-explorer">
+            <div class="app-explorer-copy">
+              <p class="eyebrow explorer-eyebrow"><span class="status-dot" aria-hidden="true"></span><span data-i18n="landing.explorer.hint">Browse the real app</span></p>
+              <div class="phone-dots" id="phoneDots"></div>
+              <div class="explorer-descriptions">
+                <div class="explorer-description" data-explorer-description="dashboard"><h3 data-i18n="landing.features.first.title">See the work behind the results.</h3><p data-i18n="landing.features.first.body">Volume, strength trends and muscle balance. Understand what your training is building, one session at a time.</p></div>
+                <div class="explorer-description" data-explorer-description="training" hidden><h3 data-i18n="landing.features.second.title">Your whole session. In your pocket.</h3><p data-i18n="landing.features.second.body">Weights, reps, sets and your previous performance. Everything you need, right where you need it.</p></div>
+                <div class="explorer-description" data-explorer-description="exercises" hidden><h3 data-i18n="landing.explorer.exercisesTitle">Find your next movement.</h3><p data-i18n="landing.explorer.exercisesBody">Browse exercises by muscle group, explore the details, and choose what fits your session.</p></div>
+                <div class="explorer-description" data-explorer-description="muscles" hidden><h3 data-i18n="landing.progress.muscles">Every muscle. In the picture.</h3><p data-i18n="landing.progress.musclesBody">See how your work is distributed across muscle groups.</p></div>
+              </div>
+              <a class="button-text explorer-download" href="#download"><span data-i18n="landing.nav.download">Get Grippo</span><span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="phone-stage" data-autoplay="false">
+              <span class="app-stage-word" aria-hidden="true">grippo.</span>
+              <div class="app-stage-ring" aria-hidden="true"></div>
+              <div class="phone-frame" aria-live="polite">
+                <img id="phoneShotPrimary" class="phone-shot is-active" src="assets/screenshots/dashboard_en.webp" alt="Grippo app dashboard screenshot" loading="lazy" decoding="async" />
+                <img id="phoneShotSecondary" class="phone-shot" src="assets/screenshots/training_en.webp" alt="Grippo app workout screenshot" aria-hidden="true" loading="lazy" decoding="async" />
+              </div>
+              <button class="screen-zoom-trigger" type="button" data-screen-zoom><span aria-hidden="true">⊕</span><span data-i18n="landing.explorer.zoom">View screen larger</span></button>
+              <div class="phone-controls"><button class="phone-arrow" id="phonePrev" type="button" aria-label="Previous screenshot" data-i18n-aria-label="landing.showcase.prevAria">←</button><span data-i18n="landing.explorer.note">Real screens from Grippo</span><button class="phone-arrow" id="phoneNext" type="button" aria-label="Next screenshot" data-i18n-aria-label="landing.showcase.nextAria">→</button></div>
+            </div>
+          </div>
+          <div class="training-loop" data-reveal>
+            <div class="loop-step"><span class="loop-number">01</span><div><h3 data-i18n="landing.story.log">Log it.</h3><p data-i18n="landing.audience.first.body">Stay focused on progressive overload and consistent volume.</p></div><img src="assets/brand/empty_sets.webp" alt="" width="768" height="768" loading="lazy"/></div>
+            <div class="loop-step"><span class="loop-number">02</span><div><h3 data-i18n="landing.story.learn">Learn from it.</h3><p data-i18n="landing.audience.second.body">Measure real output instead of relying on vague motivation.</p></div><img src="assets/brand/empty_exercises.webp" alt="" width="768" height="768" loading="lazy"/></div>
+            <div class="loop-step"><span class="loop-number">03</span><div><h3 data-i18n="landing.story.repeat">Build on it.</h3><p data-i18n="landing.audience.third.body">Know what to change in your next workout with confidence.</p></div><img src="assets/brand/empty_workouts.webp" alt="" width="768" height="768" loading="lazy"/></div>
+          </div>
+        </section>
+
+        <section class="mindset-section" id="mindset" aria-labelledby="mindset-title">
+          <img class="mindset-photo" src="assets/brand/effort-editorial.jpg" width="1536" height="1024" alt="" loading="lazy" />
+          <div class="mindset-shade" aria-hidden="true"></div>
+          <div class="mindset-content content-shell" data-reveal><p class="overline" data-i18n="landing.story.eyebrow">03 / Made for the work</p><h2 id="mindset-title" data-i18n="landing.story.title">Not every day is a personal best.
+Every session is a step.</h2><p data-i18n="landing.story.body">The early starts. The last reps. The days you showed up anyway. Grippo helps you see the thread running through all of it.</p><span class="mindset-signature" aria-hidden="true" data-i18n="landing.story.signature">Show up. Get a grip. ↗</span></div>
+        </section>
+
+        <section class="landing-cta" id="download" aria-labelledby="download-title">
+          <div class="content-shell cta-inner" data-reveal><div><p class="overline" data-i18n="landing.cta.eyebrow">Make your next rep count</p><h2 id="download-title" data-i18n="landing.cta.title">Your next chapter starts with a set.</h2><p class="cta-sub" data-i18n="landing.cta.subtitle">Bring a little more intention to every workout. Take Grippo to your next session.</p></div><div class="cta-downloads">            <nav class="store-buttons">
               <a class="store-button" data-store="app-store" href="https://apps.apple.com/us/app/grippo/id6758158216" target="_blank" rel="noreferrer">
                 <span class="store-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false">
@@ -72,172 +187,18 @@
                   <span class="store-title" data-i18n="landing.store.googlePlay.title">Google Play</span>
                 </span>
               </a>
-            </nav>
-            <div class="store-rating" data-rating-display aria-label="App Store rating">
-              <span class="store-rating-stars" data-rating-stars aria-hidden="true">★★★★★</span>
-              <span class="store-rating-text" data-rating-score>5.0 · App Store</span>
-              <span class="store-rating-sep" aria-hidden="true">·</span>
-              <span class="store-free-tag">Free</span>
-            </div>
-          </section>
-        </div>
-
-        <div class="hero-visual" data-reveal>
-          <div class="phone-stage" aria-live="polite">
-            <div class="phone-glow" aria-hidden="true"></div>
-            <div class="phone-frame">
-              <img id="phoneShotPrimary" class="phone-shot is-active" src="assets/screenshots/dashboard_en.png" alt="Grippo app dashboard screenshot" fetchpriority="high" decoding="async" />
-              <img id="phoneShotSecondary" class="phone-shot" src="assets/screenshots/training_en.png" alt="Grippo app workout screenshot" decoding="async" />
-            </div>
-            <div class="phone-controls">
-              <button class="phone-arrow" id="phonePrev" type="button" aria-label="Previous screenshot" data-i18n-aria-label="landing.showcase.prevAria">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12L6 8l4-4"/></svg>
-              </button>
-              <div class="phone-dots" id="phoneDots">
-                <span class="phone-dot is-active"></span>
-                <span class="phone-dot"></span>
-              </div>
-              <button class="phone-arrow" id="phoneNext" type="button" aria-label="Next screenshot" data-i18n-aria-label="landing.showcase.nextAria">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main class="landing-body">
-
-        <!-- KPI -->
-        <section class="kpi-strip" aria-label="Key performance indicators" data-reveal>
-          <div class="kpi-grid">
-            <article class="kpi-card">
-              <p class="kpi-value"><span data-kpi-target="6" data-kpi-suffix="+">0</span></p>
-              <p class="kpi-label" data-i18n="landing.kpi.days.label">Active days</p>
-            </article>
-            <div class="kpi-sep" aria-hidden="true"></div>
-            <article class="kpi-card">
-              <p class="kpi-value"><span data-kpi-target="18" data-kpi-suffix="%">0</span></p>
-              <p class="kpi-label" data-i18n="landing.kpi.volume.label">Volume growth</p>
-            </article>
-            <div class="kpi-sep" aria-hidden="true"></div>
-            <article class="kpi-card">
-              <p class="kpi-value"><span data-kpi-target="92" data-kpi-suffix="%">0</span></p>
-              <p class="kpi-label" data-i18n="landing.kpi.balance.label">Muscle balance</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- Bento Features -->
-        <section class="features" data-reveal>
-          <div class="sect-head">
-            <p class="overline" data-i18n="landing.showcase.eyebrow">Inside The App</p>
-            <h2 data-i18n="landing.showcase.title">Real screens. Real numbers. Zero fluff.</h2>
-            <p class="sect-sub" data-i18n="landing.showcase.subtitle">
-              Your dashboard and workout log update with your progress as you train.
-            </p>
-          </div>
-          <div class="bento">
-            <article class="bento-card bento-full" data-reveal style="--reveal-delay:0ms">
-              <div class="bento-full-inner">
-                <div class="bento-full-lead">
-                  <div class="bento-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                  </div>
-                  <h3 data-i18n="landing.points.first.title">What makes Grippo different</h3>
-                  <p class="bento-full-desc" data-i18n="landing.points.first.desc">Logs your training and turns raw numbers into decisions — volume, muscle load, strength trends, all in one clear view.</p>
-                </div>
-                <ul class="bento-full-list">
-                  <li data-i18n="landing.points.first.item1">See how your strength grows over time</li>
-                  <li data-i18n="landing.points.first.item2">Track which muscles actually get load</li>
-                  <li data-i18n="landing.points.first.item3">Spot where progress happens and where it stalls</li>
-                  <li data-i18n="landing.points.first.item4">Know exactly what to adjust in the next workout</li>
-                </ul>
-              </div>
-            </article>
-            <article class="bento-card" data-reveal style="--reveal-delay:0ms">
-              <div class="bento-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-              </div>
-              <h3 data-i18n="landing.features.first.title">Smart insights, not templates</h3>
-              <p data-i18n="landing.features.first.body">
-                Understand overload and underload by muscle group. Grippo helps you decide when to push harder and when to
-                recover, based on your own training history.
-              </p>
-            </article>
-            <article class="bento-card" data-reveal style="--reveal-delay:80ms">
-              <div class="bento-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <h3 data-i18n="landing.features.second.title">Full workout control</h3>
-              <p data-i18n="landing.features.second.body">
-                Log workouts quickly, review exercise stats, and visualize muscle load in a clean, distraction-free interface.
-                Spend less time tapping and more time understanding.
-              </p>
-            </article>
-            <article class="bento-card" data-reveal style="--reveal-delay:160ms">
-              <div class="bento-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <h3 data-i18n="landing.features.third.title">Built for serious training</h3>
-              <p data-i18n="landing.features.third.body">
-                Grippo is for people who train regularly, care about measurable progress, and want to know why results appear
-                or disappear.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <!-- Audience -->
-        <section class="audience" data-reveal>
-          <div class="sect-head">
-            <p class="overline" data-i18n="landing.audience.eyebrow">For Whom</p>
-          </div>
-          <div class="audience-grid">
-            <article class="audience-card" data-reveal style="--reveal-delay:0ms">
-              <div class="audience-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              </div>
-              <h3 data-i18n="landing.audience.first.title">Train regularly</h3>
-              <p data-i18n="landing.audience.first.body">Stay focused on progressive overload and consistent volume.</p>
-            </article>
-            <article class="audience-card" data-reveal style="--reveal-delay:90ms">
-              <div class="audience-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              </div>
-              <h3 data-i18n="landing.audience.second.title">Track numbers</h3>
-              <p data-i18n="landing.audience.second.body">Measure real output instead of relying on vague motivation.</p>
-            </article>
-            <article class="audience-card" data-reveal style="--reveal-delay:180ms">
-              <div class="audience-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4"/><path d="M12 16V8"/></svg>
-              </div>
-              <h3 data-i18n="landing.audience.third.title">Need clear decisions</h3>
-              <p data-i18n="landing.audience.third.body">Know what to change in your next workout with confidence.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="landing-cta" data-reveal>
-          <p class="overline" data-i18n="landing.cta.eyebrow">Start With Your First Workout</p>
-          <h2 data-i18n="landing.cta.title">Open the app, log your session, and see what others do not show.</h2>
-          <p class="cta-sub" data-i18n="landing.cta.subtitle">Grippo gives you a clear snapshot of your training right now.</p>
-          <div class="cta-actions">
-            <a class="cta-primary" href="#" data-store="auto" data-i18n="landing.cta.download">Get Grippo on Your Phone</a>
-          </div>
-          <p class="cta-note" data-i18n="landing.cta.note">
-            The button chooses the best store for this device. Manual App Store and Google Play links stay available above.
-          </p>
+            </nav><p class="cta-note" data-i18n="landing.cta.note">Available for iOS &amp; Android</p></div></div>
         </section>
       </main>
 
-      <footer class="footer">
-        <p data-i18n="footer.copyright">Grippo &copy; 2026. All rights reserved.</p>
-        <nav aria-label="Legal and account links" data-i18n-aria-label="landing.footer.navAria">
-          <a href="?tab=privacy" data-tab-link="privacy" data-i18n="landing.footer.privacy">Privacy Policy</a>
-          <a href="?tab=terms" data-tab-link="terms" data-i18n="landing.footer.terms">Terms &amp; Conditions</a>
-          <a href="?tab=remove" data-tab-link="remove" data-i18n="landing.footer.remove">Account Management</a>
-        </nav>
+      <dialog class="screen-zoom-dialog" id="screenZoomDialog" aria-labelledby="screenZoomTitle">
+        <div class="screen-zoom-header"><h2 id="screenZoomTitle" data-i18n="landing.explorer.zoom">View screen larger</h2><button type="button" data-zoom-close data-i18n-aria-label="landing.explorer.close" aria-label="Close screenshot">×</button></div>
+        <img data-zoom-image width="1669" height="3553" alt="" />
+      </dialog>
+
+      <footer class="footer content-shell">
+        <div class="footer-top"><a class="topnav-brand" href="." data-landing-link><img src="logo.png" width="38" height="38" class="topnav-logo" alt=""/><span>grippo<span class="brand-period">.</span></span></a><p data-i18n="landing.footer.tagline">A little more purpose. Every rep.</p><a class="back-to-top" href="#landingPage" aria-label="Back to top" data-i18n-aria-label="landing.a11y.top">↑</a></div>
+        <div class="footer-bottom"><p data-i18n="footer.copyright">Grippo © 2026. All rights reserved.</p><nav aria-label="Legal and account links" data-i18n-aria-label="landing.footer.navAria"><a href="?tab=privacy" data-tab-link="privacy" data-i18n="landing.footer.privacy">Privacy Policy</a><a href="?tab=terms" data-tab-link="terms" data-i18n="landing.footer.terms">Terms &amp; Conditions</a><a href="?tab=remove" data-tab-link="remove" data-i18n="landing.footer.remove">Account Management</a></nav></div>
       </footer>
 
       <div class="mobile-store-bar" id="mobileStoreBar" aria-label="Quick download actions" data-i18n-aria-label="landing.mobileCta.aria">
@@ -251,17 +212,19 @@
           </span>
           <span class="msb-text">
             <span class="msb-label" data-i18n="landing.mobileCta.primary">Get Grippo</span>
-            <span class="msb-sub">Free · iOS &amp; Android</span>
+            <span class="msb-sub">iOS &amp; Android</span>
           </span>
         </a>
         <a class="mobile-store-secondary" id="mobileStoreSecondary" href="#" data-store="google-play">
           <span class="msb-icon msb-icon--sm" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="msb-store-icon--play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M3.2 2.4l10.1 9.9L3.2 22.1c-.5-.3-.8-.9-.8-1.5V3.9c0-.6.3-1.2.8-1.5z"/>
               <path d="M15 14l2.9 2.8-9.5 5.4L15 14z"/>
               <path d="M8.4 1.8l9.5 5.4L15 10 8.4 1.8z"/>
               <path d="M20.7 10.6c1 .6 1 2.1 0 2.7L18.5 14l-3-2.9 3-2.9 2.2 1.4z"/>
-            </svg>
+            </svg><svg class="msb-store-icon--apple" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16.13 12.92c.02 2.47 2.17 3.29 2.19 3.3-.02.06-.34 1.16-1.12 2.29-.67.97-1.37 1.93-2.47 1.95-1.08.02-1.43-.64-2.67-.64-1.24 0-1.63.62-2.64.66-1.06.04-1.87-1.05-2.55-2.01-1.38-1.97-2.43-5.58-1.02-8.03.7-1.22 1.96-2 3.33-2.02 1.04-.02 2.03.7 2.67.7.64 0 1.84-.86 3.1-.73.53.02 2.01.21 2.97 1.62-.08.04-1.77 1.03-1.75 3.01zm-2.38-5.5c.56-.68.94-1.63.83-2.57-.81.03-1.79.54-2.37 1.22-.52.6-.98 1.56-.86 2.48.9.07 1.84-.46 2.4-1.13z" />
+                  </svg>
           </span>
           <span class="msb-label">Google Play</span>
         </a>
@@ -272,7 +235,7 @@
     <div class="page" id="policyPage" data-view="policies" hidden>
       <nav class="topnav">
         <a class="topnav-brand" href="?tab=landing" data-landing-link>
-          <img src="logo.png" alt="Grippo" class="topnav-logo" />
+          <img src="logo.png" alt="" class="topnav-logo" width="40" height="40" />
           <span data-i18n="brand.name">Grippo</span>
         </a>
         <a class="topnav-back" href="?tab=landing" data-landing-link aria-label="Back to landing" data-i18n-aria-label="policies.backAria">
@@ -294,7 +257,7 @@
       </header>
 
       <main class="policy-content">
-        <section class="tab-panel" id="privacy" data-tab-panel role="tabpanel" aria-labelledby="tab-privacy" data-reveal>
+        <section class="tab-panel" id="privacy" lang="en" data-tab-panel role="tabpanel" aria-labelledby="tab-privacy" data-reveal>
           <h2>Privacy Policy</h2>
           <p>
             This privacy policy applies to the Grippo app (hereby referred to as "Application") for mobile devices that
@@ -419,7 +382,7 @@
 
         </section>
 
-        <section class="tab-panel" id="terms" data-tab-panel role="tabpanel" aria-labelledby="tab-terms" data-reveal>
+        <section class="tab-panel" id="terms" lang="en" data-tab-panel role="tabpanel" aria-labelledby="tab-terms" data-reveal>
           <h2>Terms &amp; Conditions</h2>
           <p>
             These terms and conditions apply to the Grippo app (hereby referred to as "Application") for mobile devices that was created by

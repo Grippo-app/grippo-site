@@ -1,83 +1,31 @@
-/* ---- reset ---- */
+@font-face { font-family: Manrope; src: url('/assets/fonts/manrope_regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: Manrope; src: url('/assets/fonts/manrope_medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: Manrope; src: url('/assets/fonts/manrope_semi_bold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: Manrope; src: url('/assets/fonts/manrope_extra_bold.ttf') format('truetype'); font-weight: 700 900; font-display: swap; }
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
-
-/* ---- scrollbar ---- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb {
-  background: rgba(249,115,22,.25);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover { background: rgba(249,115,22,.45); }
-
-body {
-  margin: 0;
-  font-family: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
-  color: var(--text-0);
-  line-height: 1.6;
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: var(--link);
-  text-decoration: none;
-  transition: color var(--dur-f);
-}
-a:hover { color: var(--link-hover); }
-
-a:focus-visible, button:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-  border-radius: var(--r-sm);
-}
-
-/* ---- typography ---- */
-h1, h2, h3 {
-  font-family: "Sora", "Manrope", sans-serif;
-  letter-spacing: -.02em;
-  line-height: 1.1;
-}
-h1 {
-  margin: 0;
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
-  font-weight: 800;
-  text-wrap: balance;
-}
-h2 {
-  margin: 0;
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  font-weight: 700;
-}
-h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-p { margin: 0; }
-ul { margin: 0; padding: 0 0 0 20px; }
-
-.overline {
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: .14em;
-  font-size: .72rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin: 0 0 12px;
-}
-
-.sect-head { margin-bottom: 40px; }
-.sect-head h2 {
-  margin-top: 8px;
-  background: linear-gradient(135deg, var(--text-0) 50%, rgba(240,240,245,.7) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.sect-sub { color: var(--text-1); margin-top: 12px; max-width: 54ch; }
-
-@media (max-width: 640px) {
-  h1 { font-size: 2rem; }
-}
+html { scrollbar-gutter: stable; scroll-behavior: smooth; scroll-padding-top: 100px; }
+body { margin: 0; font-family: Manrope, system-ui, sans-serif; color: var(--text-0); line-height: 1.65; background: var(--bg); -webkit-font-smoothing: antialiased; }
+::selection { color: var(--bg); background: var(--accent); }
+a { color: inherit; text-decoration: none; transition: color var(--dur-f); }
+a:hover { color: var(--accent-light); }
+button, input, summary { font: inherit; }
+button, summary, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+button { color: inherit; }
+img, svg { max-width: 100%; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-weight: 800; line-height: 1.08; letter-spacing: -.055em; }
+h2 { font-size: clamp(2.2rem, 4.2vw, 4rem); text-wrap: balance; }
+h3 { font-size: clamp(1.4rem, 2.3vw, 2rem); letter-spacing: -.035em; }
+.eyebrow, .overline { display: flex; align-items: center; gap: 10px; text-transform: uppercase; font-size: 10px; font-weight: 600; letter-spacing: .16em; line-height: 1.5; }
+.overline { color: var(--accent); margin-bottom: 24px; }
+.status-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+.button-primary, .button-text { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 58px; font-size: 13px; font-weight: 800; }
+.button-primary { padding: 0 25px; border-radius: 8px; background: var(--accent); color: #171715; transition: background .2s, transform .2s; }
+.button-primary:hover { background: var(--accent-light); color: #171715; transform: translateY(-2px); }
+.button-text { gap: 10px; }
+.play-icon { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--border-hover); border-radius: 50%; font-size: 16px; font-weight: 400; }
+.skip-link { position: fixed; top: -80px; left: 20px; z-index: 200; background: var(--accent); color: var(--bg); padding: 12px 20px; }
+.skip-link:focus { top: 12px; }
+@media (prefers-reduced-motion: reduce) { html { scrollbar-gutter: stable; scroll-behavior: auto; } }

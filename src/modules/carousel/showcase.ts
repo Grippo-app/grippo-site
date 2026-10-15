@@ -52,36 +52,7 @@ interface ShowcaseCarouselOptions {
   getAlt: (key: string) => string
 }
 
-/**
- * Autonomous carousel — no race conditions between autoplay and user input.
- *
- * Architecture decisions:
- *
- * 1. Single private `_transitionTo()` method owns all animation logic.
- *    Both `advance()` and `goTo()` delegate to it, eliminating duplication
- *    and ensuring the lock is always applied uniformly.
- *
- * 2. `_animating` boolean lock.
- *    Any call to `_transitionTo()` while a transition is in progress is
- *    silently dropped. This prevents the race condition where the autoplay
- *    timer and a user click both trigger an advance in the same frame.
- *
- * 3. `setTimeout` chain instead of `setInterval`.
- *    `setInterval` can have a callback already queued when `clearInterval`
- *    is called, causing a spurious advance after the timer was supposed to
- *    stop. A `setTimeout` chain schedules the *next* step only after the
- *    current animation fully completes, making the timing deterministic.
- *
- * 4. Separate `_autoplay` flag.
- *    `stop()` sets `_autoplay = false`. Transition cleanup checks this flag
- *    before re-arming the timer, so an externally-stopped carousel stays
- *    stopped even if cleanup runs after `stop()` was called.
- *
- * 5. `goTo()` uses shortest-path direction and a single `_transitionTo()`.
- *    The old while-loop called `advance()` multiple times synchronously,
- *    stacking conflicting async cleanup timeouts. Now a dot click always
- *    triggers exactly one animation to the target slide.
- */
+/** Keeps the current screen visible until the requested image is decoded. */
 export class ShowcaseCarousel {
   private readonly primary: HTMLImageElement
   private readonly secondary: HTMLImageElement
@@ -96,10 +67,14 @@ export class ShowcaseCarousel {
   private activeSlot = 0            // 0 = primary is visible, 1 = secondary is visible
   private dots: HTMLElement[] = []
   private timer: number | null = null
+  private transitionTimer: number | null = null
+  private locale: string | null = null
 
-  // --- Concurrency state ---
-  private _animating = false        // true while a CSS transition is in flight
-  private _autoplay = false         // true while autoplay is active
+  private _animating = false
+  private _autoplay = false
+  private _requestVersion = 0
+  private _pendingIndex: number | null = null
+  private _queuedSlide: { index: number; direction: 1 | -1 } | null = null
 
   private static readonly TRANSITION_MS = 550   // must match CSS transition duration
   private static readonly AUTO_ADVANCE_MS = 3800
@@ -122,25 +97,38 @@ export class ShowcaseCarousel {
   // -------------------------------------------------------------------------
 
   init(locale: string): void {
+    if (this.locale === locale && this.slides.length > 0) return
+
+    this.locale = locale
+    this._requestVersion++
+    this._clearTimer()
+    if (this.transitionTimer !== null) window.clearTimeout(this.transitionTimer)
+    this.transitionTimer = null
+    this._animating = false
+    this._pendingIndex = null
+    this._queuedSlide = null
+    for (const [slot, image] of [this.primary, this.secondary].entries()) {
+      image.onload = null
+      image.onerror = null
+      image.style.transition = 'none'
+      image.style.transform = ''
+      image.style.opacity = ''
+      image.classList.toggle('is-active', slot === this.activeSlot)
+      void image.offsetWidth
+      image.style.transition = ''
+    }
+
     this.slides = getSlidesForLocale(locale)
     if (this.slides.length === 0) return
 
-    this.index = 0
-    this.activeSlot = 0
+    this.index = Math.min(this.index, this.slides.length - 1)
     this._renderDots(this.slides.length)
-
-    const firstSlide = this.slides[0]
-    this._setImageWithFallback(this.primary, firstSlide.candidates)
-    this.primary.alt = this.getAlt(`showcase.alt.${firstSlide.key}`)
-    this.primary.classList.add('is-active')
-    this.secondary.classList.remove('is-active')
-
-    const secondSlide = this.slides[1] ?? firstSlide
-    this._setImageWithFallback(this.secondary, secondSlide.candidates)
-    this.secondary.alt = this.getAlt(`showcase.alt.${secondSlide.key}`)
+    this._transitionTo(this.index, 1)
   }
 
   start(): void {
+    // Product exploration is manual so visitors can read each real screen.
+    if (this.stage.dataset.autoplay === 'false') return
     if (!this.primary || !this.secondary || this.slides.length <= 1) {
       this._renderFrame()
       return
@@ -149,7 +137,7 @@ export class ShowcaseCarousel {
     this._autoplay = true
     this._clearTimer()
     this._renderFrame()
-    this._scheduleNext()
+    if (!this._animating && this._pendingIndex === null) this._scheduleNext()
   }
 
   stop(): void {
@@ -157,28 +145,33 @@ export class ShowcaseCarousel {
     this._clearTimer()
   }
 
-  /**
-   * Advance one step in the given direction.
-   * Dropped silently if an animation is already in progress.
-   */
+  /** Advance from the latest requested screen, including rapid repeated clicks. */
   advance(direction: 1 | -1): void {
     if (this.slides.length <= 1) return
     const normalizedDir: 1 | -1 = direction >= 0 ? 1 : -1
-    const nextIndex = (this.index + normalizedDir + this.slides.length) % this.slides.length
+    const currentIndex = this._queuedSlide?.index ?? this._pendingIndex ?? this.index
+    const nextIndex = (currentIndex + normalizedDir + this.slides.length) % this.slides.length
     this._transitionTo(nextIndex, normalizedDir)
   }
 
-  /**
-   * Jump directly to a specific slide index using the shortest visual path.
-   * Dropped silently if an animation is already in progress.
-   */
+  /** Jump directly to a screen; the latest selection replaces pending work. */
   goTo(nextIndex: number): void {
     if (
       !Number.isInteger(nextIndex) ||
       nextIndex < 0 ||
-      nextIndex >= this.slides.length ||
-      nextIndex === this.index
+      nextIndex >= this.slides.length
     ) {
+      return
+    }
+
+    if (nextIndex === this.index) {
+      this._queuedSlide = null
+      if (this._pendingIndex !== null && this._pendingIndex !== nextIndex) {
+        this._requestVersion++
+        this._pendingIndex = null
+        this.stage.setAttribute('aria-busy', 'false')
+        if (this._autoplay) this._scheduleNext()
+      }
       return
     }
 
@@ -194,27 +187,41 @@ export class ShowcaseCarousel {
   // Private: core transition (single authoritative animation method)
   // -------------------------------------------------------------------------
 
-  /**
-   * Runs the cross-fade/slide animation from the current slide to `nextIndex`.
-   *
-   * Guard: returns immediately if `_animating` is true.
-   * This is the only place that sets `_animating`, clears the timer, and
-   * re-arms autoplay — ensuring the lock and scheduling are always consistent.
-   */
   private _transitionTo(nextIndex: number, direction: 1 | -1): void {
-    if (this._animating) return   // ← single lock point; drops concurrent calls
+    if (this._animating) {
+      this._queuedSlide = { index: nextIndex, direction }
+      return
+    }
 
-    this._animating = true
-    this._clearTimer()            // suspend autoplay during the transition
+    const requestVersion = ++this._requestVersion
+    this._pendingIndex = nextIndex
+    this._clearTimer()
+    this.stage.setAttribute('aria-busy', 'true')
 
     const hiddenSlot = this.activeSlot === 0 ? 1 : 0
     const hiddenEl = hiddenSlot === 0 ? this.primary : this.secondary
     const visibleEl = hiddenSlot === 0 ? this.secondary : this.primary
     const nextSlide = this.slides[nextIndex]
 
-    this._setImageWithFallback(hiddenEl, nextSlide.candidates)
-    hiddenEl.alt = this.getAlt(`showcase.alt.${nextSlide.key}`)
+    this._setImageWithFallback(hiddenEl, nextSlide.candidates, requestVersion, () => {
+      this._pendingIndex = null
+      this._animating = true
+      hiddenEl.alt = this.getAlt(`showcase.alt.${nextSlide.key}`)
+      this._animateTo(nextIndex, direction, hiddenSlot, hiddenEl, visibleEl)
+    }, () => {
+      this._pendingIndex = null
+      this.stage.setAttribute('aria-busy', 'false')
+      if (this._autoplay) this._scheduleNext()
+    })
+  }
 
+  private _animateTo(
+    nextIndex: number,
+    direction: 1 | -1,
+    hiddenSlot: number,
+    hiddenEl: HTMLImageElement,
+    visibleEl: HTMLImageElement,
+  ): void {
     // ⚠️ Forced reflow pattern — must not be changed.
     // Reset the incoming slide to its off-screen start position without
     // animating (transition: none), then restore the transition so the
@@ -241,20 +248,21 @@ export class ShowcaseCarousel {
     // Cleanup runs after the CSS transition completes.
     // `_animating` is released here — not before — so no new transition
     // can start until the outgoing slide's inline styles are fully reset.
-    window.setTimeout(() => {
+    this.transitionTimer = window.setTimeout(() => {
+      this.transitionTimer = null
       visibleEl.style.transition = 'none'
       visibleEl.style.transform = ''
       visibleEl.style.opacity = ''
       void visibleEl.offsetWidth
       visibleEl.style.transition = ''
 
-      this._animating = false   // ← release lock after full cleanup
-
-      // Re-arm autoplay only when:
-      //   a) autoplay is active, AND
-      //   b) no timer is already pending (start() may have scheduled one
-      //      if it was called externally while the transition was running)
-      if (this._autoplay && this.timer === null) {
+      this._animating = false
+      this.stage.setAttribute('aria-busy', 'false')
+      const queuedSlide = this._queuedSlide
+      this._queuedSlide = null
+      if (queuedSlide && queuedSlide.index !== this.index) {
+        this._transitionTo(queuedSlide.index, queuedSlide.direction)
+      } else if (this._autoplay && this.timer === null) {
         this._scheduleNext()
       }
     }, ShowcaseCarousel.TRANSITION_MS + 50)
@@ -294,6 +302,11 @@ export class ShowcaseCarousel {
   // -------------------------------------------------------------------------
 
   private _renderFrame(): void {
+    this.primary.setAttribute('aria-hidden', String(this.activeSlot !== 0))
+    this.secondary.setAttribute('aria-hidden', String(this.activeSlot !== 1))
+    this.stage.closest('.app-explorer')?.querySelectorAll<HTMLElement>('[data-explorer-description]').forEach((description) => {
+      description.hidden = description.dataset.explorerDescription !== this.slides[this.index]?.key
+    })
     this.dots.forEach((dot, i) => {
       dot.classList.toggle('is-active', i === this.index)
       dot.setAttribute('aria-current', i === this.index ? 'true' : 'false')
@@ -305,18 +318,12 @@ export class ShowcaseCarousel {
     this.dots = []
 
     for (let i = 0; i < count; i++) {
-      const dot = document.createElement('span')
+      const dot = document.createElement('button')
+      dot.type = 'button'
       dot.className = 'phone-dot'
-      dot.setAttribute('role', 'button')
-      dot.setAttribute('tabindex', '0')
-      dot.setAttribute('aria-label', `Go to screenshot ${i + 1}`)
+      dot.textContent = this.getAlt(`landing.explorer.${this.slides[i].key}`)
+      dot.dataset.slide = this.slides[i].key
       dot.addEventListener('click', () => this.goTo(i))
-      dot.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          this.goTo(i)
-        }
-      })
       this.dotsContainer.appendChild(dot)
       this.dots.push(dot)
     }
@@ -327,21 +334,41 @@ export class ShowcaseCarousel {
   private _setImageWithFallback(
     imageElement: HTMLImageElement,
     candidates: string[],
-    onResolved?: (src: string) => void,
+    requestVersion: number,
+    onResolved: () => void,
+    onFailed: () => void,
   ): void {
-    if (!imageElement || candidates.length === 0) return
-
     let idx = 0
+    let resolved = false
     const tryNext = (): void => {
-      if (idx >= candidates.length) return
+      if (requestVersion !== this._requestVersion || resolved) return
+      if (idx >= candidates.length) {
+        imageElement.onload = null
+        imageElement.onerror = null
+        onFailed()
+        return
+      }
       imageElement.src = candidates[idx++]
     }
 
-    imageElement.onerror = () => tryNext()
-    imageElement.onload = () => {
-      if (typeof onResolved === 'function') onResolved(imageElement.src)
+    imageElement.onerror = tryNext
+    imageElement.onload = async () => {
+      const source = imageElement.src
+      try {
+        if (typeof imageElement.decode === 'function') await imageElement.decode()
+      } catch {
+        if (requestVersion === this._requestVersion && imageElement.src === source) tryNext()
+        return
+      }
+      if (requestVersion !== this._requestVersion || imageElement.src !== source || resolved) return
+      resolved = true
+      imageElement.onload = null
+      imageElement.onerror = null
+      onResolved()
     }
 
+    // A requested screen must load even if the stage is outside the lazy-load margin.
+    imageElement.loading = 'eager'
     tryNext()
   }
 }

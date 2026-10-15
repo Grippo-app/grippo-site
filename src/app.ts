@@ -19,6 +19,9 @@ import { RatingDisplay } from './ui/rating-display'
 import { RippleEffect } from './modules/ripple/ripple'
 import { MobileBar } from './ui/mobile-bar'
 import { PolicyTabs } from './ui/tabs'
+import { initProgressDemo } from './ui/progress-demo'
+import { initScreenZoom } from './ui/screen-zoom'
+import { initLanguagePicker } from './ui/language-picker'
 
 /**
  * App — thin orchestrator.
@@ -83,6 +86,9 @@ export class App {
 
     // 4. Signal that translations are applied — CSS can fade in content
     document.body.classList.add('i18n-ready')
+    initProgressDemo()
+    initScreenZoom()
+    initLanguagePicker()
 
     // 5. Wire up modules ---------------------------------------------------
 
@@ -252,6 +258,12 @@ export class App {
       const value = this.i18n.getTranslation(key as TranslationKey)
       if (value) el.setAttribute('aria-label', value)
     })
+
+    const heroPhone = document.querySelector<HTMLImageElement>('#heroPhone')
+    if (heroPhone) {
+      heroPhone.src = `assets/screenshots/dashboard_${this._locale}.webp`
+      heroPhone.alt = this.i18n.getTranslation('showcase.alt.dashboard')
+    }
 
     // Tab navigation links — clean URL with ?tab=X and optional ?locale=
     const origin = window.location.origin

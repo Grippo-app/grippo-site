@@ -32,11 +32,42 @@ export class PolicyTabs {
   }
 
   bindEvents(onTabChange: (tabId: string) => void): void {
-    this.tabs.forEach((button) => {
+    this.tabs.forEach((button, index) => {
       button.setAttribute('role', 'tab')
       button.addEventListener('click', () => {
         const tabId = (button as HTMLElement & { dataset: DOMStringMap }).dataset.tab
         if (tabId) onTabChange(tabId)
+      })
+      button.addEventListener('keydown', (event) => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return
+
+        let nextIndex: number
+        switch (event.key) {
+          case 'ArrowDown':
+          case 'ArrowRight':
+            nextIndex = (index + 1) % this.tabs.length
+            break
+          case 'ArrowUp':
+          case 'ArrowLeft':
+            nextIndex = (index - 1 + this.tabs.length) % this.tabs.length
+            break
+          case 'Home':
+            nextIndex = 0
+            break
+          case 'End':
+            nextIndex = this.tabs.length - 1
+            break
+          default:
+            return
+        }
+
+        const nextTab = this.tabs[nextIndex]
+        const tabId = nextTab?.dataset.tab
+        if (!tabId) return
+
+        event.preventDefault()
+        onTabChange(tabId)
+        nextTab.focus()
       })
     })
   }
