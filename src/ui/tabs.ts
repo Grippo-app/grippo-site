@@ -32,11 +32,19 @@ export class PolicyTabs {
   }
 
   bindEvents(onTabChange: (tabId: string) => void): void {
+    const activate = (tabId: string): void => {
+      onTabChange(tabId)
+      const panel = this.panelById.get(tabId)
+      // A sticky tab may be selected after reading far down another document.
+      if (panel && panel.getBoundingClientRect().top < 0) {
+        panel.scrollIntoView({ block: 'start' })
+      }
+    }
     this.tabs.forEach((button, index) => {
       button.setAttribute('role', 'tab')
       button.addEventListener('click', () => {
         const tabId = (button as HTMLElement & { dataset: DOMStringMap }).dataset.tab
-        if (tabId) onTabChange(tabId)
+        if (tabId) activate(tabId)
       })
       button.addEventListener('keydown', (event) => {
         if (event.altKey || event.ctrlKey || event.metaKey) return
@@ -66,8 +74,8 @@ export class PolicyTabs {
         if (!tabId) return
 
         event.preventDefault()
-        onTabChange(tabId)
-        nextTab.focus()
+        activate(tabId)
+        nextTab.focus({ preventScroll: true })
       })
     })
   }

@@ -54,7 +54,8 @@
 }
 
 .mobile-store-secondary:active {
-  background: rgba(255,255,255,.1);
+  background: #e3e0d8;
+  transform: scale(.97);
   transition-duration: 60ms;
 }
 

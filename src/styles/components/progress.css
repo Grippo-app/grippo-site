@@ -30,7 +30,12 @@
 .period-switch button { border: 0; background: transparent; color: #62695f; font-size: 12px; min-height: 40px; padding: 8px 12px; cursor: pointer; border-radius: 3px; transition: background .2s, color .2s; }
 .period-switch button[aria-pressed='true'] { color: #f5f3ee; background: #2b3031; }
 .period-switch button:hover:not([aria-pressed='true']) { color: #222; background: #e6e6df; }
-.muscle-panel { position: relative; overflow: hidden; }
+.muscle-panel { --muscle-share: 1; --muscle-share-color: #829b79; position: relative; overflow: hidden; }
+.muscle-panel:has(#muscle-chest:checked) { --muscle-share: .28; }
+.muscle-panel:has(#muscle-back:checked) { --muscle-share: .26; }
+.muscle-panel:has(#muscle-legs:checked) { --muscle-share: .32; }
+.muscle-panel:has(#muscle-arms:checked) { --muscle-share: .14; }
+.muscle-panel:has(input:not(#muscle-all):checked) { --muscle-share-color: #dc7847; }
 .muscle-panel h3 { font-size: 24px; letter-spacing: -.045em; max-width: 290px; }
 .muscle-description { color: #616a5e; font-size: 14px; line-height: 1.8; margin-top: 9px; max-width: 300px; }
 .muscle-filters { margin: 15px 0 0; padding: 0; border: 0; display: flex; gap: 5px; flex-wrap: wrap; }
@@ -43,8 +48,11 @@
 .muscle-anatomy path { transition: fill .35s; }
 .muscle-panel:has(:where(input:not(#muscle-all):checked)) path[data-group]:not([data-group='silhouette']):not([data-group='structure']) { fill: #e1e6dc; }
 .muscle-panel:has(#muscle-chest:checked) path[data-group='chest'], .muscle-panel:has(#muscle-back:checked) path[data-group='back'], .muscle-panel:has(#muscle-legs:checked) path[data-group='legs'], .muscle-panel:has(#muscle-arms:checked) path[data-group='arms'] { fill: #dc7847; }
-.muscle-scale { display: flex; align-items: center; justify-content: center; gap: 10px; color: #6a7267; font-size: 10px; }
-.load-spectrum { height: 5px; width: 92px; border-radius: 3px; background: linear-gradient(90deg, #cad7bf, #adc3a5, #95b093); }
+.muscle-scale { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px 16px; margin-top: 8px; padding-top: 15px; border-top: 1px solid #25282c12; color: #626b5e; font-size: 12px; line-height: 1.5; }
+.muscle-share-values { min-width: 4ch; color: #343d35; font-size: 24px; font-weight: 600; letter-spacing: -.04em; text-align: right; font-variant-numeric: tabular-nums; }
+.muscle-share-values > span { display: none; }
+.load-spectrum { grid-column: 1 / -1; height: 7px; overflow: hidden; border-radius: 4px; background: #e5e8df; }
+.load-spectrum::after { content: ''; display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--muscle-share-color); transform: scaleX(var(--muscle-share)); transform-origin: left; transition: transform .35s var(--ease), background-color .35s; }
 .demo-caption { margin-top: 20px; color: #666e62; font-size: 12px; line-height: 1.7; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media (max-width: 1000px) {
@@ -80,8 +88,8 @@
 
 .muscle-insights { min-height: 55px; margin: 12px auto 7px; max-width: 340px; text-align: center; font-size: 12px; line-height: 1.65; color: #626b5e; }
 .muscle-insights p { display: none; }
-.muscle-panel:has(#muscle-all:checked) [data-muscle-hint='all'],
-.muscle-panel:has(#muscle-chest:checked) [data-muscle-hint='chest'],
-.muscle-panel:has(#muscle-back:checked) [data-muscle-hint='back'],
-.muscle-panel:has(#muscle-legs:checked) [data-muscle-hint='legs'],
-.muscle-panel:has(#muscle-arms:checked) [data-muscle-hint='arms'] { display: block; }
+.muscle-panel:has(#muscle-all:checked) :is([data-muscle-hint='all'], [data-muscle-share='all']),
+.muscle-panel:has(#muscle-chest:checked) :is([data-muscle-hint='chest'], [data-muscle-share='chest']),
+.muscle-panel:has(#muscle-back:checked) :is([data-muscle-hint='back'], [data-muscle-share='back']),
+.muscle-panel:has(#muscle-legs:checked) :is([data-muscle-hint='legs'], [data-muscle-share='legs']),
+.muscle-panel:has(#muscle-arms:checked) :is([data-muscle-hint='arms'], [data-muscle-share='arms']) { display: block; }
