@@ -1,13 +1,13 @@
 import { type StoreType, PREFERRED_STORE_KEY } from './types'
 
 /**
- * Determines the preferred store in priority order:
+ * Returns a known store preference in priority order:
  *   1. manualPreferred argument (explicit user choice passed from caller)
  *   2. Stored preference from localStorage (readStored)
  *   3. UA sniffing (Android → google-play, iPhone/iPad → app-store)
- *   4. Fallback: 'app-store'
+ * Returns null when the device and visitor preference are unknown.
  */
-export function detectPreferred(manualPreferred: StoreType | null): StoreType {
+export function detectKnownPreferred(manualPreferred: StoreType | null): StoreType | null {
   if (manualPreferred) {
     return manualPreferred
   }
@@ -33,7 +33,12 @@ export function detectPreferred(manualPreferred: StoreType | null): StoreType {
     return 'app-store'
   }
 
-  return 'app-store'
+  return null
+}
+
+/** Supplies a default for controls that always need one primary store. */
+export function detectPreferred(manualPreferred: StoreType | null): StoreType {
+  return detectKnownPreferred(manualPreferred) ?? 'app-store'
 }
 
 /**

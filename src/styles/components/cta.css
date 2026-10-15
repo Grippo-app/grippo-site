@@ -1,9 +1,9 @@
 .landing-cta { background: #e99968; color: #232624; padding: 77px 0; }
 .cta-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 90px; align-items: center; }
-.landing-cta .overline { color: #663e29; }
+.landing-cta .overline { color: #563521; }
 .landing-cta h2 { max-width: 620px; font-size: clamp(2.7rem, 4.5vw, 4.3rem); }
-.cta-sub { margin-top: 24px; font-size: 16px; max-width: 430px; color: #614332; line-height: 1.8; }
+.cta-sub { margin-top: 24px; font-size: 16px; max-width: 430px; color: #503828; line-height: 1.8; }
 .cta-downloads { justify-self: end; }
-.cta-note { margin-top: 14px; color: #6c4833; font-size: 12px; text-align: center; }
+.cta-note { margin-top: 14px; color: #523823; font-size: 12px; text-align: center; }
 @media (max-width: 1000px) { .cta-inner { gap: 40px; grid-template-columns: 1.2fr 1fr; } }
 @media (max-width: 760px) { .landing-cta { padding: 55px 0; } .cta-inner { grid-template-columns: 1fr; gap: 30px; } .landing-cta h2 { font-size: clamp(2.5rem, 8.5vw, 3.5rem); } .cta-sub { font-size: 15px; } .cta-downloads { justify-self: start; } }

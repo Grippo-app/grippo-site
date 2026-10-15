@@ -20,18 +20,25 @@ export function initLanguagePicker(onChange: () => void): void {
   }
   const options = Array.from(picker.querySelectorAll<HTMLAnchorElement>('.language-options a'))
     .map((link) => ({ link, locale: resolveFromParams(new URL(link.href).searchParams) }))
-  const updateLinks = (): void => {
+  const syncOptions = (): void => {
+    const currentLocale = document.documentElement.lang === 'uk' ? 'ua' : document.documentElement.lang
     options.forEach(({ link, locale }) => {
-      if (locale) link.href = localeUrl(locale).href
+      if (!locale) return
+      link.href = localeUrl(locale).href
+      if (locale === currentLocale) link.setAttribute('aria-current', 'true')
+      else link.removeAttribute('aria-current')
     })
   }
 
-  updateLinks()
-  picker.addEventListener('toggle', updateLinks)
+  syncOptions()
+  picker.addEventListener('toggle', syncOptions)
+  new MutationObserver(syncOptions).observe(document.documentElement, {
+    attributes: true, attributeFilter: ['lang'],
+  })
   options.forEach(({ link, locale }) => {
     if (!locale) return
     link.addEventListener('click', (event) => {
-      updateLinks()
+      syncOptions()
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey ||
           event.shiftKey || event.altKey || link.target === '_blank') return
 

@@ -12,7 +12,7 @@ import {
   buildLandingUrl,
 } from './modules/router/router'
 import { getStoreUrls, getAutoUrl } from './modules/store/store-links'
-import { detectPreferred, writeStored } from './modules/store/store-detector'
+import { detectKnownPreferred, writeStored } from './modules/store/store-detector'
 import { handleStoreClick } from './modules/store/store-click-handler'
 import { STORE_RATINGS } from './modules/store/store-ratings'
 import { RatingDisplay } from './ui/rating-display'
@@ -260,12 +260,6 @@ export class App {
       if (value) el.setAttribute('aria-label', value)
     })
 
-    const heroPhone = document.querySelector<HTMLImageElement>('#heroPhone')
-    if (heroPhone) {
-      heroPhone.src = `assets/screenshots/dashboard_${this._locale}.webp`
-      heroPhone.alt = this.i18n.getTranslation('showcase.alt.dashboard')
-    }
-
     // Tab navigation links — clean URL with ?tab=X and optional ?locale=
     const origin = window.location.origin
     const pathname = window.location.pathname
@@ -294,9 +288,15 @@ export class App {
 
   private _updateStoreLinks(): void {
     const urls = getStoreUrls(this._locale)
-    const preferred = detectPreferred(this._manualPreferred)
+    const knownPreferred = detectKnownPreferred(this._manualPreferred)
+    const preferred = knownPreferred ?? 'app-store'
 
     document.querySelectorAll<HTMLAnchorElement>('[data-store]').forEach((link) => {
+      if (link.hasAttribute('data-hero-download')) {
+        link.dataset.store = knownPreferred ? 'auto' : 'choice'
+        link.href = knownPreferred ? getAutoUrl(knownPreferred, urls) : '#download'
+        return
+      }
       const store = link.dataset.store
       if (store === 'app-store') {
         link.href = urls.appStoreUrl

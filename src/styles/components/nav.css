@@ -19,6 +19,10 @@ html[lang='uk'] .current-language::after { content: 'UA'; }
 .language-options a { min-height: 44px; font-size: 13px; display: flex; justify-content: space-between; gap: 20px; padding: 9px 10px; border-radius: 4px; }
 .language-options a:hover { background: var(--bg-card-hover); }
 .language-options a span { color: var(--text-2); }
+.language-options a span::after { content: ''; display: inline-block; width: 12px; margin-left: 8px; }
+.language-options a[aria-current='true'] { color: var(--text-0); background: #ffffff08; }
+.language-options a[aria-current='true'] span { color: var(--accent); }
+.language-options a[aria-current='true'] span::after { content: '✓'; }
 .topnav-back { display: inline-flex; padding: 8px 16px; border: 1px solid var(--border-hover); border-radius: 6px; }
 @media (max-width: 900px) { .topnav-links { display: none; } .topnav-actions { gap: 16px; } }
 @media (max-width: 640px) { .topnav { height: 78px; gap: 12px; } .topnav-brand { font-size: 25px; } .topnav-logo { width: 32px; height: 32px; } .topnav-links { display: none; } .topnav-actions { gap: 15px; } .nav-download { gap: 12px; padding: 9px 12px; font-size: 11px; } .language-picker summary svg { display: none; } }
